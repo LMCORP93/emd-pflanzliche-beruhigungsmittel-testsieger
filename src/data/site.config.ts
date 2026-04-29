@@ -233,8 +233,8 @@ const products: Product[] = [
 ];
 
 const config: SiteConfig = {
-  domain: "https://emd-pflanzliche-beruhigungsmittel-testsieger.pages.dev",
-  isIndexable: false,
+  domain: "https://pflanzliche-beruhigungsmittel-testsieger.de",
+  isIndexable: true,
   siteName: "Pflanzliche Beruhigungsmittel Testsieger",
   brand: "Bonjour Drink",
   product: "Saveur Camomille",
