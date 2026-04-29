@@ -1,0 +1,19 @@
+---
+interface Props {
+  emoji: string;
+  text: string;
+  variant: 'top' | 'summary';
+}
+
+const { emoji, text, variant } = Astro.props;
+---
+
+{variant === 'top' ? (
+  <div class="absolute top-4 right-4 bg-orange text-white font-primary font-bold text-xs uppercase px-3 py-1.5 rounded-button z-10">
+    {emoji} {text}
+  </div>
+) : (
+  <span class="inline-block bg-orange text-white text-xs uppercase font-semibold px-3 py-1 rounded-button">
+    {text}
+  </span>
+)}

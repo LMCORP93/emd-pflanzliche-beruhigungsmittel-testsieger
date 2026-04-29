@@ -1,0 +1,262 @@
+---
+interface Props {
+  brand: string;
+  productImage: string;
+  productName: string;
+  productType?: string;
+  description: string;
+  promoCode: string;
+  promoPercent: number;
+  originalPrice: string;
+  discountPrice: string;
+  affiliateLink: string;
+  rating: number;
+}
+
+const {
+  brand, productImage, productName,
+  description, promoCode, promoPercent, originalPrice, discountPrice,
+  affiliateLink,
+} = Astro.props;
+
+const shortDesc = description.length > 100 ? description.slice(0, 97) + '...' : description;
+---
+
+<div id="brand-popup" class="bp" role="dialog" aria-modal="true" aria-label="Exklusives Angebot">
+  <div id="popup-overlay" class="bp-overlay"></div>
+  <div class="bp-card">
+    <button id="popup-close" class="bp-close" aria-label="Schließen">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+      </svg>
+    </button>
+
+    <div class="bp-inner">
+      <!-- Produktbild - hero -->
+      <img src={productImage} alt={productName} class="bp-img" loading="lazy" />
+
+      <!-- Tag -->
+      <span class="bp-tag">Exklusives Angebot</span>
+
+      <!-- Title -->
+      <h3 class="bp-title">{productName}</h3>
+
+      <!-- Desc -->
+      <p class="bp-desc">{shortDesc}</p>
+
+      <!-- Price -->
+      <div class="bp-price">
+        <span class="bp-price-old">{originalPrice}</span>
+        <span class="bp-price-new">{discountPrice}</span>
+      </div>
+
+      <!-- Buttons stacked -->
+      {promoCode && promoPercent > 0 && (
+        <div class="bp-btns">
+          <a href={affiliateLink} rel="nofollow sponsored" target="_blank" class="btn-solid" style="width:100%">
+            <span>Jetzt ansehen</span>
+            <span class="btn-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </a>
+          <button id="popup-copy-btn" class="copy-promo-btn btn-dashed" data-code={promoCode} style="width:100%">
+            <span class="promo-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2m0 16H8V7h11z"></path>
+              </svg>
+            </span>
+            <span class="promo-code-text">{promoCode}</span>
+            <span class="promo-percent">-{promoPercent}%</span>
+          </button>
+        </div>
+      )}
+    </div>
+  </div>
+</div>
+
+<!-- Floating button to open popup -->
+<button id="popup-trigger" class="bp-trigger" aria-label="Exklusives Angebot ansehen">
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+    <line x1="7" y1="7" x2="7.01" y2="7"/>
+  </svg>
+  <span class="bp-trigger-text">-{promoPercent}% {promoCode}</span>
+</button>
+
+<script>
+  function initBrandPopup() {
+    const popup = document.getElementById('brand-popup') as HTMLElement | null;
+    const overlay = document.getElementById('popup-overlay');
+    const closeBtn = document.getElementById('popup-close');
+    const copyBtn = document.getElementById('popup-copy-btn') as HTMLElement | null;
+    const trigger = document.getElementById('popup-trigger');
+
+    if (!popup) return;
+
+    let autoTimer: ReturnType<typeof setTimeout> | null = null;
+
+    // Only auto-show once per session
+    const autoShow = () => {
+      if (sessionStorage.getItem('emd-brand-popup-shown')) return;
+      autoTimer = setTimeout(() => {
+        openPopup();
+        sessionStorage.setItem('emd-brand-popup-shown', 'true');
+      }, 15000);
+    };
+
+    const openPopup = () => {
+      popup.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      // Hide trigger when popup is open
+      if (trigger) trigger.style.display = 'none';
+    };
+
+    const closePopup = () => {
+      popup.classList.remove('is-open');
+      document.body.style.overflow = '';
+      if (autoTimer) clearTimeout(autoTimer);
+      // Show trigger again after closing
+      if (trigger) trigger.style.display = '';
+    };
+
+    // Auto show after 15s
+    autoShow();
+
+    // Manual open from floating button
+    if (trigger) trigger.addEventListener('click', openPopup);
+
+    // Close handlers
+    if (overlay) overlay.addEventListener('click', closePopup);
+    if (closeBtn) closeBtn.addEventListener('click', closePopup);
+
+    const escHandler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && popup.classList.contains('is-open')) {
+        closePopup();
+        document.removeEventListener('keydown', escHandler);
+      }
+    };
+    document.addEventListener('keydown', escHandler);
+
+    // Copy promo code
+    if (copyBtn) {
+      copyBtn.addEventListener('click', () => {
+        const code = copyBtn.getAttribute('data-code') || '';
+        const textEl = copyBtn.querySelector('.promo-code-text');
+        navigator.clipboard.writeText(code).then(() => {
+          if (textEl) {
+            const original = textEl.textContent || '';
+            textEl.textContent = '✓ Kopiert!';
+            setTimeout(() => { textEl.textContent = original; }, 1500);
+          }
+        });
+      });
+    }
+  }
+  initBrandPopup();
+</script>
+
+<style>
+  /* ── Popup ── */
+  .bp {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1rem;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .bp.is-open { opacity: 1; visibility: visible; }
+
+  .bp-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+  }
+
+  .bp-card {
+    position: relative;
+    width: 100%; max-width: 340px;
+    background: #fff; border-radius: 0.75rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  }
+
+  .bp-close {
+    position: absolute; top: 0.5rem; right: 0.5rem; z-index: 10;
+    width: 1.5rem; height: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 50%; background: #f0f0f0; border: none; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .bp-close:hover { background: #e0e0e0; }
+
+  .bp-inner {
+    padding: 1.25rem;
+    display: flex; flex-direction: column; align-items: center;
+    gap: 0.5rem; text-align: center;
+  }
+
+  /* ── Produktbild (big) ── */
+  .bp-img {
+    width: 160px; height: 160px; object-fit: contain; border-radius: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .bp-tag {
+    background: #ef7a1a; color: #fff;
+    font-family: 'Archivo', sans-serif; font-weight: 700;
+    font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.04em;
+    padding: 0.15rem 0.625rem; border-radius: 6px;
+  }
+
+  .bp-title {
+    font-family: 'Archivo', sans-serif; font-weight: 700;
+    font-size: 1.0625rem; color: #242424; margin: 0; line-height: 1.3;
+  }
+
+  .bp-desc {
+    font-size: 0.8125rem; color: #777; line-height: 1.5; margin: 0;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  }
+
+  .bp-price { display: flex; align-items: baseline; gap: 0.5rem; }
+  .bp-price-old { font-size: 0.8125rem; color: #999; text-decoration: line-through; }
+  .bp-price-new {
+    font-family: 'Archivo', sans-serif; font-weight: 800;
+    font-size: 1.25rem; color: #ef7a1a; line-height: 1;
+  }
+
+  .bp-btns {
+    display: flex; flex-direction: column; gap: 0.5rem;
+    width: 100%; margin-top: 0.125rem;
+  }
+
+  /* ── Floating trigger button (bottom-right) ── */
+  .bp-trigger {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    display: flex; align-items: center; gap: 0.5rem;
+    background: #ef7a1a; color: #fff;
+    font-family: 'Archivo', sans-serif; font-weight: 700;
+    font-size: 0.8125rem;
+    padding: 0.75rem 1rem;
+    border-radius: 2rem;
+    border: none; cursor: pointer;
+    box-shadow: 0 4px 16px rgba(239, 122, 26, 0.4);
+    transition: background 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .bp-trigger:hover {
+    background: #d66a12;
+    transform: translateY(-2px);
+  }
+  .bp-trigger svg { flex-shrink: 0; }
+
+  @media (max-width: 767px) {
+    .bp-trigger {
+      bottom: 1.5rem;
+      right: 1rem;
+      font-size: 0.75rem;
+      padding: 0.625rem 0.875rem;
+    }
+  }
+</style>

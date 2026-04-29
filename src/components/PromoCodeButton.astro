@@ -1,0 +1,56 @@
+---
+interface Props {
+  code: string;
+  percent: string;
+}
+
+const { code, percent } = Astro.props;
+---
+
+<button
+  class="copy-promo-btn btn-dashed"
+  data-code={code}
+  type="button"
+>
+  <span class="promo-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path fill="currentColor" d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2m0 16H8V7h11z"></path>
+    </svg>
+  </span>
+  <span class="promo-code-text">{code}</span>
+  <span class="promo-percent">-{percent}</span>
+</button>
+
+<script>
+  document.querySelectorAll('.copy-promo-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const code = (btn as HTMLElement).getAttribute('data-code') || '';
+      const textEl = btn.querySelector('.promo-code-text');
+      navigator.clipboard.writeText(code).then(() => {
+        if (textEl) {
+          const original = textEl.textContent || '';
+          textEl.textContent = '✓ Kopiert!';
+          setTimeout(() => { textEl.textContent = original; }, 1500);
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .promo-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .promo-icon svg { width: 16px; height: 16px; }
+  .promo-code-text {
+    font-weight: 700;
+    color: #242424;
+  }
+  .promo-percent {
+    font-weight: 700;
+    color: #ef7a1a;
+  }
+</style>

@@ -1,0 +1,120 @@
+---
+interface Props {
+  assets: string[];
+  considerations: string[];
+}
+
+const { assets, considerations } = Astro.props;
+---
+
+<section id="pros-cons-summary" class="proscons-section">
+  <div class="proscons-grid">
+    <!-- Points forts (blue) -->
+    <div class="proscons-block proscons-block--blue">
+      <div class="proscons-block-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00b67a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="m9 12 2 2 4-4" />
+        </svg>
+      </div>
+      <h4 class="proscons-block-title">Die wichtigsten Stärken</h4>
+      <ul class="proscons-list">
+        {assets.map((item) => (
+          <li class="proscons-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00b67a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="proscons-item-icon">
+              <path d="M20 6 9 17l-5-5" />
+            </svg>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- Zu beachten (orange) -->
+    <div class="proscons-block proscons-block--orange">
+      <div class="proscons-block-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef7a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3" />
+          <path d="M12 9v4" />
+          <path d="M12 17h.01" />
+        </svg>
+      </div>
+      <h4 class="proscons-block-title">Zu beachten</h4>
+      <ul class="proscons-list">
+        {considerations.map((item) => (
+          <li class="proscons-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="proscons-item-icon">
+              <path d="m15 9-6 6" />
+              <path d="m9 9 6 6" />
+            </svg>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .proscons-section {
+    margin-bottom: 2rem;
+  }
+
+  .proscons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  @media (max-width: 767px) {
+    .proscons-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .proscons-block {
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+  .proscons-block--blue {
+    background-color: #ecf1ff;
+  }
+  .proscons-block--orange {
+    background-color: #fef3e6;
+  }
+
+  .proscons-block-icon {
+    margin-bottom: 0.75rem;
+  }
+
+  .proscons-block-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1rem);
+    color: #242424;
+    margin: 0 0 1rem;
+    line-height: 1.3;
+  }
+
+  .proscons-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.625rem;
+  }
+
+  .proscons-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    font-size: clamp(0.8125rem, 0.8rem + 0.1vw, 0.875rem);
+    color: #333;
+    line-height: 1.5;
+  }
+
+  .proscons-item-icon {
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+</style>

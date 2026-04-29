@@ -1,0 +1,223 @@
+---
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+interface FooterColumn {
+  title: string;
+  links: NavLink[];
+}
+
+interface Props {
+  siteName: string;
+  logoSrc: string;
+  navLinks?: NavLink[];
+  copyright: string;
+  columns?: FooterColumn[];
+  year?: number;
+}
+
+const {
+  siteName,
+  logoSrc,
+  navLinks = [],
+  copyright,
+  columns,
+  year = new Date().getFullYear(),
+} = Astro.props;
+
+const reservedFooterRoutes = new Set([
+  "/",
+  "/contact",
+  "/mentions-legales",
+  "/politique-de-confidentialite",
+]);
+
+const guideLinks = navLinks
+  .filter((link) => !reservedFooterRoutes.has(link.href))
+  .slice(0, 6);
+
+// Legal / information links
+const infoLinks: NavLink[] = [
+  { label: 'Datenschutz', href: '/datenschutz' },
+  { label: 'Impressum', href: '/impressum' },
+  { label: 'hello@le-meilleur-complement.fr', href: 'mailto:hello@le-meilleur-complement.fr' },
+];
+---
+
+<footer class="footer">
+  <div class="footer_container">
+    <!-- 2-column grid: links only -->
+    <div class="footer_grid">
+
+      <!-- Column 1: Unsere Vergleiche -->
+      <div class="footer_colonne">
+        <div class="footer_col-title">Unsere Vergleiche</div>
+        <div class="footer_wrapper-links">
+          {guideLinks.length > 0 ? guideLinks.map((link) => (
+            <a href={link.href} class="footer_link">
+              {link.label}
+            </a>
+          )) : (
+            <span class="footer_link--placeholder">Bald verfügbar…</span>
+          )}
+        </div>
+      </div>
+
+      <!-- Column 2: Informationen -->
+      <div class="footer_colonne">
+        <div class="footer_col-title">Informationen</div>
+        <div class="footer_wrapper-links">
+          {infoLinks.map((link) => link.href.startsWith('mailto:') ? (
+            <>
+              <Fragment set:html={'<!--email_off-->'} />
+              <a href={link.href} class="footer_link">{link.label}</a>
+              <Fragment set:html={'<!--/email_off-->'} />
+            </>
+          ) : (
+            <a href={link.href} class="footer_link">
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom sub-footer: logo + copyright aligned on same row -->
+    <div class="footer_sub">
+      <a href="/" class="footer_logo-link">
+        <img src={logoSrc} alt={siteName} class="footer_logo" />
+      </a>
+      <p class="footer_copyright">© {year} {copyright}</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  /* ── Footer root ── */
+  .footer {
+    background-color: #f4f2ec;
+    color: #242424;
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  /* ── Container ── */
+  .footer_container {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ── 2-column grid ── */
+  .footer_grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  /* ── Column ── */
+  .footer_colonne {
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1rem;
+    text-align: left;
+    align-self: start;
+  }
+
+  /* ── Column title ── */
+  .footer_col-title {
+    font-family: 'Archivo', sans-serif;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #242424;
+    opacity: 1;
+  }
+
+  /* ── Links wrapper ── */
+  .footer_wrapper-links {
+    display: flex;
+    flex-flow: column;
+    gap: 0.5rem;
+  }
+
+  /* ── Link ── */
+  .footer_link {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .footer_link:hover {
+    opacity: 0.7;
+    color: #ef7a1a;
+  }
+
+  .footer_link--placeholder {
+    font-size: 14px;
+    color: #999;
+    font-style: italic;
+  }
+
+  /* ── Sub footer: logo + copyright on same line ── */
+  .footer_sub {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  /* ── Logo link ── */
+  .footer_logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .footer_logo {
+    width: 5.25rem;
+    height: 5.25rem;
+    object-fit: contain;
+  }
+
+  .footer_copyright {
+    margin: 0;
+    font-size: 12px;
+    color: #555;
+    opacity: 0.6;
+  }
+
+  /* ── Responsive: mobile (≤767px) → flex column ── */
+  @media (max-width: 767px) {
+    .footer_grid {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer_colonne {
+      text-align: left;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    .footer_sub {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .footer_logo {
+      width: 6rem;
+      height: 6rem;
+    }
+  }
+</style>

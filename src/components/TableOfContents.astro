@@ -1,0 +1,138 @@
+---
+interface TocItem {
+  id: string;
+  label: string;
+}
+
+interface Props {
+  items: TocItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="summary_wrapper">
+  <!-- Toggle header -->
+  <div class="summary_title-wrapper" id="toc-trigger" role="button" tabindex="0" aria-expanded="false" aria-controls="toc-links">
+    <div class="summary_wrapper-title">
+      <span class="summary_heading">Inhalt</span>
+    </div>
+    <svg class="summary_chevron summary_chevron-up" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="m6 9 6 6 6-6" />
+    </svg>
+  </div>
+
+  <!-- Links list (closed by default) -->
+  <div class="summary_wrapper-title-links summary_hidden" id="toc-links">
+    {items.map((item) => (
+      <a
+        href={`#${item.id}`}
+        class="summary_text-link"
+        onclick={`event.preventDefault(); document.querySelector('#${item.id}')?.scrollIntoView({behavior:'smooth'});`}
+      >
+        {item.label}
+      </a>
+    ))}
+  </div>
+</div>
+
+<script>
+  function initTocToggle() {
+    const trigger = document.getElementById('toc-trigger');
+    if (!trigger) return;
+    const linksEl = document.getElementById('toc-links');
+    const chevronEl = trigger.querySelector('.summary_chevron');
+    if (!linksEl || !chevronEl) return;
+    const links = linksEl;
+    const chevron = chevronEl;
+    const triggerEl = trigger;
+
+    function toggle() {
+      const isHidden = links.classList.toggle('summary_hidden');
+      chevron.classList.toggle('summary_chevron-up', isHidden);
+      triggerEl.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
+    }
+
+    trigger.addEventListener('click', toggle);
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggle();
+      }
+    });
+  }
+  initTocToggle();
+</script>
+
+<style>
+  .summary_wrapper {
+    margin: 1rem 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+
+  /* Header / toggle */
+  .summary_title-wrapper {
+    gap: .5rem;
+    cursor: pointer;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    margin-bottom: 0;
+    min-height: 1.5rem;
+  }
+
+  .summary_wrapper-title {
+    gap: 6px;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+  }
+
+  .summary_heading {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    color: #242424;
+    line-height: 1.2;
+  }
+
+  .summary_chevron {
+    transition: transform 0.2s ease;
+    color: #999;
+    flex-shrink: 0;
+  }
+  .summary_chevron.summary_chevron-up {
+    transform: rotate(180deg);
+  }
+
+  /* Links list */
+  .summary_wrapper-title-links {
+    gap: .75rem;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    margin-top: .75rem;
+    transition: max-height 0.25s ease, opacity 0.25s ease;
+  }
+  .summary_wrapper-title-links.summary_hidden {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  /* Individual link */
+  .summary_text-link {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 12px;
+    text-decoration: none;
+    line-height: 1.5;
+    transition: color 0.15s ease;
+  }
+  .summary_text-link:hover {
+    color: #ef7a1a;
+    text-decoration: underline;
+  }
+</style>

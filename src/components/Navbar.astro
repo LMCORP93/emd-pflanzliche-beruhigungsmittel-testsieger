@@ -1,0 +1,262 @@
+---
+interface NavLink {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  siteName: string;
+  logoSrc: string;
+  navLinks: NavLink[];
+  ctaText: string;
+  ctaLink: string;
+}
+
+const { siteName, logoSrc, navLinks, ctaText, ctaLink } = Astro.props;
+
+const normalizePath = (value: string) => {
+  if (!value || value.startsWith('#') || /^https?:\/\//i.test(value)) return value;
+  const [pathOnly] = value.split('#');
+  const normalized = pathOnly.endsWith('/') && pathOnly !== '/' ? pathOnly.slice(0, -1) : pathOnly;
+  return normalized || '/';
+};
+
+const currentPath = normalizePath(Astro.url.pathname);
+const isNavLinkActive = (href: string) => normalizePath(href) === currentPath;
+---
+
+<!-- ═══ navbar_component ═══
+  Webflow: z-999, bg #f4f2ec, flex, justify-between, items-center, w-full, py-12px, position static → sticky for scroll-shadow
+-->
+<header
+  id="navbar"
+  class="sticky top-0 z-[999] w-full bg-grey-bg py-3 transition-shadow duration-300"
+>
+  <!-- ═══ navbar_container-v2 ═══
+    Webflow: w-full, max-w-1968px, px-24px; @media ≤767px: px-1.25rem
+  -->
+  <div class="mx-auto flex w-full max-w-[1968px] items-center justify-between px-6 max-[767px]:px-5">
+    <!-- ═══ nav_wrapper-logo ═══ -->
+    <a href="/" class="flex shrink-0 items-center">
+      <!-- ═══ nav_logo: height ~40px, width auto ═══ -->
+      <img src={logoSrc} alt={siteName} class="h-10 w-auto" />
+    </a>
+
+    <!-- ═══ navbar_menu-content-wrapper (desktop only) ═══
+      Webflow: gap-64px, flex, justify-between, items-center
+      Hidden below 991px via Webflow responsive override
+    -->
+    <div class="flex items-center justify-between gap-4 max-[991px]:hidden">
+      <!-- ═══ navbar_menu-content ═══
+        Webflow: gap-64px, flex, justify-start, items-center
+      -->
+      <nav class="flex items-center justify-start gap-4">
+        {navLinks.map((link) => (
+          /* ═══ navbar_menu-item ═══ Webflow: gap-12px, flex, justify-start, items-center */
+          <a
+            href={link.href}
+            aria-current={isNavLinkActive(link.href) ? 'page' : undefined}
+            class:list={[
+              'font-primary text-sm no-underline transition-colors duration-200 hover:text-black',
+              isNavLinkActive(link.href) ? 'font-bold text-orange' : 'text-[#595b61]',
+            ]}
+          >
+            {link.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- ═══ CTA Button - orange rounded pill ═══ -->
+      <a
+        href={ctaLink}
+        rel={ctaLink.startsWith('#') ? undefined : 'nofollow sponsored'}
+        target={ctaLink.startsWith('#') ? undefined : '_blank'}
+        class="inline-flex shrink-0 items-center gap-2 rounded-button bg-orange px-5 py-2.5 font-primary text-sm font-bold leading-none text-white no-underline transition-all duration-200 hover:bg-[#d66a12] hover:-translate-y-px"
+      >
+        <span>{ctaText}</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="shrink-0"
+        >
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- ═══ hamburger-menu (mobile only, hidden on desktop ≥991px) ═══ -->
+    <button
+      id="mobile-menu-btn"
+      class="hidden max-[991px]:flex flex-col items-center justify-center gap-1.5"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+    >
+      <span class="hamburger-bar block h-[2px] w-6 origin-center bg-black transition-all duration-300"></span>
+      <span class="hamburger-bar block h-[2px] w-6 bg-black transition-all duration-300"></span>
+      <span class="hamburger-bar block h-[2px] w-6 origin-center bg-black transition-all duration-300"></span>
+    </button>
+  </div>
+</header>
+
+<!-- ═══ Mobile Menu Overlay (slides in from right) ═══ -->
+<div
+  id="mobile-menu"
+  class="mobile-overlay fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-10 bg-grey-bg transition-all duration-300"
+>
+  <!-- Close button -->
+  <button
+    id="mobile-menu-close"
+    class="absolute right-5 top-5 flex h-10 w-10 items-center justify-center"
+    aria-label="Menü schließen"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="black"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  </button>
+
+  <!-- Mobile nav links -->
+  <nav class="flex flex-col items-center gap-7">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        aria-current={isNavLinkActive(link.href) ? 'page' : undefined}
+        class:list={[
+          'font-primary text-[28px] font-semibold leading-tight transition-colors duration-200 hover:text-orange',
+          isNavLinkActive(link.href) ? 'text-orange' : 'text-black',
+        ]}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+
+  <!-- Mobile CTA Button -->
+  <a
+    href={ctaLink}
+    rel={ctaLink.startsWith('#') ? undefined : 'nofollow sponsored'}
+    target={ctaLink.startsWith('#') ? undefined : '_blank'}
+    class="mt-2 inline-flex items-center gap-2.5 rounded-button bg-orange px-8 py-4 font-primary text-lg font-bold leading-none text-white no-underline transition-all duration-200 hover:bg-[#d66a12]"
+  >
+    <span>{ctaText}</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="shrink-0"
+    >
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  </a>
+</div>
+
+<style>
+  /* ── Navbar scroll shadow ── */
+  #navbar.scrolled {
+    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  /* ── Mobile overlay - closed (slides out to right) ── */
+  .mobile-overlay {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(100%);
+  }
+
+  /* ── Mobile overlay - open (slides in) ── */
+  .mobile-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(0);
+  }
+
+  /* ── Hamburger → X morph animation ── */
+  .hamburger-bar.active:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger-bar.active:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger-bar.active:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+</style>
+
+<script>
+  // ── Navbar shadow on scroll ──
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
+    const onScroll = () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+
+  // ── Mobile menu toggle ──
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const bars = btn?.querySelectorAll('.hamburger-bar');
+
+  if (btn && menu && closeBtn && bars) {
+    const openMenu = () => {
+      menu.classList.add('open');
+      bars.forEach((bar) => bar.classList.add('active'));
+      document.body.style.overflow = 'hidden';
+      btn.setAttribute('aria-expanded', 'true');
+    };
+
+    const closeMenu = () => {
+      menu.classList.remove('open');
+      bars.forEach((bar) => bar.classList.remove('active'));
+      document.body.style.overflow = '';
+      btn.setAttribute('aria-expanded', 'false');
+    };
+
+    btn.addEventListener('click', () => {
+      menu.classList.contains('open') ? closeMenu() : openMenu();
+    });
+
+    closeBtn.addEventListener('click', closeMenu);
+
+    // Close on link click
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) {
+        closeMenu();
+      }
+    });
+  }
+</script>

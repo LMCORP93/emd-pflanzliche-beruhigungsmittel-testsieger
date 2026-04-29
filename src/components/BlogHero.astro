@@ -1,0 +1,400 @@
+---
+import PromoCodeButton from './PromoCodeButton.astro';
+
+interface HeroProduct {
+  name: string;
+  image: string;
+  promoCode: string;
+  promoPercent: number;
+  originalPrice: string;
+  discountPrice: string;
+  affiliateLink: string;
+}
+
+interface HeroButton {
+  text: string;
+  href: string;
+  external?: boolean;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  author: string;
+  authorAvatar: string;
+  date: string;
+  readingTime: string;
+  bannerImage: string;
+  breadcrumbs?: { label: string; href: string }[];
+  product?: HeroProduct;
+  heroButton?: HeroButton;
+  showOfferBlock?: boolean;
+}
+
+const {
+  title,
+  description,
+  author,
+  authorAvatar,
+  date,
+  readingTime,
+  bannerImage,
+  breadcrumbs,
+  product,
+  heroButton,
+  showOfferBlock = true,
+} = Astro.props;
+---
+
+<!-- Blog Hero - dark (#222) background, white text, review page header -->
+<section class="blog_hero">
+  <!-- blog_hero-wrapper-title -->
+  <div class="blog_hero-wrapper-title">
+
+    <!-- Breadcrumbs (breadcrumb / breadcrumb_link) -->
+    {breadcrumbs && breadcrumbs.length > 0 && (
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/" class="breadcrumb_link">Startseite</a>
+        {breadcrumbs.map((crumb, i) => (
+          <Fragment>
+            <span class="text-text-dark/40 text-xs">/</span>
+            {i === breadcrumbs.length - 1 ? (
+              <span class="breadcrumb_link !no-underline !font-semibold">{crumb.label}</span>
+            ) : (
+              <a href={crumb.href} class="breadcrumb_link">{crumb.label}</a>
+            )}
+          </Fragment>
+        ))}
+      </nav>
+    )}
+
+    <!-- H1 Title -->
+    <h1 class="text-h1 text-text-dark max-w-[56rem]">{title}</h1>
+
+    <!-- Description -->
+    <p class="text-text-dark/80 text-paragraph leading-[1.6] max-w-[45rem]">{description}</p>
+
+    <!-- Price block: compare-at + discount + promo tag -->
+    {product && showOfferBlock && (
+      <div class="flex flex-wrap items-baseline gap-2">
+        <span class="compare-at-price-text">{product.originalPrice}</span>
+        <span class="price-text">{product.discountPrice}</span>
+        {product.promoCode && product.promoPercent > 0 && (
+          <span class="review_tag">Code : {product.promoCode}</span>
+        )}
+      </div>
+    )}
+
+    <!-- CTA buttons: promo code + visit site -->
+    {product && showOfferBlock && (
+      <div class="hero-cta-row">
+        <PromoCodeButton code={product.promoCode} percent={`${product.promoPercent}%`} />
+        <a
+          href={product.affiliateLink}
+          target="_blank"
+          rel="nofollow sponsored"
+          class="hero-visit-btn"
+        >
+          Website besuchen
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+            <polyline points="15 3 21 3 21 9"/>
+            <line x1="10" x2="21" y1="14" y2="3"/>
+          </svg>
+        </a>
+      </div>
+    )}
+
+    {heroButton && !showOfferBlock && (
+      <div class="hero-cta-row hero-cta-row--single">
+        <a
+          href={heroButton.href}
+          {...(heroButton.external ? { target: '_blank', rel: 'nofollow sponsored' } : {})}
+          class="hero-visit-btn hero-visit-btn--anchor"
+        >
+          {heroButton.text}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14"/>
+            <path d="m19 12-7 7-7-7"/>
+          </svg>
+        </a>
+      </div>
+    )}
+
+    <!-- Author info row (hero_wrapper-author) -->
+    <div class="hero_wrapper-author">
+      <!-- Avatar + Name (hero_wrapper-img-name) -->
+      <div class="hero_wrapper-img-name">
+        <img
+          src={authorAvatar}
+          alt={`Profilfoto von ${author}`}
+          class="profil-img"
+          width="32"
+          height="32"
+          loading="eager"
+        />
+        <span class="text-text-dark text-sm">Verfasst von {author}</span>
+      </div>
+
+      <!-- Date -->
+      <div class="hero_wrapper-img-name">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-text-dark/70 shrink-0">
+          <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+          <line x1="16" x2="16" y1="2" y2="6"/>
+          <line x1="8" x2="8" y1="2" y2="6"/>
+          <line x1="3" x2="21" y1="10" y2="10"/>
+        </svg>
+        <span class="text-text-dark/70 text-sm">{date}</span>
+      </div>
+
+      <!-- Reading time -->
+      <div class="hero_wrapper-img-name">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-text-dark/70 shrink-0">
+          <path d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0a9 9 0 0 1 18 0"/>
+        </svg>
+        <span class="text-text-dark/70 text-sm">{readingTime}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner image (blog_img) -->
+  {bannerImage && (
+    <div class="blog_hero-img-wrapper">
+      <img
+        src={bannerImage}
+        alt={`${title} - Hauptillustration`}
+        class="blog_img"
+        loading="eager"
+      />
+    </div>
+  )}
+
+</section>
+
+<!-- Smooth curve transition: beige dome into white content -->
+<div class="hero-curve"></div>
+
+<style>
+  /* ── Outer section ─────────────────────────────────── */
+  .blog_hero {
+    background-color: #f4f2ec;
+    position: relative;
+  }
+
+  /* ── blog_hero-wrapper-title ───────────────────────── */
+  .blog_hero-wrapper-title {
+    gap: 1.5rem;
+    color: #242424;
+    text-align: left;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 3rem;
+    padding-bottom: 1.5rem;
+    display: flex;
+  }
+  /* Responsive padding shrink */
+  @media (max-width: 991px) {
+    .blog_hero-wrapper-title {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (max-width: 767px) {
+    .blog_hero-wrapper-title {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+  @media (max-width: 479px) {
+    .blog_hero-wrapper-title {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  /* ── Banner image wrapper ──────────────────────────── */
+  .blog_hero-img-wrapper {
+    max-width: 72rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-bottom: 3rem;
+  }
+  @media (max-width: 991px) {
+    .blog_hero-img-wrapper {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (max-width: 767px) {
+    .blog_hero-img-wrapper {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+  @media (max-width: 479px) {
+    .blog_hero-img-wrapper {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  /* ── blog_img ──────────────────────────────────────── */
+  .blog_img {
+    border-radius: 16px;
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    display: block;
+  }
+  @media (max-width: 767px) {
+    .blog_img {
+      max-height: 200px;
+    }
+  }
+
+  /* ── hero_wrapper-author ───────────────────────────── */
+  .hero_wrapper-author {
+    gap: 1rem;
+    color: black;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+  /* Mobile: flex-column */
+  @media (max-width: 767px) {
+    .hero_wrapper-author {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+  }
+
+  /* ── hero_wrapper-img-name ─────────────────────────── */
+  .hero_wrapper-img-name {
+    gap: 0.5rem;
+    justify-content: flex-start;
+    align-items: center;
+    display: flex;
+  }
+
+  /* ── profil-img ────────────────────────────────────── */
+  .profil-img {
+    border-radius: 999px;
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+  }
+
+  /* ── compare-at-price-text ─────────────────────────── */
+  .compare-at-price-text {
+    color: rgba(36, 36, 36, 0.4);
+    text-decoration: line-through;
+    font-size: 0.875rem;
+  }
+
+  /* ── price-text ────────────────────────────────────── */
+  .price-text {
+    color: #242424;
+    font-weight: 700;
+    line-height: 1;
+    font-size: 1.125rem;
+  }
+
+  /* ── review_tag ────────────────────────────────────── */
+  .review_tag {
+    background-color: #ef7a1a;
+    color: #f2f2f2;
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    font-weight: 600;
+    font-size: 0.8125rem;
+  }
+
+  /* ── hero-cta-row ──────────────────────────────────── */
+  .hero-cta-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  @media (max-width: 767px) {
+    .hero-cta-row {
+      width: 100%;
+    }
+    .hero-cta-row .btn-dashed,
+    .hero-cta-row .hero-visit-btn {
+      flex: 1;
+      justify-content: center;
+      min-width: 0;
+    }
+  }
+  /* ── hero-visit-btn ───────────────────────────────── */
+  .hero-visit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #ef7a1a;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.875rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+    white-space: nowrap;
+  }
+  .hero-visit-btn:hover {
+    background-color: #d96b10;
+    transform: translateY(-1px);
+    color: #ffffff;
+  }
+  .hero-cta-row--single .hero-visit-btn {
+    min-width: 15rem;
+    justify-content: center;
+  }
+
+  .hero-visit-btn--anchor {
+    background-color: #ef7a1a;
+  }
+
+  .hero-visit-btn svg {
+    flex-shrink: 0;
+  }
+
+  /* ── breadcrumb ────────────────────────────────────── */
+  .breadcrumb {
+    gap: 4px;
+    display: flex;
+  }
+  .breadcrumb_link {
+    color: #242424;
+    font-size: 12px;
+    text-decoration: underline;
+  }
+  .breadcrumb_link:hover {
+    color: #ef7a1a;
+  }
+
+  /* ── Hero curve (beige dome into white) ──────────── */
+  .hero-curve {
+    background-color: #f4f2ec;
+    height: 1.5rem;
+    border-radius: 0 0 35% 35% / 0 0 60% 60%;
+    margin-top: -1px;
+  }
+
+  @media (min-width: 768px) {
+    .hero-curve {
+      height: 3rem;
+      border-radius: 0 0 45% 45% / 0 0 80% 80%;
+    }
+  }
+</style>

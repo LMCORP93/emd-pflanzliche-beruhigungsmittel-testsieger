@@ -1,0 +1,24 @@
+{
+  "name": "lmc-emd-template",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "npm run validate:emd && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "validate:emd": "node scripts/validate-emd.mjs"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^5.5.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@astrojs/tailwind": "^6.0.2",
+    "commander": "^14.0.3",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.9.3"
+  }
+}

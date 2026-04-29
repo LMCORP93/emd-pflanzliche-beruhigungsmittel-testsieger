@@ -1,0 +1,121 @@
+---
+import '@/styles/global.css';
+import Navbar from '@/components/Navbar.astro';
+import Footer from '@/components/Footer.astro';
+import BrandPopup from '@/components/BrandPopup.astro';
+import config from '@/data/site.config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = config.seo.title,
+  description = config.seo.description,
+  ogImage = config.seo.ogImage,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, config.domain).toString();
+const isAbsoluteUrl = (value: string) => /^https?:\/\//i.test(value);
+const resolvedOgImage = isAbsoluteUrl(ogImage) ? ogImage : new URL(ogImage, config.domain).toString();
+const analyticsMeasurementId = config.analyticsMeasurementId;
+const robotsContent = config.isIndexable === false
+  ? 'noindex, nofollow, noarchive, nosnippet, noimageindex'
+  : 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1';
+
+// Auto-generate nav links from pages config (max 3 words each)
+const navLinks = config.pages.map(p => ({ label: p.label, href: p.slug }));
+const headerCtaLink = config.products[0].affiliateLink;
+const footerLinks = [
+  { label: 'Startseite', href: '/' },
+  ...config.pages.map(p => ({ label: p.label, href: p.slug })),
+];
+---
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={robotsContent} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta property="og:type" content="article" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content={config.siteName} />
+    <meta property="og:url" content={canonicalUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={resolvedOgImage} />
+    <meta name="twitter:image:alt" content={title} />
+
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>{title}</title>
+
+    <!-- JSON-LD slot -->
+    <slot name="json-ld" />
+
+    {analyticsMeasurementId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsMeasurementId}`}></script>
+        <script is:inline define:vars={{ analyticsMeasurementId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', analyticsMeasurementId);
+        </script>
+      </>
+    )}
+  </head>
+  <body>
+    <Navbar
+      siteName={config.siteName}
+      logoSrc="/logo.svg"
+      navLinks={navLinks}
+      ctaText="Ansehen"
+      ctaLink={headerCtaLink}
+    />
+
+    <slot />
+
+    <BrandPopup
+      brand={config.products[0].brand}
+      productImage={config.products[0].image}
+      productName={config.products[0].name}
+      productType={config.products[0].productType}
+      description={config.products[0].description}
+      promoCode={config.products[0].promoCode}
+      promoPercent={config.products[0].promoPercent}
+      originalPrice={config.products[0].originalPrice}
+      discountPrice={config.products[0].discountPrice}
+      affiliateLink={config.products[0].affiliateLink}
+      rating={config.products[0].rating}
+    />
+
+    <Footer
+      siteName={config.siteName}
+      logoSrc="/logo.svg"
+      navLinks={footerLinks}
+      copyright="Alle Rechte vorbehalten - Pflanzliche Beruhigungsmittel Testsieger"
+    />
+  </body>
+</html>

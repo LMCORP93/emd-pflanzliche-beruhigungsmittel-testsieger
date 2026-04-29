@@ -1,0 +1,46 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
+const { src, alt, caption } = Astro.props;
+---
+
+<figure class="image-block">
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+    class="image-block-img"
+  />
+  {caption && (
+    <figcaption class="image-block-caption">{caption}</figcaption>
+  )}
+</figure>
+
+<style>
+  .image-block {
+    margin: 0 0 2rem;
+  }
+
+  .image-block-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+  }
+  @media (min-width: 768px) {
+    .image-block-img { border-radius: 16px; }
+  }
+
+  .image-block-caption {
+    font-size: clamp(0.6875rem, 0.675rem + 0.1vw, 0.75rem);
+    color: #777;
+    text-align: center;
+    margin-top: 0.75rem;
+    line-height: 1.5;
+  }
+</style>

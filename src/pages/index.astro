@@ -1,0 +1,198 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import FirstReview from '@/components/FirstReview.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import ComparatorCard from '@/components/ComparatorCard.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import config from '@/data/site.config';
+
+const topProduct = config.products[0];
+const comparatifFaq = config.faq;
+---
+
+<BaseLayout title={config.seo.title} description={config.seo.description}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Startseite", "item": config.domain },
+      { "@type": "ListItem", "position": 2, "name": "Vergleich", "item": config.domain },
+    ],
+  })} />
+
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Pflanzliche Beruhigungsmittel Testsieger 2026",
+    "itemListElement": config.products.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "Product",
+        "name": `${p.name} - ${p.brand}`,
+        "image": p.image,
+        "brand": { "@type": "Brand", "name": p.brand },
+        "offers": {
+          "@type": "Offer",
+          "priceCurrency": "EUR",
+          "price": p.discountPrice.replace(/[^\d.,]/g, '').replace(',', '.'),
+          "availability": "https://schema.org/InStock",
+          "url": p.affiliateLink,
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": p.rating,
+          "bestRating": 10,
+          "reviewCount": p.reviewCount,
+        },
+      },
+    })),
+  })} />
+
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": comparatifFaq.map((item) => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": { "@type": "Answer", "text": item.answer },
+    })),
+  })} />
+
+  <BlogHero
+    title="Pflanzliche Beruhigungsmittel Testsieger 2026: die 6 besten natürlichen Optionen im Vergleich"
+    description="Wir vergleichen natürliche Produkte für mehr Ruhe im Alltag: Bonjour Drink, French Mush, Clearly, Spacegoods, Neuro Gum und Mushroom Cups. Mit Inhaltsstoffen, Preisen, Rabattcodes und klarer Empfehlung."
+    author={config.author.name}
+    authorAvatar={config.author.avatar}
+    date="29. April 2026"
+    readingTime="14 Min. Lesezeit"
+    breadcrumbs={[{ label: 'Pflanzliche Beruhigungsmittel Testsieger', href: '/' }]}
+    bannerImage={topProduct.image}
+    product={{
+      name: topProduct.name,
+      image: topProduct.image,
+      promoCode: topProduct.promoCode,
+      promoPercent: topProduct.promoPercent,
+      originalPrice: topProduct.originalPrice,
+      discountPrice: topProduct.discountPrice,
+      affiliateLink: topProduct.affiliateLink,
+    }}
+    heroButton={{ text: 'Zum Testsieger', href: `#product-${topProduct.slug}` }}
+    showOfferBlock={false}
+  />
+
+  <main style="background-color: #ffffff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <div class="content-column">
+
+            <section id="kurzfassung" class="mb-8">
+              <FirstReview
+                tag="KURZFAZIT"
+                heading="Unser Testsieger ist Bonjour Drink — vor allem für alle, die eine natürliche Abendroutine suchen."
+                paragraphs={[
+                  'Pflanzliche Beruhigungsmittel sind ein breites Feld: Kamille, Passionsblume, Reishi, Magnesium, L-Theanin, Ashwagandha und funktionelle Pilze werden oft in einem Atemzug genannt. Genau deshalb ist ein sauberer Vergleich wichtiger als ein einzelnes Produktversprechen.',
+                  'Für diese erste deutsche Vergleichsseite haben wir sechs Marken ausgewählt, die international bestellbar wirken und thematisch zum Markt passen. Der Fokus liegt nicht auf Arzneimitteln, sondern auf natürlichen Routinen, Nahrungsergänzungen und funktionellen Getränken für Menschen, die im Alltag besser abschalten möchten.'
+                ]}
+                assets={config.quickSummary.assets}
+                considerations={config.quickSummary.considerations}
+                product={{
+                  brandName: topProduct.brand,
+                  brandLogoSrc: topProduct.brandLogo,
+                  rating: topProduct.rating,
+                  reviewLabel: 'Bester Gesamtfit im Vergleich',
+                  ctaText: 'Bonjour Drink ansehen',
+                  ctaLink: topProduct.affiliateLink,
+                }}
+              />
+            </section>
+
+            <TableOfContents items={[
+              { id: 'kurzfassung', label: 'Kurzfassung' },
+              ...config.products.map((p) => ({
+                id: `product-${p.slug}`,
+                label: `${p.rank <= 3 ? (p.rank === 1 ? '🏆' : p.rank === 2 ? '🥈' : '🥉') : ''} ${p.rank}. ${p.brand}`,
+              })),
+              { id: 'ratgeber', label: 'Ratgeber' },
+              { id: 'faq', label: 'Häufige Fragen' },
+            ]} />
+
+            <section id="vergleich" class="comparatif-cards">
+              {config.products.map((product) => (
+                <div id={`product-${product.slug}`}>
+                  <ComparatorCard product={product} />
+                </div>
+              ))}
+            </section>
+
+            <section id="ratgeber" class="seo-guide">
+              <div class="rich-text">
+                <h2>Wie wir pflanzliche Beruhigungsmittel bewertet haben</h2>
+                <p>Der deutsche Markt für pflanzliche Beruhigungsmittel ist unübersichtlich. Manche Produkte setzen auf klassische Pflanzen wie Kamille, Passionsblume oder Baldrian. Andere arbeiten mit Magnesium, L-Theanin, GABA, Reishi oder adaptogenen Mischungen. Dazu kommen funktionelle Getränke, Mints, Kapseln und Pulver. Unser Vergleich ordnet diese Formate nach Alltagstauglichkeit, Klarheit der Rezeptur, Preis, Markenvertrauen und Relevanz für den Suchbedarf.</p>
+                <p>Wichtig: Wir bewerten keine Arzneimittel und geben keine medizinische Empfehlung. Wenn Unruhe, Angst, Schlafprobleme oder Stresssymptome stark sind oder lange anhalten, ist ärztlicher Rat sinnvoll. Die hier verglichenen Produkte sind eher als Unterstützung für eine bewusstere Routine zu verstehen: ein Getränk am Abend, eine Kapselroutine, ein Magnesium-Mix oder ein praktisches Mint-Format für den Alltag.</p>
+
+                <h3>1. Inhaltsstoffe: verständlich statt überladen</h3>
+                <p>Ein gutes Produkt muss nicht möglichst viele Wirkstoffe enthalten. Im Gegenteil: Bei beruhigenden Produkten ist eine klare Logik oft besser. Bonjour Drink kombiniert Kamille, Passionsblume, Reishi und L-Theanin in einem Getränk, das für den Abend verständlich ist. French Mush bleibt mit Reishi-Kapseln sehr fokussiert. Clearly deckt den Magnesium-Winkel ab, während Neuro Gum mit GABA und L-Theanin eine schnelle, moderne Lösung bietet.</p>
+                <p>Spacegoods ist breiter und stärker lifestyle-orientiert. Das kann für Nutzer spannend sein, die Adaptogene, Pilze und tägliche Routinen mögen. Gleichzeitig ist es weniger eindeutig, wenn der Suchende wirklich nur ein beruhigendes Produkt ohne aktivierende Komponente sucht. Deshalb steht Spacegoods trotz starker Marke nicht ganz oben.</p>
+
+                <h3>2. Format: Getränk, Kapsel, Pulver oder Mint?</h3>
+                <p>Das Format entscheidet stark darüber, ob ein Produkt langfristig genutzt wird. Ein Getränk wie Bonjour Drink oder Mushroom Cups passt gut zu einer bewussten Pause: zubereiten, trinken, Routine schaffen. Kapseln wie French Mush sind nüchterner und einfacher zu dosieren. Ein Pulver wie Clearly Magnesium Mix ist flexibel, braucht aber etwas mehr Gewohnheit. Neuro Gum wiederum ist besonders praktisch, wirkt aber weniger wie ein klassisches Beruhigungsmittel.</p>
+                <p>Unser Testsieger Bonjour Drink punktet genau an dieser Stelle. Die Marke verkauft nicht nur Inhaltsstoffe, sondern eine einfache Handlung: eine warme, ruhige Getränkeroutine. Für viele Nutzer ist das überzeugender als eine weitere Kapsel im Schrank.</p>
+
+                <h3>3. Pflanzlich bedeutet nicht automatisch besser</h3>
+                <p>Der Begriff „pflanzlich“ klingt vertrauenswürdig, ist aber kein Qualitätsbeweis. Entscheidend sind Rezeptur, Transparenz, Dosierung, Verträglichkeit und die Frage, ob das Produkt zum eigenen Alltag passt. Auch natürliche Inhaltsstoffe können ungeeignet sein, wenn sie mit Medikamenten kollidieren oder wenn die Erwartung zu hoch ist. Deshalb ist ein nüchterner Vergleich sinnvoller als ein reines Ranking nach Marketingversprechen.</p>
+                <p>In diesem Vergleich haben Produkte mit klarer Anwendung einen Vorteil. Bonjour Drink eignet sich für eine ruhige Routine. French Mush ist die Reishi-Kapseloption. Clearly ist die Magnesium-Option. Spacegoods ist die Adaptogen-Option. Neuro Gum ist die schnelle Mint-Option. Mushroom Cups ist ein günstiger Relax-Drink mit Reishi, L-Theanin und Magnesium.</p>
+
+                <h3>4. Preis und Rabattcodes richtig lesen</h3>
+                <p>Rabattcodes verbessern den Einstiegspreis, sollten aber nicht allein entscheiden. Ein Produkt kann mit Rabatt günstig wirken und trotzdem nicht zum Bedarf passen. Umgekehrt kann ein teureres Produkt sinnvoll sein, wenn es wirklich regelmäßig genutzt wird und mehrere Einzelkäufe ersetzt. Wir haben deshalb den Preis immer zusammen mit Format, Inhaltsstoffen und Markenpositionierung betrachtet.</p>
+                <p>Bonjour Drink und Spacegoods haben starke Rabatte. Clearly ist preislich gut lesbar und europäisch positioniert. Neuro Gum wirkt günstig pro Packung, muss aber nach Portion und Nutzung bewertet werden. Mushroom Cups ist preislich attraktiv, hat aber weniger Premium-Anmutung. French Mush liegt dazwischen und überzeugt eher über Klarheit als über Lifestyle.</p>
+
+                <h3>Unser Fazit</h3>
+                <p>Wenn wir nur einen Testsieger wählen, ist es Bonjour Drink. Das Produkt trifft die Suchintention nach einem pflanzlichen Beruhigungsmittel am besten, weil es nicht zu medizinisch wirkt, aber trotzdem sinnvolle Inhaltsstoffe in eine einfache Routine bringt. French Mush ist die beste Wahl für Reishi-Kapseln. Clearly ist stark für Magnesium. Spacegoods eignet sich für Nutzer, die Adaptogene und moderne Functional Drinks mögen. Neuro Gum ist praktisch für unterwegs, und Mushroom Cups bietet eine solide Relax-Alternative im Getränkebereich.</p>
+              </div>
+            </section>
+
+            <section id="faq" class="faq-section">
+              <FAQSection faq={comparatifFaq} title="Häufige Fragen zu pflanzlichen Beruhigungsmitteln" />
+            </section>
+          </div>
+
+          <div class="sidebar-column">
+            <div class="sidebar-sticky">
+              <SidebarCTA
+                logoSrc={topProduct.brandLogo}
+                productName={topProduct.name}
+                brandName={topProduct.brand}
+                promoCode={topProduct.promoCode}
+                promoPercent={topProduct.promoPercent}
+                originalPrice={topProduct.originalPrice}
+                discountPrice={topProduct.discountPrice}
+                ctaLink={topProduct.affiliateLink}
+                heroImage={topProduct.image}
+                rating={topProduct.rating}
+                reviewCount={topProduct.reviewCount}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .comparatif-cards { display: flex; flex-direction: column; gap: 1.25rem; margin: 2rem 0; }
+  .seo-guide { margin-top: 3rem; }
+  .seo-guide .rich-text h2 { margin-bottom: 1rem; }
+  .seo-guide .rich-text h3 { margin-top: 1.8rem; margin-bottom: 0.75rem; }
+  .seo-guide .rich-text p { line-height: 1.72; margin-bottom: 1rem; }
+  .faq-section { margin-top: 3rem; }
+  .blog-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 2rem; align-items: start; }
+  .content-column { min-width: 0; }
+  .sidebar-column { display: block; }
+  .sidebar-sticky { position: sticky; top: 5rem; }
+  @media (max-width: 991px) { .blog-grid { grid-template-columns: 1fr; } .sidebar-column { display: none; } }
+</style>

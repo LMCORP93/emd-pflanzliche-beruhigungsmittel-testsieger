@@ -1,0 +1,68 @@
+---
+---
+
+<div class="editorial-box">
+  <!-- Header -->
+  <div class="editorial-header">
+    <svg class="editorial-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+    </svg>
+    <h3 class="editorial-heading">Nos critères éditoriaux</h3>
+  </div>
+
+  <!-- Body -->
+  <p class="editorial-text">
+    Chez Tim Review, la fiabilité éditoriale est notre priorité absolue. Nous analysons chaque produit de manière rigoureuse et indépendante, en nous appuyant sur la qualité des ingrédients, l'efficacité prouvée et les avis clients vérifiés. Chaque article est soigneusement relu pour garantir l'exactitude, la transparence et la valeur de nos notations.
+  </p>
+  <p class="editorial-text editorial-text-light">
+    Notre objectif est de fournir à nos lecteurs des informations claires et utiles pour prendre les meilleures décisions santé. Nous ne recevons aucune rémunération pour modifier nos évaluations.
+  </p>
+</div>
+
+<style>
+  .editorial-box {
+    background-color: #f4f2ec;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+  @media (min-width: 768px) {
+    .editorial-box { padding: 1.5rem; }
+  }
+
+  .editorial-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .editorial-icon {
+    color: #ef7a1a;
+    flex-shrink: 0;
+  }
+
+  .editorial-heading {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    color: #242424;
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .editorial-text {
+    font-size: clamp(0.8125rem, 0.8rem + 0.1vw, 0.875rem);
+    color: #333;
+    line-height: 1.6;
+    margin: 0 0 0.75rem;
+  }
+  .editorial-text:last-child {
+    margin-bottom: 0;
+  }
+
+  .editorial-text-light {
+    color: #777;
+  }
+</style>

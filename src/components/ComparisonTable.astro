@@ -1,0 +1,111 @@
+---
+interface TableHeader {
+  label: string;
+  align?: 'left' | 'center';
+}
+
+interface TableRow {
+  cells: (string | number)[];
+  highlight?: boolean;
+}
+
+interface Props {
+  title?: string;
+  headers: TableHeader[];
+  rows: TableRow[];
+}
+
+const { title, headers, rows } = Astro.props;
+---
+
+<div class="comparison-table-wrapper">
+  {title && <h3 class="comparison-table-title">{title}</h3>}
+
+  <!-- Header row -->
+  <div class="table_grid table_grid--header">
+    {headers.map((h, i) => (
+      <div class={`table_grid-col ${i === 0 ? 'table_grid-col-left' : 'table_grid-col-right'} table_grid-col--header`}>
+        {h.label}
+      </div>
+    ))}
+  </div>
+
+  <!-- Data rows -->
+  {rows.map((row) => (
+    <div class={`table_grid ${row.highlight ? 'table_grid--highlight' : ''}`}>
+      {row.cells.map((cell, j) => (
+        <div class={`table_grid-col ${j === 0 ? 'table_grid-col-left' : 'table_grid-col-right'}`}>
+          {cell}
+        </div>
+      ))}
+    </div>
+  ))}
+</div>
+
+<style>
+  .comparison-table-wrapper {
+    margin: 0 0 2rem;
+  }
+
+  .comparison-table-title {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+    color: #242424;
+    margin: 0 0 1rem;
+  }
+
+  /* Grid row */
+  .table_grid {
+    border-bottom: 1px solid #e0e0e0;
+    grid-template-columns: 2fr .6fr;
+    display: grid;
+  }
+  .table_grid:last-child {
+    border-bottom: none;
+  }
+
+  /* Header row */
+  .table_grid--header {
+    background-color: #f8f8f8;
+  }
+  .table_grid-col--header {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 700;
+    font-size: clamp(0.6875rem, 0.675rem + 0.1vw, 0.75rem);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #777;
+    white-space: nowrap;
+  }
+
+  /* Highlight row */
+  .table_grid--highlight {
+    background-color: rgba(254, 224, 80, 0.06);
+  }
+
+  /* Left column */
+  .table_grid-col-left {
+    gap: .5rem;
+    flex-flow: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: .625rem 1rem;
+    display: flex;
+    font-weight: 600;
+    color: #242424;
+    font-size: clamp(0.8125rem, 0.8rem + 0.1vw, 0.875rem);
+    line-height: 1.5;
+  }
+
+  /* Right column */
+  .table_grid-col-right {
+    justify-content: flex-start;
+    align-items: center;
+    padding: .625rem 1rem;
+    display: flex;
+    color: #333;
+    font-size: clamp(0.8125rem, 0.8rem + 0.1vw, 0.875rem);
+    line-height: 1.5;
+  }
+</style>

@@ -1,0 +1,298 @@
+---
+import ReviewTag from './ReviewTag.astro';
+
+interface Props {
+  tag: string;
+  heading: string;
+  paragraphs: string[];
+  assets: string[];
+  considerations: string[];
+  product: {
+    brandName: string;
+    brandLogoSrc: string;
+    rating: number;
+    reviewLabel: string;
+    ctaText: string;
+    ctaLink: string;
+  };
+}
+
+const { tag, heading, paragraphs, assets, considerations, product } = Astro.props;
+---
+
+<!-- First Review Component - beige bg (#f4f2ec), 2-col grid with sticky right card -->
+<section class="first-review_component">
+
+  <!-- Tag pill -->
+  <div class="mb-5">
+    <ReviewTag emoji="📋" text={tag} variant="summary" />
+  </div>
+
+  <!-- first-review_grid -->
+  <div class="first-review_grid">
+
+    <!-- ═══ LEFT COLUMN ════════════════════════════════════════════ -->
+    <div class="first-review_col-left">
+
+      <!-- Heading -->
+      <h2 class="text-h2 font-primary text-text-dark">{heading}</h2>
+
+      <!-- Rich text paragraphs -->
+      <div class="flex flex-col gap-3">
+        {paragraphs.map((p) => (
+          <p class="text-paragraph text-[#555] leading-[1.6]">{p}</p>
+        ))}
+      </div>
+
+      <!-- Verdict box heading -->
+      <div>
+        <span class="verdict-box-heading">Unser Fazit</span>
+      </div>
+
+      <!-- first-review_grid-advantage: Pros + Cons (2 columns) -->
+      <div class="first-review_grid-advantage">
+        <!-- ── Pros (first-review_grid-advantage-wrapper) ── -->
+        <div class="first-review_grid-advantage-wrapper">
+          <h4 class="flex items-center gap-2 font-primary font-bold text-sm text-text-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#00b67a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="m9 12 2 2 4-4"/>
+            </svg>
+            Die wichtigsten Stärken
+          </h4>
+          <ul class="list-none p-0 m-0 flex flex-col gap-2">
+            {assets.map((item) => (
+              <li class="first-review_bullet-point">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#00b67a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="text-sm text-[#333] leading-[1.5]">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- ── Cons (first-review_grid-advantage-wrapper) ── -->
+        <div class="first-review_grid-advantage-wrapper">
+          <h4 class="flex items-center gap-2 font-primary font-bold text-sm text-text-dark">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ef7a1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/>
+              <path d="M12 9v4"/>
+              <path d="M12 17h.01"/>
+            </svg>
+            Zu beachten
+          </h4>
+          <ul class="list-none p-0 m-0 flex flex-col gap-2">
+            {considerations.map((item) => (
+              <li class="first-review_bullet-point">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ef7a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 mt-0.5">
+                  <path d="m15 9-6 6"/>
+                  <path d="m9 9 6 6"/>
+                </svg>
+                <span class="text-sm text-[#333] leading-[1.5]">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ RIGHT COLUMN ═══════════════════════════════════════════ -->
+    <div class="first-review_col-right">
+
+      <!-- Logo wrapper (first-review_wrapper-img) -->
+      <div class="first-review_wrapper-img">
+        <img
+          src={product.brandLogoSrc}
+          alt={`Logo ${product.brandName}`}
+          class="first-review_logo"
+          loading="lazy"
+        />
+      </div>
+
+      <!-- Rating wrapper (first-review_wrapper-note) -->
+      <div class="first-review_wrapper-note">
+        <p class="font-primary font-bold text-sm text-text-dark text-center m-0">
+          Unsere Bewertung für {product.brandName}
+        </p>
+
+        <!-- first-review_note: star + score -->
+        <div class="first-review_note">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#ef7a1a" stroke="#ef7a1a" stroke-width="1" class="star">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+          <span class="font-primary font-bold text-lg text-text-dark">
+            {product.rating.toFixed(1).replace('.', ',')}/10
+          </span>
+        </div>
+
+        <p class="text-xs text-[#777] text-center m-0">{product.reviewLabel}</p>
+      </div>
+
+      <!-- CTA (first-review_cta) -->
+      <div class="first-review_cta">
+        <a
+          href={product.ctaLink}
+          rel="nofollow sponsored"
+          target="_blank"
+          class="flex items-center justify-center gap-2 w-full bg-orange text-white font-primary font-semibold text-sm py-2.5 px-4 rounded-lg hover:bg-[#ff8c2e] active:bg-[#d66a12] transition-colors no-underline"
+        >
+          {product.ctaText}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14"/>
+            <path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* ── first-review_component ────────────────────────── */
+  .first-review_component {
+    background-color: #f4f2ec;
+    border-radius: 4px;
+    flex-flow: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 1.5rem;
+    display: flex;
+    position: relative;
+  }
+
+  /* ── first-review_grid ─────────────────────────────── */
+  .first-review_grid {
+    gap: 2rem;
+    grid-template-columns: 2fr 0.75fr;
+    place-items: start stretch;
+    display: grid;
+  }
+  /* Tablet: wider right column */
+  @media (max-width: 991px) {
+    .first-review_grid {
+      grid-template-columns: 2fr 1fr;
+    }
+  }
+  /* Mobile: stack to single column */
+  @media (max-width: 767px) {
+    .first-review_grid {
+      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  /* ── first-review_col-left ─────────────────────────── */
+  .first-review_col-left {
+    gap: 1rem;
+    flex-flow: column;
+    display: flex;
+  }
+
+  /* ── first-review_col-right ────────────────────────── */
+  .first-review_col-right {
+    gap: 1rem;
+    background-color: white;
+    border-radius: 2px;
+    flex-flow: column;
+    padding: 1rem;
+    display: flex;
+    position: sticky;
+    top: 2rem;
+  }
+  /* Mobile: order -1 (on top), not sticky */
+  @media (max-width: 767px) {
+    .first-review_col-right {
+      order: -1;
+      position: static;
+    }
+  }
+
+  /* ── first-review_wrapper-img ──────────────────────── */
+  .first-review_wrapper-img {
+    background-color: #f2f2f2;
+    border-radius: 2px;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    display: flex;
+  }
+
+  /* ── first-review_logo ─────────────────────────────── */
+  .first-review_logo {
+    width: 140px;
+  }
+
+  /* ── first-review_wrapper-note ─────────────────────── */
+  .first-review_wrapper-note {
+    gap: 0.5rem;
+    flex-flow: column;
+    display: flex;
+  }
+
+  /* ── first-review_note ─────────────────────────────── */
+  .first-review_note {
+    gap: 4px;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+
+  /* ── star ──────────────────────────────────────────── */
+  .star {
+    color: #ef7a1a;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  /* ── first-review_grid-advantage ───────────────────── */
+  .first-review_grid-advantage {
+    gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  /* Mobile: stack */
+  @media (max-width: 767px) {
+    .first-review_grid-advantage {
+      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+  }
+
+  /* ── first-review_grid-advantage-wrapper ───────────── */
+  .first-review_grid-advantage-wrapper {
+    gap: 1rem;
+    flex-flow: column;
+    display: flex;
+  }
+
+  /* ── first-review_bullet-point ─────────────────────── */
+  .first-review_bullet-point {
+    gap: 0.5rem;
+    align-items: flex-start;
+    display: flex;
+  }
+
+  /* ── first-review_cta ──────────────────────────────── */
+  .first-review_cta {
+    height: 100%;
+  }
+
+  /* ── verdict-box-heading ───────────────────────────── */
+  .verdict-box-heading {
+    background-color: black;
+    color: white;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    padding: 4px 0 4px 10px;
+    font-size: 10px;
+    font-weight: 600;
+    display: inline-block;
+    padding-right: 0.5rem;
+  }
+</style>
