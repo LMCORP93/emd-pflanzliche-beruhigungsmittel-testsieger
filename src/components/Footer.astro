@@ -42,7 +42,7 @@ const guideLinks = navLinks
 const infoLinks: NavLink[] = [
   { label: 'Datenschutz', href: '/datenschutz' },
   { label: 'Impressum', href: '/impressum' },
-  { label: 'hello@le-meilleur-complement.fr', href: 'mailto:hello@le-meilleur-complement.fr' },
+  { label: 'hello [at] le-meilleur-complement.fr', href: '#contact' },
 ];
 ---
 
@@ -69,7 +69,7 @@ const infoLinks: NavLink[] = [
       <div class="footer_colonne">
         <div class="footer_col-title">Informationen</div>
         <div class="footer_wrapper-links">
-          {infoLinks.map((link) => link.href.startsWith('mailto:') ? (
+          {infoLinks.map((link) => false ? (
             <>
               <Fragment set:html={'<!--email_off-->'} />
               <a href={link.href} class="footer_link">{link.label}</a>
