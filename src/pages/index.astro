@@ -129,6 +129,21 @@ const productSchema = (p: typeof config.products[number]) => ({
                 }}
               />
             </section>
+            <section id="ranking-methodik" class="methodology-box">
+              <h2>Wie wir die Produkte eingestuft haben</h2>
+              <p>Unser Ranking kombiniert redaktionelle und praktische Kriterien, damit die Auswahl nicht nur vom Preis oder Rabatt abhängt.</p>
+              <ul>
+                  <li>Formulierung und Profil der aktiven Inhaltsstoffe</li>
+                  <li>Tatsächlicher Preis nach Rabatt und Kosten pro Anwendung</li>
+                  <li>Verfügbarkeit und Bestellbarkeit</li>
+                  <li>Kundenbewertungen und öffentliche Vertrauenssignale</li>
+                  <li>Transparenz der Marke zu Zusammensetzung und Aussagen</li>
+                  <li>Klarheit von Rabattcode, Bedingungen und Angebot</li>
+                  <li>Passung zum Hauptbedarf dieser Seite</li>
+              </ul>
+              <p class="methodology-box__disclaimer"><strong>Transparence affiliation.</strong> Einige Links sind Affiliate-Links: LMC kann eine Provision erhalten, wenn Sie darüber kaufen, ohne zusätzliche Kosten für Sie. Das ersetzt nicht unsere redaktionelle Auswahl: Ein Produkt wird nur empfohlen, wenn es zum beschriebenen Bedarf passt.</p>
+            </section>
+
 
             <TableOfContents items={[
               { id: 'kurzfassung', label: 'Kurzfassung' },
@@ -215,4 +230,14 @@ const productSchema = (p: typeof config.products[number]) => ({
   .sidebar-column { display: block; }
   .sidebar-sticky { position: sticky; top: 5rem; }
   @media (max-width: 991px) { .blog-grid { grid-template-columns: 1fr; } .sidebar-column { display: none; } }
+
+.methodology-box { margin: 2rem 0; padding: 1.35rem; border: 1px solid #eadfce; border-radius: 18px; background: #f8f4ec; color: #2f2922; }
+.methodology-box, .methodology-box h2, .methodology-box p, .methodology-box li, .methodology-box strong { color: #2f2922; }
+.methodology-box h2 { margin: 0 0 .75rem; font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.15; }
+.methodology-box p { margin: 0 0 .9rem; line-height: 1.65; }
+.methodology-box ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem 1rem; margin: .8rem 0 1rem; padding-left: 1.1rem; }
+.methodology-box li { line-height: 1.45; }
+.methodology-box__disclaimer { margin-top: .85rem !important; padding-top: .85rem; border-top: 1px solid #eadfce; font-size: .92rem; }
+@media (max-width: 768px) { .methodology-box ul { grid-template-columns: 1fr; } .methodology-box { padding: 1rem; } }
+
 </style>
