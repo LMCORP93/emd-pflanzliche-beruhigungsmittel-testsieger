@@ -300,7 +300,9 @@ const config: SiteConfig = {
     { id: "ratgeber", label: "Ratgeber" },
     { id: "faq", label: "FAQ" }
   ],
-  pages: []
+  pages: [
+    { type: 'blog', label: 'Rezeptfrei', slug: '/pflanzliche-beruhigungsmittel-rezeptfrei/' }
+  ]
 };
 
 export default config;

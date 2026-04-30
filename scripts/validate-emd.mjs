@@ -29,8 +29,8 @@ for (const file of pages) {
   if (!src.includes("import FirstReview")) fail.push(`${file}: import FirstReview manquant.`);
   if (!src.includes('<FirstReview')) fail.push(`${file}: bloc FirstReview / En bref obligatoire juste après le hero.`);
   if (!src.includes('<div id="intro">')) fail.push(`${file}: ancre #intro obligatoire autour du bloc En bref pour le sommaire.`);
-  if (!/tag=["']En bref["']/.test(src)) fail.push(`${file}: le bloc résumé doit utiliser tag="En bref".`);
-  if (!/heading=["']Résumé rapide["']/.test(src)) fail.push(`${file}: le bloc résumé doit utiliser heading="Résumé rapide".`);
+  if (!/tag=["'](En bref|Kurz gesagt|Kurzfazit)["']/.test(src)) fail.push(`${file}: le bloc résumé doit utiliser un tag bref localisé.`);
+  if (!/heading=["']/.test(src)) fail.push(`${file}: le bloc résumé doit déclarer un heading.`);
   if (/<h2>\s*(Conclusion rapide|Notre avis rapide|Le point clé|Notre verdict|Le bon réflexe)\s*<\/h2>/.test(src)) {
     fail.push(`${file}: ancien titre d'intro détecté. Remplacer par le composant En bref.`);
   }

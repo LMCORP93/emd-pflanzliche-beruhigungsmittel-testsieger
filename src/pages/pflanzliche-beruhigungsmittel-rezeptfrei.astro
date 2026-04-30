@@ -1,0 +1,235 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import FirstReview from '@/components/FirstReview.astro';
+import ReviewPromoCard from '@/components/ReviewPromoCard.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import ContentImage from '@/components/ContentImage.astro';
+import InnerNote from '@/components/InnerNote.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import config from '@/data/site.config';
+
+const topProduct = config.products[0];
+const articleTitle = 'Pflanzliche Beruhigungsmittel rezeptfrei';
+const articleDescription = 'Welche pflanzlichen Beruhigungsmittel sind rezeptfrei? Vergleich von Kamille, Reishi, L-Theanin, Magnesium und natürlichen Routinen.';
+const heroImage = '/images/articles/pflanzliche-beruhigungsmittel-rezeptfrei.webp';
+const faq = [
+  {
+    question: 'Sind pflanzliche Beruhigungsmittel rezeptfrei erhältlich?',
+    answer: 'Viele Produkte mit Kamille, Passionsblume, Reishi, Magnesium oder L-Theanin sind rezeptfrei erhältlich. Trotzdem sollten Nutzer die Herstellerhinweise prüfen und bei starken, anhaltenden Beschwerden medizinischen Rat einholen.'
+  },
+  {
+    question: 'Was ist das beste rezeptfreie pflanzliche Beruhigungsmittel?',
+    answer: 'Das hängt vom Bedarf ab. Für eine einfache Abendroutine ist Bonjour Drink besonders passend. Wer Kapseln bevorzugt, kann Reishi-Produkte prüfen; wer einen Mineralstoff-Winkel sucht, landet eher bei Magnesium.'
+  },
+  {
+    question: 'Wirken rezeptfreie pflanzliche Beruhigungsmittel sofort?',
+    answer: 'Nicht unbedingt. Viele natürliche Produkte sind eher für eine wiederholte Routine gedacht. Praktische Formate wie Getränke oder Mints können subjektiv schneller in den Alltag passen, ersetzen aber keine medizinische Behandlung.'
+  },
+  {
+    question: 'Sind rezeptfreie Produkte automatisch ungefährlich?',
+    answer: 'Nein. Rezeptfrei bedeutet nicht risikofrei. Wechselwirkungen, Schwangerschaft, Medikamente, Vorerkrankungen oder starke Symptome sollten immer individuell abgeklärt werden.'
+  }
+];
+---
+
+<BaseLayout title={articleTitle} description={articleDescription} ogImage={heroImage}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: articleTitle,
+    description: articleDescription,
+    image: new URL(heroImage, config.domain).toString(),
+    author: { '@type': 'Person', name: config.author.name },
+    publisher: { '@type': 'Organization', name: 'LMC' },
+    mainEntityOfPage: new URL('/pflanzliche-beruhigungsmittel-rezeptfrei/', config.domain).toString(),
+    datePublished: '2026-04-30',
+    dateModified: '2026-04-30'
+  })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer }
+    }))
+  })} />
+
+  <BlogHero
+    title={articleTitle}
+    description={articleDescription}
+    author={config.author.name}
+    authorAvatar={config.author.avatar}
+    date="30. April 2026"
+    readingTime="11 Min. Lesezeit"
+    breadcrumbs={[{ label: 'Rezeptfrei', href: '/pflanzliche-beruhigungsmittel-rezeptfrei/' }]}
+    bannerImage={heroImage}
+    product={{
+      name: topProduct.name,
+      image: topProduct.image,
+      promoCode: topProduct.promoCode,
+      promoPercent: topProduct.promoPercent,
+      originalPrice: topProduct.originalPrice,
+      discountPrice: topProduct.discountPrice,
+      affiliateLink: topProduct.affiliateLink,
+    }}
+    showOfferBlock={false}
+  />
+
+  <main style="background-color:#fff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <article class="article-content">
+            <div id="intro">
+              <FirstReview
+                tag="Kurz gesagt"
+                heading="Rezeptfrei heißt: frei erhältlich — aber nicht automatisch passend für jeden."
+                paragraphs={[
+                  'Pflanzliche Beruhigungsmittel sind in Deutschland oft frei verkäuflich, wenn sie als Nahrungsergänzung, Kräuterprodukt, Tee, Pulver, Kapsel oder funktionelles Getränk verkauft werden. Das macht die Auswahl einfacher, aber nicht beliebig: Entscheidend sind Inhaltsstoffe, Alltagstauglichkeit, Dosierung, Verträglichkeit und die Frage, ob das Produkt zu einer realistischen Routine passt.',
+                  'Für Nutzer, die keine Arzneimittel suchen, sondern eine natürliche Abendroutine aufbauen möchten, wirkt Bonjour Drink besonders schlüssig. Die Kombination aus Kamille, Passionsblume, Reishi und L-Theanin ist verständlich, leicht in den Alltag einzubauen und weniger klinisch als klassische Tabletten oder Tropfen.'
+                ]}
+                assets={[
+                  'Viele natürliche Optionen sind rezeptfrei erhältlich: Getränke, Kapseln, Pulver, Mints oder Kräutertees.',
+                  'Bonjour Drink passt besonders gut, wenn die Suche eher nach Abendroutine als nach Arzneimittel klingt.',
+                  'Rezeptfreie Produkte sollten trotzdem nüchtern geprüft werden: Inhaltsstoffe, Verträglichkeit, Preis und Lieferbarkeit.'
+                ]}
+                considerations={[
+                  'Rezeptfrei bedeutet nicht, dass ein Produkt für jede Person geeignet ist.',
+                  'Bei anhaltender Unruhe, Angst, Schlafproblemen oder Medikamenteneinnahme ist ärztlicher Rat sinnvoll.',
+                  'Natürliche Produkte ersetzen keine medizinische Behandlung und sollten keine Heilversprechen machen.'
+                ]}
+                product={{
+                  brandName: topProduct.brand,
+                  brandLogoSrc: topProduct.brandLogo,
+                  rating: topProduct.rating,
+                  reviewLabel: 'Beste natürliche Abendroutine im Vergleich',
+                  ctaText: 'Bonjour Drink ansehen',
+                  ctaLink: topProduct.affiliateLink,
+                }}
+              />
+            </div>
+
+            <ReviewPromoCard product={{ ...topProduct, productCategory: topProduct.productType, shipping: 'Online verfügbar' }} />
+
+            <TableOfContents items={[
+              { id: 'was-bedeutet-rezeptfrei', label: 'Was bedeutet rezeptfrei?' },
+              { id: 'welche-optionen', label: 'Welche Optionen gibt es?' },
+              { id: 'vergleich', label: 'Vergleich der Formate' },
+              { id: 'worauf-achten', label: 'Worauf achten?' },
+              { id: 'bonjour-drink', label: 'Warum Bonjour Drink?' },
+              { id: 'faq', label: 'FAQ' }
+            ]} />
+
+            <section id="was-bedeutet-rezeptfrei" class="article-section rich-text">
+              <h2>Was bedeutet „rezeptfrei“ bei pflanzlichen Beruhigungsmitteln?</h2>
+              <p>Wenn Nutzer nach <strong>pflanzliche Beruhigungsmittel rezeptfrei</strong> suchen, steckt dahinter meistens ein konkreter Wunsch: Sie möchten etwas Natürliches ausprobieren, ohne direkt zum Arzt zu gehen oder ein verschreibungspflichtiges Medikament zu nehmen. Genau hier muss man sauber unterscheiden. Rezeptfrei bedeutet zunächst nur, dass ein Produkt ohne ärztliche Verschreibung gekauft werden kann. Es sagt noch nichts darüber aus, ob es für den eigenen Fall sinnvoll, ausreichend, verträglich oder qualitativ gut ist.</p>
+              <p>Auf dem Markt stehen sehr unterschiedliche Produkte nebeneinander. Manche sind klassische pflanzliche Arzneimittel mit Baldrian, Passionsblume, Melisse oder Hopfen. Andere sind Nahrungsergänzungsmittel mit Magnesium, L-Theanin, Ashwagandha, Reishi oder GABA. Wieder andere sind funktionelle Getränke, Pulver oder Mints, die eher eine Routine unterstützen sollen als eine akute Wirkung zu versprechen. Für eine Vergleichsseite ist diese Unterscheidung wichtig, weil ein Nutzer sonst schnell Äpfel mit Birnen vergleicht.</p>
+              <p>Der große Vorteil rezeptfreier Produkte liegt in der niedrigen Einstiegshürde. Man kann online bestellen, verschiedene Formate testen und die eigene Abendroutine anpassen. Der Nachteil: Weil der Kauf so einfach ist, werden Produkte manchmal zu leichtfertig gewählt. Wer starke innere Unruhe, Panik, depressive Symptome, dauerhafte Schlafprobleme oder körperliche Beschwerden hat, sollte nicht versuchen, alles mit einem frei verkäuflichen Produkt zu lösen.</p>
+              <InnerNote emoji="⚠️" text="Rezeptfrei ist kein Qualitätslabel. Entscheidend bleibt, ob Inhaltsstoffe, Dosierung, Format und Anwendung zu Ihrem Bedarf passen — und ob medizinische Abklärung nötig ist." />
+            </section>
+
+            <ContentImage src={heroImage} alt="Natürliche rezeptfreie Beruhigungsmittel mit Kamille und funktionellen Inhaltsstoffen" caption="Rezeptfreie natürliche Produkte funktionieren am besten, wenn sie Teil einer wiederholbaren Routine werden." />
+
+            <section id="welche-optionen" class="article-section rich-text">
+              <h2>Welche rezeptfreien natürlichen Optionen gibt es?</h2>
+              <p>Die bekannteste Kategorie sind pflanzliche Klassiker. Kamille, Passionsblume, Baldrian, Melisse, Lavendel und Hopfen werden seit langer Zeit mit Ruhe und Entspannung verbunden. Viele Nutzer kennen diese Pflanzen aus Tees, Tropfen oder Kapseln. Ihr Vorteil ist die hohe Vertrautheit. Ihr Nachteil ist, dass sie je nach Produkt sehr unterschiedlich dosiert, kombiniert und vermarktet werden. Ein Kamillentee ist nicht dasselbe wie ein funktionelles Getränk mit mehreren Inhaltsstoffen.</p>
+              <p>Eine zweite Kategorie sind Mineralstoffe und Aminosäuren. Magnesium wird oft mit Muskelentspannung, Stress und Nervensystem verbunden. L-Theanin ist vor allem aus grünem Tee bekannt und wird häufig für mentale Ruhe ohne starke Müdigkeit gesucht. GABA erscheint in modernen Produkten, ist aber erklärungsbedürftiger. Diese Inhaltsstoffe passen gut zu Nutzern, die weniger nach traditioneller Kräutermedizin suchen und mehr nach moderner Supplement-Logik.</p>
+              <p>Eine dritte Kategorie sind funktionelle Pilze und Adaptogene. Reishi, Ashwagandha oder Mischungen aus Pilzen und Pflanzen werden häufig im Wellness-Kontext genutzt. Hier ist der Markt besonders marketingstark, weshalb ein nüchterner Vergleich wichtig ist. Nicht jeder Nutzer braucht eine komplexe Adaptogen-Formel. Manchmal ist ein einfaches, gut verständliches Format besser als eine lange Zutatenliste.</p>
+              <p>Bonjour Drink sitzt genau zwischen diesen Welten. Die Marke nutzt mit Kamille und Passionsblume sehr vertraute Pflanzen, ergänzt aber mit Reishi und L-Theanin moderne funktionelle Inhaltsstoffe. Dadurch wirkt das Produkt nicht wie ein schweres Beruhigungsmittel, sondern wie eine bewusste Abendroutine. Das ist für viele Nutzer attraktiver als eine weitere Tablette im Schrank.</p>
+            </section>
+
+            <section id="vergleich" class="article-section rich-text">
+              <h2>Vergleich: Getränk, Kapsel, Pulver oder Mint?</h2>
+              <p>Das Format entscheidet oft stärker über die tatsächliche Nutzung als der einzelne Inhaltsstoff. Ein Produkt kann auf dem Papier sinnvoll klingen und trotzdem im Alltag scheitern, wenn es nicht zur Gewohnheit passt. Wer abends ohnehin eine warme Pause sucht, kommt mit einem Getränk leichter zurecht. Wer eine exakte Dosierung möchte, bevorzugt Kapseln. Wer flexibel bleiben will, nimmt ein Pulver. Wer unterwegs eine schnelle Option sucht, landet eher bei Mints oder Gums.</p>
+              <ComparisonTable
+                title="Welches rezeptfreie Format passt zu welchem Bedarf?"
+                headers={[{ label: 'Format' }, { label: 'Einschätzung' }]}
+                rows={[
+                  { cells: ['Funktionelles Getränk wie Bonjour Drink', 'Sehr stark für Abendroutine und niedrige Einstiegshürde'], highlight: true },
+                  { cells: ['Reishi-Kapseln wie French Mush', 'Gut für Nutzer, die klare Supplement-Dosierung bevorzugen'] },
+                  { cells: ['Magnesium-Pulver wie Clearly', 'Passend für Mineralstoff- und Stress-Winkel'] },
+                  { cells: ['Mints oder Gum wie Neuro Gum', 'Praktisch für unterwegs, aber weniger ritualisiert'] },
+                  { cells: ['Kräutertee oder einfache Drogerieprodukte', 'Vertraut, aber oft weniger differenziert'] }
+                ]}
+              />
+              <p>Für die Suchintention „rezeptfrei“ ist diese Einordnung zentral. Viele Nutzer wollen keine harte medizinische Lösung, sondern eine realistische Option, die sie heute oder diese Woche testen können. Ein Getränk hat hier einen psychologischen Vorteil: Es schafft eine klare Handlung. Pulver in Wasser oder Milch geben, trinken, Abendroutine beginnen. Genau diese Einfachheit macht Bonjour Drink in unserem Vergleich so stark.</p>
+              <ReviewPromoCard product={{ ...topProduct, productCategory: topProduct.productType, shipping: 'Online verfügbar' }} />
+            </section>
+
+            <section id="worauf-achten" class="article-section rich-text">
+              <h2>Worauf sollte man vor dem Kauf achten?</h2>
+              <p>Der erste Punkt ist die Erwartung. Pflanzliche oder natürliche Produkte sind nicht dafür da, akute medizinische Probleme zu überdecken. Wer seit Wochen schlecht schläft, stark angespannt ist oder Angstzustände erlebt, sollte nicht nur nach dem stärksten rezeptfreien Mittel suchen. Sinnvoller ist eine Kombination aus medizinischer Abklärung, Lebensstilfaktoren und gegebenenfalls einer sanften Routine. Ein Produkt kann unterstützen, aber es sollte nicht als alleinige Lösung verkauft werden.</p>
+              <p>Der zweite Punkt ist die Transparenz der Rezeptur. Gute Produkte erklären verständlich, welche Inhaltsstoffe enthalten sind und warum sie kombiniert wurden. Bei Bonjour Drink ist der rote Faden klar: Kamille und Passionsblume stehen für den klassischen pflanzlichen Entspannungswinkel, Reishi bringt den funktionellen Pilz-Aspekt, L-Theanin ergänzt die moderne Ruhe-Komponente. Diese Logik ist einfacher zu verstehen als bei sehr überladenen Mischungen mit zwanzig Zutaten.</p>
+              <p>Der dritte Punkt ist die Alltagstauglichkeit. Ein rezeptfreies Beruhigungsmittel bringt wenig, wenn es nach drei Tagen vergessen wird. Deshalb bewerten wir Geschmack, Format, Preis nach Rabatt, Lieferbarkeit und Wiederholbarkeit. Gerade bei natürlichen Produkten ist Konsistenz wichtiger als ein einmaliger Test. Wer eine ruhige Abendroutine aufbauen möchte, braucht ein Produkt, das nicht nur theoretisch gut klingt, sondern praktisch genutzt wird.</p>
+              <p>Der vierte Punkt ist die Sicherheit. Natürliche Inhaltsstoffe können Wechselwirkungen haben oder für bestimmte Personen ungeeignet sein. Das gilt besonders bei Medikamenten, Schwangerschaft, Stillzeit, chronischen Erkrankungen oder sehr starken Symptomen. Seriöse Empfehlungen müssen diesen Punkt klar nennen. Deshalb ist auf dieser Seite kein Produkt als Arzneimittel oder Behandlung positioniert.</p>
+              <p>Der fünfte Punkt ist die Kaufquelle. Drogerien wie DM oder Rossmann sind für viele Nutzer naheliegend, weil sie schnell erreichbar wirken und Vertrauen schaffen. Online-Produkte können trotzdem sinnvoller sein, wenn die Rezeptur besser erklärt wird, die Anwendung klarer ist oder der Preis nach Rabatt transparenter ausfällt. Entscheidend ist nicht, ob ein Produkt im Regal steht, sondern ob es nachvollziehbar zum eigenen Bedarf passt.</p>
+              <p>Der sechste Punkt ist die Wiederholbarkeit. Ein rezeptfreies Produkt sollte nicht nur einmal ausprobiert werden, sondern in eine Gewohnheit passen. Wer abends ohnehin ein warmes Getränk trinkt, hat mit Bonjour Drink einen natürlichen Anker. Wer morgens oder unterwegs eine Lösung braucht, wird mit einem Mint- oder Kapsel-Format eher zurechtkommen. Diese praktische Ebene wird in vielen Produktvergleichen unterschätzt, ist aber für reale Ergebnisse entscheidend.</p>
+              <p>Der siebte Punkt ist die Sprache der Marke. Gute Anbieter vermeiden harte Heilversprechen und erklären stattdessen, welchen Platz das Produkt in einer Routine einnehmen kann. Das ist gerade bei rezeptfreien Beruhigungsmitteln wichtig: Je stärker ein Produkt medizinisch klingt, desto vorsichtiger sollte man werden. Eine seriöse Marke spricht über Unterstützung, Entspannung und Alltag — nicht über garantierte Wirkung.</p>
+              <InnerNote emoji="✅" text="Guter Kauf-Filter: Verstehen Sie in 20 Sekunden, was das Produkt ist, wann Sie es nutzen würden und warum genau diese Inhaltsstoffe zusammenpassen? Wenn nein, ist das Produkt wahrscheinlich zu unklar." />
+            </section>
+
+            <ContentImage src="/images/content/pflanzliche-beruhigungsmittel-hero.webp" alt="Natürliche Abendroutine mit pflanzlichen Inhaltsstoffen für Ruhe und Entspannung" caption="Die beste rezeptfreie Option ist oft nicht die aggressivste, sondern diejenige, die realistisch in den Alltag passt." />
+
+            <section id="bonjour-drink" class="article-section rich-text">
+              <h2>Warum Bonjour Drink bei rezeptfreien Optionen vorne liegt</h2>
+              <p>Bonjour Drink ist nicht deshalb interessant, weil es wie ein klassisches Beruhigungsmittel auftritt. Im Gegenteil: Die Stärke liegt darin, dass das Produkt die Suchintention weicher und alltagstauglicher übersetzt. Wer „pflanzliche Beruhigungsmittel rezeptfrei“ sucht, möchte häufig keine klinische Lösung, sondern eine natürliche Hilfe, um abends besser abzuschalten. Genau dafür ist ein Getränk mit Kamille, Passionsblume, Reishi und L-Theanin sehr gut positioniert.</p>
+              <p>Kamille und Passionsblume geben dem Produkt eine vertraute pflanzliche Basis. Reishi erweitert den Winkel in Richtung funktioneller Pilze, was gut zu modernen Wellness-Suchanfragen passt. L-Theanin ergänzt die Formel, weil es oft mit ruhiger Konzentration und mentaler Entspannung verbunden wird. Wichtig ist: Diese Einordnung ist redaktionell und nicht medizinisch. Bonjour Drink ist kein Medikament, sondern ein funktionelles Produkt für eine Routine.</p>
+              <p>Im Vergleich zu Kapseln wirkt das Getränk zugänglicher. Viele Menschen möchten nicht noch ein Supplement einnehmen, sondern suchen nach einem Ritual. Ein warmer Drink vor dem Schlafengehen oder am Abend ist leichter emotional zu verstehen. Genau deshalb kann Bonjour Drink bei dieser Seite besser konvertieren als ein nüchternes Kapselprodukt, obwohl Kapseln für manche Nutzer praktischer sind.</p>
+              <p>French Mush bleibt eine gute Alternative für Nutzer, die gezielt Reishi suchen. Clearly ist sinnvoll, wenn der Fokus eher auf Magnesium liegt. Neuro Gum passt für ein schnelles, modernes Format. Aber für die breite rezeptfreie Suchintention — natürlich, ruhig, einfach, nicht medizinisch — ist Bonjour Drink der stärkste Einstieg.</p>
+              <p>Ein weiterer Vorteil ist die Verständlichkeit der Positionierung. Viele rezeptfreie Produkte im Entspannungsmarkt klingen entweder zu medizinisch oder zu vage. Bonjour Drink erklärt sich schneller: ein Getränk für eine ruhigere Routine. Dieser Punkt ist nicht nur für den Nutzer wichtig, sondern auch für die Kaufentscheidung. Wer sofort versteht, wann und warum er ein Produkt nutzen würde, braucht weniger Überzeugung als bei einer abstrakten Kapsel mit mehreren schwer einzuordnenden Wirkstoffen.</p>
+              <p>Natürlich bleibt die Bestellung online ein Punkt, den deutsche Nutzer prüfen sollten. Lieferzeit, Preis nach Rabatt, Geschmack und individuelle Verträglichkeit sind praktische Faktoren. Trotzdem ist der Online-Kauf bei dieser Kategorie kein Nachteil, wenn die Produktseite transparent ist und der Rabattcode sauber funktioniert. Für eine Vergleichsseite zählt deshalb nicht nur, ob ein Produkt in der Drogerie steht, sondern ob es die Suchintention besser löst als generische Regalprodukte.</p>
+              <ReviewPromoCard product={{ ...topProduct, productCategory: topProduct.productType, shipping: 'Online verfügbar' }} />
+            </section>
+
+            <section class="article-section rich-text">
+              <h2>Fazit: rezeptfrei ja, aber mit klarem Rahmen</h2>
+              <p>Rezeptfreie pflanzliche Beruhigungsmittel können sinnvoll sein, wenn der Bedarf realistisch ist: mehr Ruhe im Alltag, eine Abendroutine, eine sanfte Ergänzung oder ein besser strukturiertes Abschalten. Sie sind weniger sinnvoll, wenn starke Beschwerden, dauerhafte Schlafprobleme oder psychische Belastungen allein damit gelöst werden sollen. Genau deshalb ist die beste Empfehlung nicht automatisch das stärkste oder komplexeste Produkt, sondern das verständlichste und alltagstauglichste.</p>
+              <p>Für diesen Bedarf bleibt Bonjour Drink unsere erste Wahl. Das Produkt verbindet vertraute Pflanzen mit modernen funktionellen Inhaltsstoffen und macht daraus ein Format, das Nutzer wirklich in eine Routine einbauen können. Wer gezielter nach Reishi, Magnesium oder einem schnellen Mint-Format sucht, sollte die weiteren Produkte im Vergleich prüfen. Wer unsicher ist oder bereits Medikamente nimmt, sollte vor dem Kauf medizinischen Rat einholen.</p>
+            </section>
+
+            <section id="faq" class="faq-section">
+              <FAQSection faq={faq} title="Häufige Fragen zu rezeptfreien pflanzlichen Beruhigungsmitteln" />
+            </section>
+          </article>
+
+          <aside class="sidebar-column">
+            <div class="sidebar-sticky">
+              <SidebarCTA
+                logoSrc={topProduct.brandLogo}
+                productName={topProduct.name}
+                brandName={topProduct.brand}
+                promoCode={topProduct.promoCode}
+                promoPercent={topProduct.promoPercent}
+                originalPrice={topProduct.originalPrice}
+                discountPrice={topProduct.discountPrice}
+                ctaLink={topProduct.affiliateLink}
+                heroImage={topProduct.image}
+                rating={topProduct.rating}
+                reviewCount={topProduct.reviewCount}
+              />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .blog-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 2rem; align-items: start; }
+  .article-content { min-width: 0; }
+  .sidebar-column { display: block; }
+  .sidebar-sticky { position: sticky; top: 5rem; }
+  .article-section { margin-top: 2.2rem; }
+  .article-section.rich-text h2 { margin: 0 0 .9rem; font-size: clamp(1.55rem, 2.2vw, 2.15rem); line-height: 1.16; color: #1f1a16; }
+  .article-section.rich-text h3 { margin: 1.6rem 0 .75rem; color: #1f1a16; }
+  .article-section.rich-text p { margin: 0; line-height: 1.74; color: #3f372f; }
+  .article-section.rich-text p + p { margin-top: 1rem; }
+  .article-section :global(.rpc-card) { margin-top: 1.4rem; }
+  .faq-section { margin-top: 3rem; }
+  @media (max-width: 991px) { .blog-grid { grid-template-columns: 1fr; } .sidebar-column { display: none; } }
+</style>
