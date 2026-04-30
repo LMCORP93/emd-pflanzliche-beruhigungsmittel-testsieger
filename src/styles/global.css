@@ -314,6 +314,12 @@ html {
   box-shadow: 0 2px 8px rgba(239, 122, 26, 0.35);
   color: #ffffff;
 }
+.rich-text a.btn-solid,
+.rich-text a.btn-solid:hover,
+.rich-text a.btn-solid:focus {
+  color: #ffffff;
+  text-decoration: none;
+}
 .btn-solid:active {
   background-color: #b85a0e;
   transform: translateY(0);
