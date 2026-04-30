@@ -113,19 +113,18 @@ const productSchema = (p: typeof config.products[number]) => ({
               <p>Pflanzliche Beruhigungsmittel sind ein breites Feld: Kamille, Passionsblume, Reishi, Magnesium, L-Theanin, Ashwagandha und funktionelle Pilze werden oft in einem Atemzug genannt. Genau deshalb ist ein sauberer Vergleich wichtiger als ein einzelnes Produktversprechen.</p>
               <p>Für diese erste deutsche Vergleichsseite haben wir sechs Marken ausgewählt, die international bestellbar wirken und thematisch zum Markt passen. Der Fokus liegt nicht auf Arzneimitteln, sondern auf natürlichen Routinen, Nahrungsergänzungen und funktionellen Getränken für Menschen, die im Alltag besser abschalten möchten.</p>
             </section>
-            <section id="ranking-methodik" class="methodology-box">
+            <section id="ranking-methodik" class="methodology-note">
               <h2>Wie wir die Produkte eingestuft haben</h2>
               <p>Unser Ranking kombiniert redaktionelle und praktische Kriterien, damit die Auswahl nicht nur vom Preis oder Rabatt abhängt.</p>
-              <ul>
-                  <li>Formulierung und Profil der aktiven Inhaltsstoffe</li>
-                  <li>Tatsächlicher Preis nach Rabatt und Kosten pro Anwendung</li>
-                  <li>Verfügbarkeit und Bestellbarkeit</li>
-                  <li>Kundenbewertungen und öffentliche Vertrauenssignale</li>
-                  <li>Transparenz der Marke zu Zusammensetzung und Aussagen</li>
-                  <li>Klarheit von Rabattcode, Bedingungen und Angebot</li>
-                  <li>Passung zum Hauptbedarf dieser Seite</li>
-              </ul>
-              <p class="methodology-box__disclaimer"><strong>Transparence affiliation.</strong> Einige Links sind Affiliate-Links: LMC kann eine Provision erhalten, wenn Sie darüber kaufen, ohne zusätzliche Kosten für Sie. Das ersetzt nicht unsere redaktionelle Auswahl: Ein Produkt wird nur empfohlen, wenn es zum beschriebenen Bedarf passt.</p>
+              <div class="methodology-note__grid">
+                <span>Formulierung der aktiven Inhaltsstoffe</span>
+                <span>Preis nach Rabatt</span>
+                <span>Verfügbarkeit und Bestellbarkeit</span>
+                <span>Kundenbewertungen und Vertrauenssignale</span>
+                <span>Transparenz der Marke</span>
+                <span>Passung zum Hauptbedarf dieser Seite</span>
+              </div>
+              <p class="methodology-note__disclaimer"><strong>Affiliate-Hinweis:</strong> Einige Links sind Affiliate-Links. LMC kann eine Provision erhalten, ohne zusätzliche Kosten für Sie. Die redaktionelle Auswahl bleibt davon unabhängig.</p>
             </section>
 
 
@@ -219,13 +218,12 @@ const productSchema = (p: typeof config.products[number]) => ({
   .sidebar-sticky { position: sticky; top: 5rem; }
   @media (max-width: 991px) { .blog-grid { grid-template-columns: 1fr; } .sidebar-column { display: none; } }
 
-.methodology-box { margin: 2rem 0; padding: 1.35rem; border: 1px solid #eadfce; border-radius: 18px; background: #f8f4ec; color: #2f2922; }
-.methodology-box, .methodology-box h2, .methodology-box p, .methodology-box li, .methodology-box strong { color: #2f2922; }
-.methodology-box h2 { margin: 0 0 .75rem; font-size: clamp(1.35rem, 2vw, 1.8rem); line-height: 1.15; }
-.methodology-box p { margin: 0 0 .9rem; line-height: 1.65; }
-.methodology-box ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .45rem 1rem; margin: .8rem 0 1rem; padding-left: 1.1rem; }
-.methodology-box li { line-height: 1.45; }
-.methodology-box__disclaimer { margin-top: .85rem !important; padding-top: .85rem; border-top: 1px solid #eadfce; font-size: .92rem; }
-@media (max-width: 768px) { .methodology-box ul { grid-template-columns: 1fr; } .methodology-box { padding: 1rem; } }
-
+.methodology-note { margin: 1.8rem 0 2rem; padding: 0 0 1.4rem; border-bottom: 1px solid #eee3d4; color: #2f2922; }
+.methodology-note h2 { margin: 0 0 .7rem; font-size: clamp(1.45rem, 2.1vw, 1.95rem); line-height: 1.15; color: #1f1a16; }
+.methodology-note p { margin: 0; line-height: 1.65; color: #4f463d; }
+.methodology-note__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .55rem 1rem; margin: 1rem 0 1.05rem; }
+.methodology-note__grid span { position: relative; padding-left: 1rem; font-size: .96rem; line-height: 1.45; color: #332c25; }
+.methodology-note__grid span::before { content: ""; position: absolute; left: 0; top: .62em; width: .35rem; height: .35rem; border-radius: 999px; background: #ef7a1a; }
+.methodology-note__disclaimer { margin-top: .95rem !important; padding-left: .9rem; border-left: 3px solid #ef7a1a; font-size: .92rem; color: #62564b !important; }
+@media (max-width: 640px) { .methodology-note__grid { grid-template-columns: 1fr; } }
 </style>
