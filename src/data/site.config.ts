@@ -301,7 +301,8 @@ const config: SiteConfig = {
     { id: "faq", label: "FAQ" }
   ],
   pages: [
-    { type: 'blog', label: 'Rezeptfrei', slug: '/pflanzliche-beruhigungsmittel-rezeptfrei/' }
+    { type: 'blog', label: 'Rezeptfrei', slug: '/pflanzliche-beruhigungsmittel-rezeptfrei/' },
+    { type: 'blog', label: 'Schnell wirkend', slug: '/beruhigungsmittel-pflanzlich-schnell-wirkend/' }
   ]
 };
 

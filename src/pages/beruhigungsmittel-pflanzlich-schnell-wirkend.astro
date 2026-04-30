@@ -1,0 +1,234 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import FirstReview from '@/components/FirstReview.astro';
+import ReviewPromoCard from '@/components/ReviewPromoCard.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import ContentImage from '@/components/ContentImage.astro';
+import InnerNote from '@/components/InnerNote.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import config from '@/data/site.config';
+
+const topProduct = config.products[0];
+const articleTitle = 'Beruhigungsmittel pflanzlich schnell wirkend';
+const articleDescription = 'Welche pflanzlichen Beruhigungsmittel wirken schnell? Realistischer Vergleich von Getränk, Kapsel, Mint und Abendroutine.';
+const heroImage = '/images/articles/beruhigungsmittel-pflanzlich-schnell-wirkend.webp';
+const faq = [
+  {
+    question: 'Gibt es pflanzliche Beruhigungsmittel, die schnell wirken?',
+    answer: 'Einige Formate fühlen sich schneller an, etwa warme Getränke, Mints oder einfache Routinen. Eine medizinische Sofortwirkung sollte man bei pflanzlichen Produkten aber nicht erwarten.'
+  },
+  {
+    question: 'Was ist die beste schnelle pflanzliche Option?',
+    answer: 'Für eine schnelle, aber sanfte Abendroutine ist Bonjour Drink in unserem Vergleich am passendsten. Wer unterwegs etwas Praktisches sucht, kann Mint-Formate prüfen.'
+  },
+  {
+    question: 'Sind schnelle pflanzliche Beruhigungsmittel sicher?',
+    answer: 'Natürlich bedeutet nicht automatisch risikofrei. Bei Medikamenten, Schwangerschaft, Vorerkrankungen, starker Angst oder anhaltenden Schlafproblemen sollte medizinischer Rat eingeholt werden.'
+  },
+  {
+    question: 'Was wirkt schneller: Tee, Kapsel, Pulver oder Mint?',
+    answer: 'Praktisch betrachtet wirken Getränke und Mints oft unmittelbarer, weil die Anwendung spürbar ist. Kapseln sind nüchterner und eher für eine regelmäßige Supplement-Routine geeignet.'
+  }
+];
+---
+
+<BaseLayout title={articleTitle} description={articleDescription} ogImage={heroImage}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: articleTitle,
+    description: articleDescription,
+    image: new URL(heroImage, config.domain).toString(),
+    author: { '@type': 'Person', name: config.author.name },
+    publisher: { '@type': 'Organization', name: 'LMC' },
+    mainEntityOfPage: new URL('/beruhigungsmittel-pflanzlich-schnell-wirkend/', config.domain).toString(),
+    datePublished: '2026-04-30',
+    dateModified: '2026-04-30'
+  })} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer }
+    }))
+  })} />
+
+  <BlogHero
+    title={articleTitle}
+    description={articleDescription}
+    author={config.author.name}
+    authorAvatar={config.author.avatar}
+    date="30. April 2026"
+    readingTime="12 Min. Lesezeit"
+    breadcrumbs={[{ label: 'Schnell wirkend', href: '/beruhigungsmittel-pflanzlich-schnell-wirkend/' }]}
+    bannerImage={heroImage}
+    product={{
+      name: topProduct.name,
+      image: topProduct.image,
+      promoCode: topProduct.promoCode,
+      promoPercent: topProduct.promoPercent,
+      originalPrice: topProduct.originalPrice,
+      discountPrice: topProduct.discountPrice,
+      affiliateLink: topProduct.affiliateLink,
+    }}
+    showOfferBlock={false}
+  />
+
+  <main style="background-color:#fff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <article class="article-content">
+            <div id="intro">
+              <FirstReview
+                tag="Kurz gesagt"
+                heading="Schnell wirkend heißt bei pflanzlichen Produkten vor allem: schnell nutzbar, klar dosiert und realistisch eingeordnet."
+                paragraphs={[
+                  'Wer nach schnell wirkenden pflanzlichen Beruhigungsmitteln sucht, meint meistens keine schwere medizinische Lösung. Gesucht wird etwas, das im Alltag sofort greifbar ist: ein Getränk am Abend, ein Mint für unterwegs, eine klare Kapselroutine oder eine einfache pflanzliche Pause, die nicht kompliziert wirkt.',
+                  'Bonjour Drink passt für diese Suchintention besonders gut, weil das Produkt den schnellen Einstieg nicht über ein hartes Wirkversprechen verkauft, sondern über ein verständliches Ritual. Kamille, Passionsblume, Reishi und L-Theanin werden in ein Getränk übersetzt, das man konkret zubereiten und in eine ruhige Routine legen kann.'
+                ]}
+                assets={[
+                  'Schnelligkeit ist bei natürlichen Produkten oft eine Frage des Formats: Getränk, Mint und Tee fühlen sich unmittelbarer an als Kapseln.',
+                  'Bonjour Drink ist stark, wenn die schnelle Lösung nicht medizinisch, sondern ritualisiert und alltagstauglich sein soll.',
+                  'Pflanzliche Produkte sollten keine Sofort-Heilwirkung versprechen. Der Vergleich muss Nutzen, Grenzen und Sicherheit sauber trennen.'
+                ]}
+                considerations={[
+                  'Bei akuter Panik, starken Beschwerden oder dauerhaften Schlafproblemen ist ein frei verkäufliches Produkt nicht die richtige alleinige Antwort.',
+                  'Schnell spürbar bedeutet nicht automatisch stärker oder besser.',
+                  'Wer Medikamente nimmt oder gesundheitliche Risiken hat, sollte Inhaltsstoffe und Verträglichkeit vorher abklären.'
+                ]}
+                product={{
+                  brandName: topProduct.brand,
+                  brandLogoSrc: topProduct.brandLogo,
+                  rating: topProduct.rating,
+                  reviewLabel: 'Beste schnelle Abendroutine im Vergleich',
+                  ctaText: 'Bonjour Drink ansehen',
+                  ctaLink: topProduct.affiliateLink,
+                }}
+              />
+            </div>
+
+            <ReviewPromoCard product={{ ...topProduct, productCategory: topProduct.productType, shipping: 'Online verfügbar' }} />
+
+            <TableOfContents items={[
+              { id: 'was-heisst-schnell', label: 'Was heißt schnell wirkend?' },
+              { id: 'formate', label: 'Welche Formate sind schnell?' },
+              { id: 'vergleich', label: 'Vergleich der Optionen' },
+              { id: 'bonjour-drink', label: 'Warum Bonjour Drink?' },
+              { id: 'grenzen', label: 'Grenzen und Sicherheit' },
+              { id: 'faq', label: 'FAQ' }
+            ]} />
+
+            <section id="was-heisst-schnell" class="article-section rich-text">
+              <h2>Was bedeutet „schnell wirkend“ bei pflanzlichen Beruhigungsmitteln?</h2>
+              <p>Der Begriff „schnell wirkend“ ist bei pflanzlichen Beruhigungsmitteln heikel. Viele Nutzer suchen nach einer direkten Entlastung: weniger innere Unruhe, besseres Abschalten, schnelleres Runterkommen nach einem stressigen Tag oder eine einfache Abendroutine vor dem Schlafen. Gleichzeitig sind pflanzliche Produkte keine verschreibungspflichtigen Arzneimittel und sollten nicht so beworben werden, als würden sie akute psychische oder medizinische Probleme sofort lösen.</p>
+              <p>In einem seriösen Vergleich muss man deshalb zwischen drei Ebenen unterscheiden. Die erste Ebene ist die praktische Schnelligkeit: Wie schnell kann ich das Produkt nutzen? Ein Getränkepulver, ein Tee oder ein Mint haben hier Vorteile, weil die Anwendung unmittelbar startet. Die zweite Ebene ist die subjektive Wahrnehmung: Ein warmes Getränk, ein klarer Geschmack oder eine bewusste Pause kann sich schneller beruhigend anfühlen als eine nüchterne Kapsel. Die dritte Ebene ist die biologische Wirkung, und genau dort sollte man vorsichtig bleiben: Natürliche Inhaltsstoffe brauchen oft Wiederholung, Kontext und individuelle Verträglichkeit.</p>
+              <p>Für die Suchintention <strong>beruhigungsmittel pflanzlich schnell wirkend</strong> ist also nicht das aggressivste Produkt automatisch das beste. Besser ist eine Lösung, die schnell in den Alltag passt, verständlich erklärt ist und keine falschen Erwartungen erzeugt. Genau deshalb schneiden ritualisierte Formate stark ab. Sie geben dem Nutzer sofort eine Handlung: zubereiten, trinken, Pause machen, Bildschirm weglegen, Abendmodus starten.</p>
+              <InnerNote emoji="⚠️" text="Wichtig: Diese Seite bewertet natürliche Produkte und Routinen, keine Akutbehandlung. Bei starker Angst, Panik, dauerhaften Schlafproblemen oder körperlichen Symptomen ist medizinische Abklärung sinnvoll." />
+            </section>
+
+            <ContentImage src={heroImage} alt="Pflanzliche schnell wirkende Beruhigungsmittel als natürliche Abendroutine" caption="Schnelle pflanzliche Optionen überzeugen vor allem dann, wenn sie als konkrete Handlung in den Alltag passen." />
+
+            <section id="formate" class="article-section rich-text">
+              <h2>Welche pflanzlichen Formate wirken im Alltag am schnellsten?</h2>
+              <p>Am schnellsten wirken im Alltag oft die Formate, die sofort eine spürbare Nutzungssituation schaffen. Ein Getränk ist dafür ein gutes Beispiel. Man bereitet es zu, riecht es, trinkt es warm oder kalt und verbindet es mit einer Pause. Diese sensorische Ebene ist nicht nebensächlich. Viele Menschen suchen nicht nur einen Inhaltsstoff, sondern ein Signal an den Körper: Der Arbeitstag ist vorbei, jetzt beginnt der ruhigere Teil.</p>
+              <p>Kräutertees funktionieren ähnlich. Kamille, Melisse, Lavendel, Passionsblume oder Baldrian sind vertraute Pflanzen, und ein Tee fühlt sich für viele Nutzer niedrigschwellig an. Der Nachteil ist, dass einfache Tees oft weniger differenziert sind. Dosierung, Extraktqualität und Kombination bleiben schwer vergleichbar. Außerdem wirken sie im Produktvergleich weniger kaufstark, weil sie kaum Marke, Rabattcode oder klares Angebot transportieren.</p>
+              <p>Mints und Gums sind das schnellste Format für unterwegs. Neuro Gum ist in dieser Auswahl deshalb relevant, weil Calm & Clarity mit GABA und L-Theanin sehr praktisch wirkt. Der Nutzer muss nichts mischen, nichts vorbereiten und keine Kapsel schlucken. Trotzdem ist das Format eher ein Functional-Snack als ein klassisches pflanzliches Beruhigungsmittel. Für mobile Nutzer kann es passen, für die breite Suchintention nach natürlicher Entspannung ist es aber weniger ritualisiert.</p>
+              <p>Kapseln sind rationaler. French Mush mit Reishi-Kapseln ist klar, fokussiert und gut für Nutzer, die Supplement-Logik mögen. Eine Kapsel ist schnell eingenommen, aber sie erzeugt weniger unmittelbare Ruhe-Situation. Genau hier unterscheiden sich schnelle Nutzung und schnell gefühlter Effekt. Wer eine Kapsel nimmt, wartet innerlich eher auf eine Wirkung. Wer ein Getränk trinkt, beginnt bereits mit einer Handlung, die das Runterkommen unterstützt.</p>
+              <p>Pulver und funktionelle Getränke sitzen zwischen diesen Welten. Sie haben die konkrete Anwendung eines Tees, aber die Marken- und Rezeptur-Logik eines Supplements. Bonjour Drink nutzt diesen Vorteil besonders gut: Kamille und Passionsblume machen den pflanzlichen Bezug sofort verständlich, Reishi und L-Theanin geben dem Produkt einen modernen funktionellen Winkel. Dadurch wirkt es schneller greifbar als komplexe Kapselmischungen.</p>
+            </section>
+
+            <section id="vergleich" class="article-section rich-text">
+              <h2>Vergleich: schnell nutzbar vs. langfristig sinnvoll</h2>
+              <p>Eine schnelle Option ist nur dann gut, wenn sie nicht nach drei Tagen vergessen wird. Viele Produkte klingen in der Theorie stark, scheitern aber praktisch: zu kompliziert, schlechter Geschmack, unklare Dosierung, kein Zeitpunkt im Alltag oder zu viel medizinische Sprache. Bei pflanzlichen Beruhigungsmitteln ist die Wiederholbarkeit deshalb fast genauso wichtig wie der erste Eindruck.</p>
+              <ComparisonTable
+                title="Welche Option passt zu welchem schnellen Bedarf?"
+                headers={[{ label: 'Option' }, { label: 'Einschätzung' }]}
+                rows={[
+                  { cells: ['Bonjour Drink', 'Stark für schnelle Abendroutine, warmes Ritual und klare pflanzliche Positionierung'], highlight: true },
+                  { cells: ['Neuro Gum Calm & Clarity', 'Sehr praktisch unterwegs, aber weniger klassisch pflanzlich und weniger ritualisiert'] },
+                  { cells: ['French Mush Reishi', 'Klar und fokussiert, eher langfristige Kapselroutine als Sofortmoment'] },
+                  { cells: ['Clearly Magnesium Mix', 'Gut für Entspannungs- und Mineralstoffwinkel, aber nicht primär pflanzlich'] },
+                  { cells: ['Einfacher Kräutertee', 'Niedrige Hürde, aber schwächer bei Vergleichbarkeit und Produktlogik'] }
+                ]}
+              />
+              <p>Bonjour Drink steht in diesem Vergleich nicht vorne, weil es eine harte Sofortwirkung verspricht. Das wäre unseriös. Es steht vorne, weil es die beste Brücke zwischen schneller Handlung und natürlicher Routine baut. Der Nutzer versteht sofort, wann er es verwenden würde: abends, nach dem Essen, vor dem Schlafen, beim Abschalten oder als ruhiger Ersatz für ein anderes Getränk.</p>
+              <p>Neuro Gum ist die naheliegende Alternative, wenn „schnell“ wörtlich als „unterwegs und ohne Vorbereitung“ verstanden wird. Das Produkt ist praktisch, modern und niedrigschwellig. Es verliert aber beim pflanzlichen Suchintent, weil GABA und L-Theanin nicht dieselbe vertraute Kräuter- oder Pflanzenwelt öffnen wie Kamille, Passionsblume oder Reishi. Für einen mobilen Bedarf kann es stark sein; für einen deutschen EMD-Vergleich mit pflanzlichem Fokus bleibt Bonjour Drink runder.</p>
+              <ReviewPromoCard product={{ ...topProduct, productCategory: topProduct.productType, shipping: 'Online verfügbar' }} />
+            </section>
+
+            <section id="bonjour-drink" class="article-section rich-text">
+              <h2>Warum Bonjour Drink bei schnellen pflanzlichen Optionen vorne liegt</h2>
+              <p>Bonjour Drink trifft die Suchintention besonders gut, weil das Produkt nicht wie ein klassisches Beruhigungsmittel auftreten muss. Die Stärke liegt im Gegenteil darin, dass es weich, alltagstauglich und schnell verständlich ist. Ein Getränk mit Kamille, Passionsblume, Reishi und L-Theanin erklärt sich schneller als eine lange Supplement-Tabelle. Der Nutzer sieht die Anwendung sofort vor sich.</p>
+              <p>Kamille und Passionsblume sind die vertrauten Anker. Viele deutsche Nutzer kennen diese Pflanzen aus Tee, Drogerieprodukten oder traditionellen Hausmitteln. Reishi ergänzt den modernen funktionellen Pilz-Winkel, ohne das Produkt zu medizinisch wirken zu lassen. L-Theanin bringt eine zeitgemäße Ruhe-Komponente, die in vielen internationalen Produkten auftaucht. Zusammen entsteht keine überladene Formel, sondern ein plausibles Ritual.</p>
+              <p>Für „schnell wirkend“ ist vor allem die erste Nutzung wichtig. Bei Bonjour Drink muss der Nutzer nicht lange überlegen, ob er das Produkt morgens, mittags oder abends nimmt. Die Antwort ist intuitiv: dann, wenn er runterkommen will. Diese Klarheit ist ein Conversion-Vorteil. Produkte, die zu erklärungsbedürftig sind, verlieren in diesem Moment. Der beste Inhaltsstoff hilft wenig, wenn der Nutzer nicht versteht, wann er ihn verwenden soll.</p>
+              <p>Ein weiterer Pluspunkt ist die Abgrenzung zu harten Arzneimitteln. Viele Suchende wollen gerade keine starke medizinische Lösung, sondern etwas Natürliches, das sie ohne große Hürde testen können. Bonjour Drink muss nicht versprechen, Angst oder Schlafprobleme zu behandeln. Es reicht, dass es als ruhiger Abendanker funktioniert und sich in eine Routine einbauen lässt. Genau diese Positionierung ist für LMC kommerziell sauberer und vertrauenswürdiger.</p>
+              <p>Preis und Rabattcode spielen ebenfalls eine Rolle. Bei schnellen Produkten ist die Kaufentscheidung oft impulsiver: Der Nutzer möchte nicht erst zehn Tabellen studieren, sondern eine plausible Empfehlung. Ein klarer CTA, ein sichtbarer Rabatt und ein verständliches Produktbild helfen. Trotzdem darf die Seite nicht wie ein reiner Gutscheintext wirken. Deshalb bleibt der Vergleich wichtig: Bonjour Drink ist die Hauptempfehlung, aber Neuro Gum, French Mush und Clearly werden je nach Bedarf eingeordnet.</p>
+              <ReviewPromoCard product={{ ...topProduct, productCategory: topProduct.productType, shipping: 'Online verfügbar' }} />
+            </section>
+
+            <ContentImage src="/images/content/pflanzliche-beruhigungsmittel-hero.webp" alt="Natürliche Entspannungsroutine mit pflanzlichen Inhaltsstoffen" caption="Die schnelle Lösung ist oft nicht das stärkste Produkt, sondern das Format, das sofort eine ruhige Handlung auslöst." />
+
+            <section id="grenzen" class="article-section rich-text">
+              <h2>Grenzen: Wann schnelle pflanzliche Beruhigungsmittel nicht reichen</h2>
+              <p>Ein seriöser Vergleich muss auch sagen, wann ein pflanzliches Produkt nicht genügt. Wer regelmäßig Panikattacken erlebt, starke Angstzustände hat, seit Wochen kaum schläft, Medikamente nimmt oder körperliche Symptome bemerkt, sollte nicht versuchen, alles über ein frei verkäufliches Produkt zu lösen. Pflanzliche Routinen können hilfreich sein, aber sie ersetzen keine Diagnose und keine Behandlung.</p>
+              <p>Auch der Begriff „schnell“ kann falsche Erwartungen erzeugen. Manche Nutzer erwarten eine Wirkung wie bei einem Arzneimittel. Genau diese Erwartung passt nicht zu den meisten natürlichen Produkten. Besser ist die Frage: Welches Produkt hilft mir, schneller in eine ruhigere Situation zu kommen? Das kann ein Getränk, ein Tee, ein Mint, eine Atemübung oder eine klare Abendroutine sein. Die Wirkung entsteht dann nicht nur aus einem Inhaltsstoff, sondern aus dem Zusammenspiel von Handlung, Kontext und Wiederholung.</p>
+              <p>Für Nutzer mit empfindlichem Magen, Allergien, Schwangerschaft, Stillzeit oder Medikamenteneinnahme ist zusätzliche Vorsicht sinnvoll. Kamille, Passionsblume, Reishi, Magnesium, L-Theanin oder GABA klingen natürlich, können aber individuell unterschiedlich vertragen werden. Deshalb sollte man Herstellerhinweise lesen, klein anfangen und bei Unsicherheit fachlichen Rat einholen.</p>
+              <p>Beim Kauf sollte man außerdem auf überzogene Produktversprechen achten. Je absoluter eine Marke klingt, desto kritischer sollte man werden. Gute Anbieter erklären nüchtern, was das Produkt ist, welche Inhaltsstoffe enthalten sind und wie es in eine Routine passt. Genau diese Sprache wirkt langfristig vertrauenswürdiger als harte Versprechen.</p>
+              <p>Unser Fazit bleibt deshalb bewusst realistisch: Wer ein pflanzliches Beruhigungsmittel sucht, das schnell in den Alltag passt, sollte zuerst das Format wählen. Für eine Abendroutine ist Bonjour Drink die stärkste Empfehlung. Für unterwegs kann Neuro Gum interessant sein. Für Kapsel-Nutzer ist French Mush sauber positioniert. Für Magnesium-Fokus passt Clearly. Aber bei starken Beschwerden ist nicht das nächste Produkt der wichtigste Schritt, sondern eine professionelle Einschätzung.</p>
+              <InnerNote emoji="✅" text="Guter Entscheidungsfilter: Wenn Sie sofort wissen, wann, wie und warum Sie ein Produkt nutzen würden, ist es wahrscheinlich alltagstauglicher als eine komplexe Formel ohne klare Routine." />
+            </section>
+
+            <section class="article-section rich-text">
+              <h2>Fazit: schnell, aber nicht unseriös</h2>
+              <p>Die beste schnelle pflanzliche Option ist nicht die lauteste. Sie ist diejenige, die schnell verständlich ist, schnell genutzt werden kann und trotzdem sauber eingeordnet bleibt. Bonjour Drink erfüllt diese Kriterien am besten, weil es die natürliche Pflanzenwelt mit einem konkreten Getränkeritual verbindet. Das macht die Empfehlung für diese Suchintention stärker als eine reine Kapsel oder ein generischer Tee.</p>
+              <p>Wer sofort etwas Praktisches für unterwegs sucht, kann zusätzlich ein Mint-Format wie Neuro Gum prüfen. Wer Reishi gezielt testen möchte, findet mit French Mush eine klare Kapseloption. Für die breite Suche nach einem pflanzlichen, schnell greifbaren Beruhigungsmittel bleibt aber Bonjour Drink die rundeste Wahl — solange die Erwartung realistisch bleibt und gesundheitliche Grenzen respektiert werden.</p>
+            </section>
+
+            <section id="faq" class="faq-section">
+              <FAQSection faq={faq} title="Häufige Fragen zu schnell wirkenden pflanzlichen Beruhigungsmitteln" />
+            </section>
+          </article>
+
+          <aside class="sidebar-column">
+            <div class="sidebar-sticky">
+              <SidebarCTA
+                logoSrc={topProduct.brandLogo}
+                productName={topProduct.name}
+                brandName={topProduct.brand}
+                promoCode={topProduct.promoCode}
+                promoPercent={topProduct.promoPercent}
+                originalPrice={topProduct.originalPrice}
+                discountPrice={topProduct.discountPrice}
+                ctaLink={topProduct.affiliateLink}
+                heroImage={topProduct.image}
+                rating={topProduct.rating}
+                reviewCount={topProduct.reviewCount}
+              />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .blog-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 2rem; align-items: start; }
+  .article-content { min-width: 0; }
+  .sidebar-column { display: block; }
+  .sidebar-sticky { position: sticky; top: 5rem; }
+  .article-section { margin-top: 2.2rem; }
+  .article-section.rich-text h2 { margin: 0 0 .9rem; font-size: clamp(1.55rem, 2.2vw, 2.15rem); line-height: 1.16; color: #1f1a16; }
+  .article-section.rich-text h3 { margin: 1.6rem 0 .75rem; color: #1f1a16; }
+  .article-section.rich-text p { margin: 0; line-height: 1.74; color: #3f372f; }
+  .article-section.rich-text p + p { margin-top: 1rem; }
+  .article-section :global(.rpc-card) { margin-top: 1.4rem; }
+  .faq-section { margin-top: 3rem; }
+  @media (max-width: 991px) { .blog-grid { grid-template-columns: 1fr; } .sidebar-column { display: none; } }
+</style>
