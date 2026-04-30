@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import BlogHero from '@/components/BlogHero.astro';
-import FirstReview from '@/components/FirstReview.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
 import ComparatorCard from '@/components/ComparatorCard.astro';
 import SidebarCTA from '@/components/SidebarCTA.astro';
@@ -109,25 +108,10 @@ const productSchema = (p: typeof config.products[number]) => ({
         <div class="blog-grid">
           <div class="content-column">
 
-            <section id="kurzfassung" class="mb-8">
-              <FirstReview
-                tag="KURZFAZIT"
-                heading="Unser Testsieger ist Bonjour Drink — vor allem für alle, die eine natürliche Abendroutine suchen."
-                paragraphs={[
-                  'Pflanzliche Beruhigungsmittel sind ein breites Feld: Kamille, Passionsblume, Reishi, Magnesium, L-Theanin, Ashwagandha und funktionelle Pilze werden oft in einem Atemzug genannt. Genau deshalb ist ein sauberer Vergleich wichtiger als ein einzelnes Produktversprechen.',
-                  'Für diese erste deutsche Vergleichsseite haben wir sechs Marken ausgewählt, die international bestellbar wirken und thematisch zum Markt passen. Der Fokus liegt nicht auf Arzneimitteln, sondern auf natürlichen Routinen, Nahrungsergänzungen und funktionellen Getränken für Menschen, die im Alltag besser abschalten möchten.'
-                ]}
-                assets={config.quickSummary.assets}
-                considerations={config.quickSummary.considerations}
-                product={{
-                  brandName: topProduct.brand,
-                  brandLogoSrc: topProduct.brandLogo,
-                  rating: topProduct.rating,
-                  reviewLabel: 'Bester Gesamtfit im Vergleich',
-                  ctaText: 'Bonjour Drink ansehen',
-                  ctaLink: topProduct.affiliateLink,
-                }}
-              />
+            <section id="kurzfassung" class="comparatif-intro">
+              <h2>Der Vergleich auf einen Blick</h2>
+              <p>Pflanzliche Beruhigungsmittel sind ein breites Feld: Kamille, Passionsblume, Reishi, Magnesium, L-Theanin, Ashwagandha und funktionelle Pilze werden oft in einem Atemzug genannt. Genau deshalb ist ein sauberer Vergleich wichtiger als ein einzelnes Produktversprechen.</p>
+              <p>Für diese erste deutsche Vergleichsseite haben wir sechs Marken ausgewählt, die international bestellbar wirken und thematisch zum Markt passen. Der Fokus liegt nicht auf Arzneimitteln, sondern auf natürlichen Routinen, Nahrungsergänzungen und funktionellen Getränken für Menschen, die im Alltag besser abschalten möchten.</p>
             </section>
             <section id="ranking-methodik" class="methodology-box">
               <h2>Wie wir die Produkte eingestuft haben</h2>
@@ -219,6 +203,10 @@ const productSchema = (p: typeof config.products[number]) => ({
 </BaseLayout>
 
 <style>
+  .comparatif-intro { margin: 0 0 1.75rem; padding: 0; color: #241f1a; }
+  .comparatif-intro h2 { margin: 0 0 .85rem; font-size: clamp(1.7rem, 2.6vw, 2.35rem); line-height: 1.12; color: #1f1a16; }
+  .comparatif-intro p { margin: 0; line-height: 1.72; color: #4f463d; }
+  .comparatif-intro p + p { margin-top: 1rem; }
   .comparatif-cards { display: flex; flex-direction: column; gap: 1.25rem; margin: 2rem 0; }
   .seo-guide { margin-top: 3rem; }
   .seo-guide .rich-text h2 { margin-bottom: 1rem; }
