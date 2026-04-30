@@ -256,6 +256,7 @@ const config: SiteConfig = {
     description: "Vergleich der besten pflanzlichen Beruhigungsmittel 2026: Bonjour Drink, French Mush, Clearly, Spacegoods, Neuro Gum und Mushroom Cups.",
     ogImage: "/og-image.jpg"
   },
+  analyticsMeasurementId: "G-72NMT5EZGM",
   breadcrumbs: [{ label: "Vergleich", href: "/" }],
   quickSummary: {
     assets: [
