@@ -76,10 +76,7 @@ const shortDesc = description.length > 100 ? description.slice(0, 97) + '...' : 
 
 <!-- Floating button to open popup -->
 <button id="popup-trigger" class="bp-trigger" aria-label="Exklusives Angebot ansehen">
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
-    <line x1="7" y1="7" x2="7.01" y2="7"/>
-  </svg>
+  <span class="bp-trigger-gift" aria-hidden="true">🎁</span>
   <span class="bp-trigger-text">-{promoPercent}% {promoCode}</span>
 </button>
 
@@ -249,7 +246,7 @@ const shortDesc = description.length > 100 ? description.slice(0, 97) + '...' : 
     background: #d66a12;
     transform: translateY(-2px);
   }
-  .bp-trigger svg { flex-shrink: 0; }
+  .bp-trigger-gift { font-size: 1.1rem; line-height: 1; }
 
   @media (max-width: 767px) {
     .bp-trigger {
