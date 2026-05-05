@@ -10,6 +10,7 @@ import ComparisonTable from '@/components/ComparisonTable.astro';
 import FAQSection from '@/components/FAQSection.astro';
 import SidebarCTA from '@/components/SidebarCTA.astro';
 import config from '@/data/site.config';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
 
 const topProduct = config.products[0];
 const articleTitle = 'Pflanzliche Beruhigungsmittel rezeptfrei';
@@ -194,6 +195,8 @@ const faq = [
             <section id="faq" class="faq-section">
               <FAQSection faq={faq} title="Häufige Fragen zu rezeptfreien pflanzlichen Beruhigungsmitteln" />
             </section>
+
+        <AuthorBioCard />
           </article>
 
           <aside class="sidebar-column">

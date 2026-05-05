@@ -6,6 +6,7 @@ import ComparatorCard from '@/components/ComparatorCard.astro';
 import SidebarCTA from '@/components/SidebarCTA.astro';
 import FAQSection from '@/components/FAQSection.astro';
 import config from '@/data/site.config';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
 
 const topProduct = config.products[0];
 const comparatifFaq = config.faq;
@@ -176,6 +177,8 @@ const productSchema = (p: typeof config.products[number]) => ({
             <section id="faq" class="faq-section">
               <FAQSection faq={comparatifFaq} title="Häufige Fragen zu pflanzlichen Beruhigungsmitteln" />
             </section>
+
+        <AuthorBioCard />
           </div>
 
           <div class="sidebar-column">
