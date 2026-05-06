@@ -1,0 +1,180 @@
+---
+interface Props {
+  lang?: string;
+  privacyHref?: string;
+}
+
+const { lang = 'fr', privacyHref = '/privacy-policy/' } = Astro.props;
+const normalizedLang = lang.toLowerCase().split('-')[0];
+
+const copy = {
+  fr: {
+    text: 'Nous utilisons quelques cookies pour mesurer l’audience et améliorer les liens vers nos offres. Vous pouvez continuer votre lecture en les acceptant.',
+    accept: 'OK, j’accepte',
+    link: 'Politique de confidentialité',
+    aria: 'Information sur les cookies',
+  },
+  en: {
+    text: 'We use a few cookies to measure audience activity and improve links to our offers. You can continue reading by accepting them.',
+    accept: 'OK, I accept',
+    link: 'Privacy Policy',
+    aria: 'Cookie notice',
+  },
+  de: {
+    text: 'Wir verwenden einige Cookies, um die Nutzung der Seite zu messen und Links zu unseren Angeboten zu verbessern. Du kannst mit dem Lesen fortfahren, indem du sie akzeptierst.',
+    accept: 'OK, akzeptieren',
+    link: 'Datenschutzerklärung',
+    aria: 'Cookie-Hinweis',
+  },
+  nl: {
+    text: 'We gebruiken enkele cookies om het gebruik van de site te meten en links naar onze aanbiedingen te verbeteren. Je kunt verder lezen door ze te accepteren.',
+    accept: 'OK, accepteren',
+    link: 'Privacybeleid',
+    aria: 'Cookiemelding',
+  },
+  es: {
+    text: 'Usamos algunas cookies para medir la audiencia y mejorar los enlaces hacia nuestras ofertas. Puedes seguir leyendo aceptándolas.',
+    accept: 'OK, acepto',
+    link: 'Política de privacidad',
+    aria: 'Aviso de cookies',
+  },
+  it: {
+    text: 'Utilizziamo alcuni cookie per misurare l’audience e migliorare i link verso le nostre offerte. Puoi continuare la lettura accettandoli.',
+    accept: 'OK, accetto',
+    link: 'Informativa sulla privacy',
+    aria: 'Avviso sui cookie',
+  },
+} as const;
+
+const notice = copy[normalizedLang as keyof typeof copy] ?? copy.fr;
+---
+
+<section
+  id="cookie-notice"
+  class="cookie-notice"
+  role="region"
+  aria-label={notice.aria}
+  hidden
+>
+  <p class="cookie-notice__text">{notice.text}</p>
+  <div class="cookie-notice__actions">
+    <a class="cookie-notice__link" href={privacyHref}>{notice.link}</a>
+    <button class="cookie-notice__button" type="button" id="cookie-notice-accept">
+      {notice.accept}
+    </button>
+  </div>
+</section>
+
+<script>
+  (() => {
+    const storageKey = 'lmc_cookie_notice_v1';
+    const notice = document.getElementById('cookie-notice');
+    const accept = document.getElementById('cookie-notice-accept');
+
+    if (!notice || !accept) return;
+
+    try {
+      if (window.localStorage.getItem(storageKey)) return;
+    } catch (_) {
+      // If localStorage is unavailable, show the notice for this page view only.
+    }
+
+    notice.hidden = false;
+
+    accept.addEventListener('click', () => {
+      try {
+        window.localStorage.setItem(storageKey, 'accepted');
+      } catch (_) {
+        // Ignore private-mode storage errors; the notice still closes cleanly.
+      }
+      notice.setAttribute('hidden', '');
+    });
+  })();
+</script>
+
+<style>
+  .cookie-notice {
+    position: fixed;
+    left: max(1rem, env(safe-area-inset-left));
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    z-index: 40;
+    width: min(390px, calc(100vw - 2rem));
+    padding: 1rem;
+    background: #f4f2ec;
+    color: #242424;
+    border: 1px solid rgba(36, 36, 36, 0.1);
+    border-radius: 0.875rem;
+    box-shadow: 0 12px 32px rgba(36, 36, 36, 0.14);
+    font-family: 'PT Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  .cookie-notice[hidden] {
+    display: none;
+  }
+
+  .cookie-notice__text {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    line-height: 1.45;
+  }
+
+  .cookie-notice__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .cookie-notice__link {
+    color: #5f5045;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .cookie-notice__button {
+    flex: 0 0 auto;
+    border: 0;
+    border-radius: 999px;
+    background: #ef7a1a;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Archivo', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 800;
+    line-height: 1;
+    padding: 0.72rem 0.95rem;
+    box-shadow: 0 6px 16px rgba(239, 122, 26, 0.26);
+  }
+
+  .cookie-notice__button:hover {
+    background: #d96b13;
+  }
+
+  .cookie-notice__button:focus-visible,
+  .cookie-notice__link:focus-visible {
+    outline: 3px solid rgba(239, 122, 26, 0.35);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 767px) {
+    .cookie-notice {
+      left: max(0.75rem, env(safe-area-inset-left));
+      right: max(0.75rem, env(safe-area-inset-right));
+      bottom: calc(4.75rem + env(safe-area-inset-bottom));
+      width: auto;
+      padding: 0.875rem;
+      border-radius: 0.75rem;
+    }
+
+    .cookie-notice__text {
+      font-size: 0.8125rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .cookie-notice__actions {
+      align-items: stretch;
+    }
+  }
+</style>
