@@ -80,13 +80,15 @@ const footerLinks = [
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${analyticsMeasurementId}`}></script>
         <script is:inline define:vars={{ analyticsMeasurementId }}>
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', analyticsMeasurementId);
+          window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', analyticsMeasurementId);
+        </script>
         <script is:inline>
           document.addEventListener('click', (event) => {
-            const link = event.target?.closest?.('a[href]');
-            if (!link || !window.gtag) return;
+            const target = event.target;
+            const link = target && target.closest ? target.closest('a[href]') : null;
+            if (!link || typeof window.gtag !== 'function') return;
             let targetUrl;
             try {
               targetUrl = new URL(link.href, window.location.href);
@@ -102,7 +104,6 @@ const footerLinks = [
               transport_type: 'beacon',
             });
           });
-        </script>
         </script>
       </>
     )}
