@@ -83,6 +83,26 @@ const footerLinks = [
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
           gtag('config', analyticsMeasurementId);
+        <script is:inline>
+          document.addEventListener('click', (event) => {
+            const link = event.target?.closest?.('a[href]');
+            if (!link || !window.gtag) return;
+            let targetUrl;
+            try {
+              targetUrl = new URL(link.href, window.location.href);
+            } catch {
+              return;
+            }
+            if (targetUrl.hostname === window.location.hostname) return;
+            window.gtag('event', 'affiliate_click', {
+              link_url: targetUrl.href,
+              link_domain: targetUrl.hostname,
+              link_text: (link.textContent || '').trim().slice(0, 120),
+              page_location: window.location.href,
+              transport_type: 'beacon',
+            });
+          });
+        </script>
         </script>
       </>
     )}
