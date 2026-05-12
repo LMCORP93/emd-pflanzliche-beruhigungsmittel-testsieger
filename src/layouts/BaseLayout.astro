@@ -84,7 +84,7 @@ const footerLinks = [
           window.gtag('js', new Date());
           window.gtag('config', analyticsMeasurementId);
         </script>
-        <script is:inline>
+        <script is:inline define:vars={{ analyticsMeasurementId }}>
           document.addEventListener('click', (event) => {
             const target = event.target;
             const link = target && target.closest ? target.closest('a[href]') : null;
