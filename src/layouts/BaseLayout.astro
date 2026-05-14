@@ -112,29 +112,18 @@ const footerLinks = [
             const isNewTab = (link.target || '').toLowerCase() === '_blank';
             const isModifiedClick = event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0;
 
-            if (isModifiedClick) {
+            if (isModifiedClick || isNewTab) {
               window.gtag('event', 'affiliate_click', eventPayload);
               return;
             }
 
             event.preventDefault();
 
-            let openedWindow = null;
-            if (isNewTab) {
-              openedWindow = window.open('about:blank', '_blank', 'noopener');
-            }
-
             let navigated = false;
             const continueNavigation = () => {
               if (navigated) return;
               navigated = true;
-              if (openedWindow && !openedWindow.closed) {
-                openedWindow.location.href = targetUrl.href;
-              } else if (isNewTab) {
-                window.open(targetUrl.href, '_blank', 'noopener');
-              } else {
-                window.location.href = targetUrl.href;
-              }
+              window.location.href = targetUrl.href;
             };
 
             window.gtag('event', 'affiliate_click', {
