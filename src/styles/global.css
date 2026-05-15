@@ -101,10 +101,10 @@ html {
 
   /* ── Section padding ── */
   .padding-section-small { padding-top: 4rem; padding-bottom: 4rem; }
-  .padding-section-medium { padding-top: 6rem; padding-bottom: 6rem; }
+  .padding-section-medium { padding-top: 3rem; padding-bottom: 4rem; }
   .padding-section-large { padding-top: 8rem; padding-bottom: 8rem; }
   @media (max-width: 767px) {
-    .padding-section-medium { padding-top: 4rem; padding-bottom: 4rem; }
+    .padding-section-medium { padding-top: 2.5rem; padding-bottom: 3rem; }
     .padding-section-large { padding-top: 5rem; padding-bottom: 5rem; }
   }
 
@@ -197,8 +197,8 @@ html {
 /* ── Inner note box (moved to component scoped styles) ──────────── */
 
 /* ── Rich text content styling ────────────────────────────────────── */
-.rich-text h2 { margin-top: 2rem; margin-bottom: 0.75rem; }
-.rich-text h3 { margin-top: 1.5rem; margin-bottom: 0.5rem; font-weight: 600; }
+.rich-text h2 { margin-top: 1rem; margin-bottom: 0.75rem; }
+.rich-text h3 { margin-top: 1rem; margin-bottom: 0.5rem; font-weight: 600; }
 .rich-text p { margin-bottom: 0.75rem; line-height: 1.625; }
 .rich-text ul { list-style-type: disc; margin-bottom: 0.75rem; }
 .rich-text ul li { margin-bottom: 0.5rem; padding-left: 0.25rem; line-height: 1.5; }
@@ -209,7 +209,7 @@ html {
 .rich-text > :first-child { margin-top: 0; }
 .rich-text > :last-child { margin-bottom: 0; }
 @media (min-width: 768px) {
-  .rich-text h2 { margin-top: 2.5rem; margin-bottom: 1rem; }
+  .rich-text h2 { margin-top: 1rem; margin-bottom: 0.75rem; }
   .rich-text h3 { margin-top: 2rem; margin-bottom: 0.75rem; }
 }
 
@@ -236,7 +236,7 @@ html {
 .content-column {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 .content-section {
   margin-bottom: 0;
@@ -389,4 +389,58 @@ html {
 }
 .copy-feedback.show {
   opacity: 1;
+}
+
+/* LMC compact content spacing standard: max 1rem vertical rhythm outside hero/banner. */
+.content-column > * {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.content-column.rich-text > section,
+.content-column .rich-text > section,
+.rich-text section {
+  margin-top: 1rem !important;
+  margin-bottom: 0 !important;
+}
+
+.content-column.rich-text > section:first-child,
+.content-column .rich-text > section:first-child,
+.rich-text section:first-child {
+  margin-top: 0 !important;
+}
+
+.rich-text h2,
+.rich-text h3,
+.rich-text h4 {
+  margin-top: 1rem !important;
+}
+
+.rich-text h2:first-child,
+.rich-text h3:first-child,
+.rich-text h4:first-child,
+.rich-text p:first-child {
+  margin-top: 0 !important;
+}
+
+.rich-text p,
+.rich-text ul,
+.rich-text ol,
+.rich-text blockquote,
+.rich-text figure,
+.rich-text img,
+.rich-text .inner-note,
+.rich-text .summary_wrapper {
+  margin-bottom: 0.75rem !important;
+}
+
+.rich-text p:last-child,
+.rich-text ul:last-child,
+.rich-text ol:last-child,
+.rich-text blockquote:last-child,
+.rich-text figure:last-child,
+.rich-text img:last-child,
+.rich-text .inner-note:last-child,
+.rich-text .summary_wrapper:last-child {
+  margin-bottom: 0 !important;
 }
