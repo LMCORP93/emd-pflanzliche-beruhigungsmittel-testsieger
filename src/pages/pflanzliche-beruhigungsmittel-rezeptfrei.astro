@@ -11,6 +11,7 @@ import FAQSection from '@/components/FAQSection.astro';
 import SidebarCTA from '@/components/SidebarCTA.astro';
 import config from '@/data/site.config';
 import AuthorBioCard from '@/components/AuthorBioCard.astro';
+import ArticleGrid from '@/components/ArticleGrid.astro';
 
 const topProduct = config.products[0];
 const articleTitle = 'Pflanzliche Beruhigungsmittel rezeptfrei';
@@ -220,6 +221,7 @@ const faq = [
       </div>
     </div>
   </main>
+  <ArticleGrid />
 </BaseLayout>
 
 <style>

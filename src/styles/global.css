@@ -444,3 +444,21 @@ html {
 .rich-text .summary_wrapper:last-child {
   margin-bottom: 0 !important;
 }
+
+/* ── Internal text links (orange editorial links) ───────────────── */
+.rich-text a,
+.content-column p a:not(.btn-solid):not(.btn-outline):not(.article-card),
+main article p a:not(.btn-solid):not(.btn-outline),
+main .internal-linking-note a {
+  color: #ef7a1a;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+.rich-text a:hover,
+.content-column p a:hover,
+main article p a:hover,
+main .internal-linking-note a:hover {
+  color: #d66a12;
+}
