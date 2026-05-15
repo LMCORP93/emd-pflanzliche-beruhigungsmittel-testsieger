@@ -65,7 +65,7 @@ const products: Product[] = [
     discountPrice: "31,20 €",
     affiliateLink: "https://taap.it/bonjour-drink-lmc",
     origin: "🇫🇷 Frankreich",
-    availability: "Online verfügbar",
+    availability: "Lieferung nach Deutschland möglich",
     productType: "Pulvergetränk mit Kamille, Passionsblume, Reishi und L-Theanin",
     pros: [
       "Sehr passender Abend- und Entspannungswinkel",
@@ -95,7 +95,7 @@ const products: Product[] = [
     discountPrice: "22,95 €",
     affiliateLink: "https://www.frenchmush.com/r?id=9g3e24",
     origin: "🇫🇷 Frankreich",
-    availability: "Online verfügbar",
+    availability: "Lieferung nach Deutschland möglich",
     productType: "Reishi-Kapseln mit 13:1 Extrakt",
     pros: [
       "Sehr klares Reishi-Produkt ohne unnötige Komplexität",
@@ -125,7 +125,7 @@ const products: Product[] = [
     discountPrice: "19,12 €",
     affiliateLink: "https://clearly.eu/products/magnesium-mix?sca_ref=7596565.tJHE2KRYrL",
     origin: "🇪🇺 Europa",
-    availability: "Online verfügbar",
+    availability: "Lieferung nach Deutschland möglich",
     productType: "Magnesium-Pulver mit Citrat, Malat und Glycinat",
     pros: [
       "Drei gängige Magnesiumformen in einem Mix",
@@ -155,7 +155,7 @@ const products: Product[] = [
     discountPrice: "6,12 €",
     affiliateLink: "https://getneuro.eu/r?id=619hb8",
     origin: "🇺🇸 USA / Europa",
-    availability: "Online verfügbar",
+    availability: "Lieferung nach Deutschland möglich",
     productType: "Mints mit GABA und L-Theanin",
     pros: [
       "Sehr klares Calm-Produkt mit GABA und L-Theanin",
@@ -185,7 +185,7 @@ const products: Product[] = [
     discountPrice: "14,31 €",
     affiliateLink: "https://mushroomcups.com/products/go-relax-organic-instant-coffee-with-reishi-and-chanterelle-original?ref=LMC",
     origin: "🇪🇺 Europa",
-    availability: "Online verfügbar",
+    availability: "Lieferung nach Deutschland möglich",
     productType: "Instant-Getränk mit Reishi, L-Theanin und Magnesium",
     pros: [
       "Produktname und Formel passen klar zum Relax-Winkel",
