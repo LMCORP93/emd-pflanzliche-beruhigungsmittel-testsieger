@@ -142,42 +142,12 @@ const products: Product[] = [
   },
   {
     rank: 4,
-    name: "Rainbow Dust",
-    brand: "Spacegoods",
-    slug: "spacegoods",
-    image: "https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/6963528673d13c41661159e0_68de5ead07f79ba9b66a5006_rainbow-dust-Spacegoods-90210697_800x800_crop_center.webp",
-    brandLogo: "https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/68de5d566e888bfd06345a73_6760488ab2cb1a8031b28758_logo.svg",
-    rating: 8.6,
-    reviewCount: 2400,
-    promoCode: "LIONSMANE45665",
-    promoPercent: 20,
-    originalPrice: "44,95 €",
-    discountPrice: "35,96 €",
-    affiliateLink: "https://taap.it/spacegoods-rainbow-dust",
-    origin: "🇬🇧 Vereinigtes Königreich",
-    availability: "Online verfügbar",
-    productType: "Adaptogenes Getränkepulver mit Pilzen und Ashwagandha",
-    pros: [
-      "Bekannte internationale Marke mit starkem Branding",
-      "Adaptogene, funktionelle Pilze und Ashwagandha in einer Routine",
-      "Guter Lifestyle-Fit für moderne Stress- und Fokus-Suchen",
-      "Attraktiver Rabatt"
-    ],
-    cons: [
-      "Enthält auch Koffein und ist nicht rein auf Ruhe ausgelegt",
-      "Marketing stärker als bei nüchternen Kapselprodukten",
-      "Preis höher als einfache Magnesium- oder Reishi-Produkte"
-    ],
-    description: "Spacegoods bringt Reichweite, Wiedererkennung und einen modernen Adaptogen-Winkel in den Vergleich. Rainbow Dust ist interessant für Nutzer, die Stress, Fokus und Energie nicht getrennt betrachten, sondern eine tägliche funktionelle Routine suchen. Gleichzeitig ist genau das der Grund, warum Spacegoods nicht für jeden Suchenden die erste Wahl ist: Das Produkt ist nicht ausschließlich auf Beruhigung oder Abendroutine ausgerichtet und enthält auch einen aktivierenden Charakter. Für eine deutsche Vergleichsseite ist die Marke trotzdem wertvoll, weil sie international bekannt ist und die Kategorie adaptogene Getränke sehr gut verkörpert."
-  },
-  {
-    rank: 5,
     name: "Calm & Clarity Mints",
     brand: "Neuro Gum",
     slug: "neuro-gum",
     image: "https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/6994516520bc02a20bb2b3fc_neuro-calm-clarity-6pack.webp",
     brandLogo: "https://cdn.prod.website-files.com/68c02c2c477fdd467e6e08a1/699240e4102cfd81a3280479_Neuro_Logo_Header.avif",
-    rating: 8.5,
+    rating: 8.4,
     reviewCount: 1200,
     promoCode: "LMC",
     promoPercent: 10,
@@ -201,7 +171,7 @@ const products: Product[] = [
     description: "Neuro Gum ist im Ranking die praktischste Option. Calm & Clarity Mints sprechen Nutzer an, die keine Kapseln und kein Getränkepulver wollen, sondern etwas Einfaches für den Alltag. GABA und L-Theanin passen gut zur Suchintention rund um innere Ruhe, Fokus und Stressmanagement. Im Vergleich wirkt das Produkt aber weniger wie ein klassisches pflanzliches Beruhigungsmittel und stärker wie ein moderner Functional-Snack. Das Ergebnis: interessant, zugänglich und alltagstauglich, aber thematisch nicht ganz so sauber wie die stärker pflanzlichen Optionen."
   },
   {
-    rank: 6,
+    rank: 5,
     name: "Go Relax",
     brand: "Mushroom Cups",
     slug: "mushroom-cups",
@@ -224,11 +194,11 @@ const products: Product[] = [
       "Gute Ergänzung zu den Top-Marken"
     ],
     cons: [
-      "Marke wirkt weniger premium als Spacegoods oder Clearly",
+      "Marke wirkt weniger premium als Bonjour Drink oder Clearly",
       "Kleineres Sortiment und weniger starke Positionierung",
       "Geschmack und Pilzprofil nicht für jeden Nutzer"
     ],
-    description: "Mushroom Cups rundet den Vergleich ab, weil Go Relax den Themenkern sehr direkt trifft: Reishi, L-Theanin und Magnesium in einem trinkbaren Format. Das Produkt ist besonders interessant für Nutzer, die ein einfaches Getränk suchen, aber keine große Premium-Routine starten möchten. Gegenüber Bonjour Drink, Clearly oder Spacegoods fehlt etwas Markenstärke und Differenzierung. Mushroom Cups bleibt trotzdem sinnvoll, weil die Formel den deutschen Suchintent nach pflanzlicher Entspannung gut ergänzt."
+    description: "Mushroom Cups rundet den Vergleich ab, weil Go Relax den Themenkern sehr direkt trifft: Reishi, L-Theanin und Magnesium in einem trinkbaren Format. Das Produkt ist besonders interessant für Nutzer, die ein einfaches Getränk suchen, aber keine große Premium-Routine starten möchten. Gegenüber Bonjour Drink, French Mush oder Clearly fehlt etwas Markenstärke und Differenzierung. Mushroom Cups bleibt trotzdem sinnvoll, weil die Formel den deutschen Suchintent nach pflanzlicher Entspannung gut ergänzt."
   }
 ];
 
@@ -253,7 +223,7 @@ const config: SiteConfig = {
   },
   seo: {
     title: "Pflanzliche Beruhigungsmittel Testsieger 2026",
-    description: "Vergleich der besten pflanzlichen Beruhigungsmittel 2026: Bonjour Drink, French Mush, Clearly, Spacegoods, Neuro Gum und Mushroom Cups.",
+    description: "Vergleich der besten pflanzlichen Beruhigungsmittel 2026: Bonjour Drink, French Mush, Clearly, Neuro Gum und Mushroom Cups.",
     ogImage: "/og-image.jpg"
   },
   analyticsMeasurementId: "G-72NMT5EZGM",
@@ -262,7 +232,7 @@ const config: SiteConfig = {
     assets: [
       "Bonjour Drink bietet den stärksten Mix aus Alltagstauglichkeit, pflanzlichen Inhaltsstoffen und einfacher Abendroutine.",
       "French Mush und Mushroom Cups decken den Reishi-Winkel ab, Clearly den Magnesium-Winkel.",
-      "Spacegoods und Neuro Gum ergänzen den Vergleich mit modernen Adaptogen- und Functional-Formaten."
+      "Neuro Gum und Mushroom Cups ergänzen den Vergleich mit praktischen Functional-Formaten für Alltag und Abendroutine."
     ],
     considerations: [
       "Keines dieser Produkte ersetzt eine medizinische Beratung bei anhaltender Unruhe, Angst oder Schlafproblemen.",
@@ -287,7 +257,7 @@ const config: SiteConfig = {
     },
     {
       question: "Welches Produkt passt am besten zu Stress im Alltag?",
-      answer: "Für eine ruhige Abendroutine ist Bonjour Drink am passendsten. Für Reishi-Kapseln ist French Mush stark, für Magnesium Clearly, für ein modernes Adaptogen-Getränk Spacegoods und für ein schnelles Format Neuro Gum."
+      answer: "Für eine ruhige Abendroutine ist Bonjour Drink am passendsten. Für Reishi-Kapseln ist French Mush stark, für Magnesium Clearly, für ein schnelles Format Neuro Gum und für ein günstiges Relax-Getränk Mushroom Cups."
     },
     {
       question: "Sind diese Produkte Schlafmittel?",
@@ -297,7 +267,7 @@ const config: SiteConfig = {
   products,
   tocItems: [
     { id: "kurzfassung", label: "Kurzfassung" },
-    { id: "vergleich", label: "Top 6" },
+    { id: "vergleich", label: "Top 5" },
     { id: "ratgeber", label: "Ratgeber" },
     { id: "faq", label: "FAQ" }
   ],
