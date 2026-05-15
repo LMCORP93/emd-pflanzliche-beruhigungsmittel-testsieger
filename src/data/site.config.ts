@@ -46,7 +46,7 @@ export interface SiteConfig {
   faq: { question: string; answer: string }[];
   products: Product[];
   tocItems: { id: string; label: string }[];
-  pages: { type: 'comparatif' | 'blog'; label: string; slug: string }[];
+  pages: { type: 'comparatif' | 'blog'; label: string; slug: string; image?: string }[];
 }
 
 const products: Product[] = [
@@ -272,8 +272,8 @@ const config: SiteConfig = {
     { id: "faq", label: "FAQ" }
   ],
   pages: [
-    { type: 'blog', label: 'Rezeptfrei', slug: '/pflanzliche-beruhigungsmittel-rezeptfrei/' },
-    { type: 'blog', label: 'Schnell wirkend', slug: '/beruhigungsmittel-pflanzlich-schnell-wirkend/' }
+    { type: 'blog', label: 'Rezeptfrei', slug: '/pflanzliche-beruhigungsmittel-rezeptfrei/', image: '/images/articles/pflanzliche-beruhigungsmittel-rezeptfrei.webp' },
+    { type: 'blog', label: 'Schnell wirkend', slug: '/beruhigungsmittel-pflanzlich-schnell-wirkend/', image: '/images/articles/beruhigungsmittel-pflanzlich-schnell-wirkend.webp' }
   ]
 };
 
