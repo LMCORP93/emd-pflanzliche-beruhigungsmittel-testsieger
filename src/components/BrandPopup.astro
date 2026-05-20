@@ -22,14 +22,14 @@ const {
 const shortDesc = description.length > 100 ? description.slice(0, 97) + '...' : description;
 const hasCode = Boolean(promoCode);
 const hasDiscount = Boolean(promoCode && promoPercent > 0);
-const priceLabel = hasDiscount ? discountPrice : 'Prix officiel';
-const triggerLabel = hasCode ? `🎁 Code promo ${promoCode}` : '🎁 Voir l’offre';
+const priceLabel = hasDiscount ? discountPrice : 'Offizieller Preis';
+const triggerLabel = hasCode ? `🎁 Rabattcode ${promoCode}` : '🎁 Angebot ansehen';
 ---
 
-<div id="brand-popup" class="bp" role="dialog" aria-modal="true" aria-label="Offre partenaire">
+<div id="brand-popup" class="bp" role="dialog" aria-modal="true" aria-label="Partnerangebot">
   <div id="popup-overlay" class="bp-overlay"></div>
   <div class="bp-card">
-    <button id="popup-close" class="bp-close" aria-label="Fermer">
+    <button id="popup-close" class="bp-close" aria-label="Schließen">
       <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 6 6 18" /><path d="m6 6 12 12" />
       </svg>
@@ -40,7 +40,7 @@ const triggerLabel = hasCode ? `🎁 Code promo ${promoCode}` : '🎁 Voir l’o
       <img src={productImage} alt={productName} class="bp-img" loading="lazy" />
 
       <!-- Tag -->
-      <span class="bp-tag">Offre partenaire</span>
+      <span class="bp-tag">Partnerangebot</span>
 
       <!-- Title -->
       <h3 class="bp-title">{productName}</h3>
@@ -57,7 +57,7 @@ const triggerLabel = hasCode ? `🎁 Code promo ${promoCode}` : '🎁 Voir l’o
       <!-- Buttons stacked -->
       <div class="bp-btns">
         <a href={affiliateLink} rel="nofollow sponsored" target="_blank" class="btn-solid" style="width:100%">
-          <span>Voir l'offre</span>
+          <span>Zum Angebot</span>
           <span class="btn-arrow">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </span>
@@ -128,7 +128,7 @@ const triggerLabel = hasCode ? `🎁 Code promo ${promoCode}` : '🎁 Voir l’o
         navigator.clipboard.writeText(code).then(() => {
           if (textEl) {
             const original = textEl.textContent || '';
-            textEl.textContent = '✓ Copié !';
+            textEl.textContent = '✓ Kopiert';
             setTimeout(() => { textEl.textContent = original; }, 1500);
           }
         });

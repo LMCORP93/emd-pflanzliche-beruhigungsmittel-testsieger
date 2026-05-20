@@ -222,8 +222,8 @@ const config: SiteConfig = {
     bio: "Unabhängiger Produkttester für natürliche Supplements, funktionelle Getränke und Alltagsergänzungen."
   },
   seo: {
-    title: "Pflanzliche Beruhigungsmittel Testsieger 2026",
-    description: "Vergleich der besten pflanzlichen Beruhigungsmittel 2026: Bonjour Drink, French Mush, Clearly, Neuro Gum und Mushroom Cups.",
+    title: "Pflanzliche Beruhigungsmittel Testsieger 2026: rezeptfrei und natürlich",
+    description: "Pflanzliche Beruhigungsmittel Testsieger 2026: rezeptfreie Optionen, schnell wirkende Formate und natürliche Routinen im Vergleich.",
     ogImage: "/og-image.jpg"
   },
   analyticsMeasurementId: "G-72NMT5EZGM",
