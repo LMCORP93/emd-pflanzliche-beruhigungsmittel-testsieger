@@ -46,6 +46,8 @@ const {
   showOfferBlock = true,
   showMeta = true,
 } = Astro.props;
+
+const displayAuthor = /Tim Reviews?/i.test(author) ? 'Tim' : author;
 ---
 
 <!-- Blog Hero - dark (#222) background, white text, review page header -->
@@ -130,13 +132,13 @@ const {
       <div class="hero_wrapper-img-name">
         <img
           src={authorAvatar}
-          alt={`Profilfoto von ${author}`}
+          alt={`Profilfoto von ${displayAuthor}`}
           class="profil-img"
           width="32"
           height="32"
           loading="eager"
         />
-        <span class="text-text-dark text-sm">Verfasst von {author}</span>
+        <span class="text-text-dark text-sm">Verfasst von {displayAuthor}</span>
       </div>
 
       <!-- Date -->
