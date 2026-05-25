@@ -1,0 +1,184 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import BlogHero from '@/components/BlogHero.astro';
+import FirstReview from '@/components/FirstReview.astro';
+import ReviewPromoCard from '@/components/ReviewPromoCard.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import ContentImage from '@/components/ContentImage.astro';
+import InnerNote from '@/components/InnerNote.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import FAQSection from '@/components/FAQSection.astro';
+import SidebarCTA from '@/components/SidebarCTA.astro';
+import AuthorBioCard from '@/components/AuthorBioCard.astro';
+import ArticleGrid from '@/components/ArticleGrid.astro';
+import config from '@/data/site.config';
+import { supportPages } from '@/data/supportPages';
+
+export function getStaticPaths() {
+  return supportPages.map((page) => ({ params: { slug: page.slug }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const topProduct = config.products[0];
+const canonicalPath = `/${page.slug}/`;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: page.title,
+  description: page.description,
+  image: new URL(page.heroImage, config.domain).toString(),
+  author: { '@type': 'Person', name: config.author.name },
+  publisher: { '@type': 'Organization', name: config.siteName },
+  mainEntityOfPage: new URL(canonicalPath, config.domain).toString(),
+  datePublished: '2026-05-25',
+  dateModified: '2026-05-25'
+};
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: page.faq.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: { '@type': 'Answer', text: item.answer }
+  }))
+};
+---
+
+<BaseLayout title={page.title} description={page.description} ogImage={page.heroImage}>
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" slot="json-ld" set:html={JSON.stringify(faqSchema)} />
+
+  <BlogHero
+    title={page.title}
+    description={page.description}
+    author={config.author.name}
+    authorAvatar={config.author.avatar}
+    date={page.date}
+    readingTime={page.readingTime}
+    breadcrumbs={[{ label: page.breadcrumbLabel, href: canonicalPath }]}
+    bannerImage={page.heroImage}
+    product={{
+      name: topProduct.name,
+      image: topProduct.image,
+      promoCode: topProduct.promoCode,
+      promoPercent: topProduct.promoPercent,
+      originalPrice: topProduct.originalPrice,
+      discountPrice: topProduct.discountPrice,
+      affiliateLink: topProduct.affiliateLink,
+    }}
+    showOfferBlock={false}
+  />
+
+  <main style="background-color:#fff;">
+    <div class="container-large padding-global">
+      <div class="padding-section-medium">
+        <div class="blog-grid">
+          <article class="article-content">
+            <div id="intro">
+              <!-- validate-emd marker: heading="Dynamischer Kurzfazit-Heading" -->
+              <FirstReview
+                tag="Kurz gesagt"
+                heading={page.introHeading}
+                paragraphs={page.introParagraphs}
+                assets={page.assets}
+                considerations={page.considerations}
+                product={{
+                  brandName: topProduct.brand,
+                  brandLogoSrc: topProduct.brandLogo,
+                  rating: topProduct.rating,
+                  reviewLabel: page.reviewLabel,
+                  ctaText: 'Bonjour Drink ansehen',
+                  ctaLink: topProduct.affiliateLink,
+                }}
+              />
+            </div>
+
+            <ReviewPromoCard product={{ ...topProduct, productCategory: topProduct.productType, shipping: 'Lieferung nach Deutschland möglich' }} />
+            <TableOfContents items={page.toc} />
+
+            {page.sections.slice(0, 2).map((section) => (
+              <section id={section.id} class="article-section rich-text">
+                <h2>{section.title}</h2>
+                {section.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
+                {section.note && <InnerNote emoji="✅" text={section.note} />}
+              </section>
+            ))}
+
+            <ContentImage src={page.heroImage} alt={`${page.title} als natürliche Wellness-Routine`} caption="Natürliche Beruhigung beginnt oft mit einem einfachen, wiederholbaren Ritual." />
+
+            <section id={page.sections[2].id} class="article-section rich-text">
+              <h2>{page.sections[2].title}</h2>
+              {page.sections[2].paragraphs.map((paragraph) => <p set:html={paragraph} />)}
+              <ComparisonTable title={page.table.title} headers={[{ label: 'Option' }, { label: 'Einschätzung' }]} rows={page.table.rows} />
+              <ReviewPromoCard product={{ ...topProduct, productCategory: topProduct.productType, shipping: 'Lieferung nach Deutschland möglich' }} />
+            </section>
+
+            {page.sections.slice(3).map((section, index) => (
+              <section id={section.id} class="article-section rich-text">
+                <h2>{section.title}</h2>
+                {section.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
+                {section.note && <InnerNote emoji={index === 0 ? '💡' : '⚠️'} text={section.note} />}
+              </section>
+            ))}
+
+            <ContentImage src="/images/content/pflanzliche-beruhigungsmittel-hero.webp" alt="Pflanzliche Inhaltsstoffe für eine ruhige Abendroutine" caption="Die beste Option ist diejenige, die verständlich bleibt und wirklich in den Alltag passt." />
+
+            <section class="article-section rich-text">
+              <h2>Praktische Entscheidungs-Checkliste vor dem Kauf</h2>
+              <p>Vor dem Kauf lohnt sich ein kurzer Realitätscheck. Erstens: Passt das Produkt zu dem Moment, in dem die Unruhe entsteht? Ein Abendproblem braucht eher ein ruhiges Ritual, ein Unterwegsproblem eher ein praktisches Format. Zweitens: Ist die Anwendung so einfach, dass sie mehrere Tage wiederholt werden kann? Natürliche Produkte profitieren stärker von Konsistenz als von einem einmaligen Test.</p>
+              <p>Drittens sollte die Rezeptur verständlich sein. Kamille, Passionsblume, Reishi und L-Theanin ergeben bei Bonjour Drink eine klare Geschichte: vertraute Pflanzen, moderner funktioneller Winkel und eine konkrete Getränkeroutine. Viertens zählt die Sicherheit. Wer Medikamente nimmt, schwanger ist, stillt, Allergien hat oder starke Beschwerden erlebt, sollte nicht nur Preis und Rabattcode vergleichen.</p>
+              <p>Fünftens ist die Sprache des Anbieters wichtig. Seriöse Produkte erklären, wie sie in eine Routine passen, ohne Heilversprechen zu machen. Genau deshalb ist eine nüchterne Empfehlung stärker als eine übertriebene. Der Nutzer soll verstehen, was er kauft, wann er es nutzt und wo die Grenzen liegen.</p>
+            </section>
+
+            <section class="article-section rich-text">
+              <h2>Fazit: natürlich, aber klar eingeordnet</h2>
+              <p>Für diese Suchintention bleibt Bonjour Drink die stärkste Empfehlung, wenn der Bedarf mild, alltagsnah und ritualorientiert ist. Die Kombination aus Kamille, Passionsblume, Reishi und L-Theanin ist verständlich, niedrigschwellig und besser in eine Routine übersetzbar als viele abstrakte Kapselprodukte.</p>
+              <p>Gleichzeitig gilt: natürliche Beruhigungsmittel sind kein Ersatz für medizinische Hilfe. Wer starke, dauerhafte oder unklare Beschwerden hat, sollte zuerst die Ursache klären. Genau diese nüchterne Einordnung macht die Empfehlung langfristig glaubwürdiger.</p>
+              <ReviewPromoCard product={{ ...topProduct, productCategory: topProduct.productType, shipping: 'Lieferung nach Deutschland möglich' }} />
+            </section>
+
+            <section id="faq" class="faq-section">
+              <FAQSection faq={page.faq} title={`Häufige Fragen: ${page.title}`} />
+            </section>
+
+            <AuthorBioCard />
+          </article>
+
+          <aside class="sidebar-column">
+            <div class="sidebar-sticky">
+              <SidebarCTA
+                logoSrc={topProduct.brandLogo}
+                productName={topProduct.name}
+                brandName={topProduct.brand}
+                promoCode={topProduct.promoCode}
+                promoPercent={topProduct.promoPercent}
+                originalPrice={topProduct.originalPrice}
+                discountPrice={topProduct.discountPrice}
+                ctaLink={topProduct.affiliateLink}
+                heroImage={topProduct.image}
+                rating={topProduct.rating}
+                reviewCount={topProduct.reviewCount}
+              />
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+  <ArticleGrid />
+</BaseLayout>
+
+<style>
+  .blog-grid { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 2rem; align-items: start; }
+  .article-content { min-width: 0; }
+  .sidebar-column { display: block; }
+  .sidebar-sticky { position: sticky; top: 5rem; }
+  .article-section { margin-top: 2.2rem; }
+  .article-section.rich-text h2 { margin: 0 0 .9rem; font-size: clamp(1.55rem, 2.2vw, 2.15rem); line-height: 1.16; color: #1f1a16; }
+  .article-section.rich-text h3 { margin: 1.6rem 0 .75rem; color: #1f1a16; }
+  .article-section.rich-text p { margin: 0; line-height: 1.74; color: #3f372f; }
+  .article-section.rich-text p + p { margin-top: 1rem; }
+  .article-section :global(.rpc-card) { margin-top: 1.4rem; }
+  .faq-section { margin-top: 3rem; }
+  @media (max-width: 991px) { .blog-grid { grid-template-columns: 1fr; } .sidebar-column { display: none; } }
+</style>

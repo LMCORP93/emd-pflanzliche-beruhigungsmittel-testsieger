@@ -31,7 +31,8 @@ const localeByLang = {
 };
 
 const detectLang = () => {
-  const raw = [config.language, config.lang, config.locale, config.domain, config.siteName].filter(Boolean).join(' ').toLowerCase();
+  const configWithLocale = config as typeof config & { language?: string; lang?: string; locale?: string };
+  const raw = [configWithLocale.language, configWithLocale.lang, configWithLocale.locale, config.domain, config.siteName].filter(Boolean).join(' ').toLowerCase();
   if (raw.includes('.de') || raw.includes('de_') || raw.includes('de-')) return 'de';
   if (raw.includes('.es') || raw.includes('es_') || raw.includes('es-') || raw.includes('españ') || raw.includes('spanish')) return 'es';
   if (raw.includes('.it') || raw.includes('it_') || raw.includes('it-') || raw.includes('ital')) return 'it';
@@ -51,12 +52,12 @@ const current = Astro.props.currentPath || Astro.url.pathname;
 const lang = detectLang();
 const copy = localeByLang[lang] || localeByLang.fr;
 
-const sourceArticles = (Astro.props.articles && Astro.props.articles.length > 0)
+const sourceArticles: Article[] = (Astro.props.articles && Astro.props.articles.length > 0)
   ? Astro.props.articles
   : ((config.pages || []) as Article[])
       .filter(isContentPage)
       .filter((item) => normalizeHref(item) !== current)
-      .map((item) => ({
+      .map((item): Article => ({
         title: item.title || item.label || 'Guide',
         excerpt: item.excerpt || item.description || copy.fallback,
         image: item.image || config.seo?.ogImage || '/og-image.jpg',
