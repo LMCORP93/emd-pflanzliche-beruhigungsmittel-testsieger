@@ -16,30 +16,33 @@ interface Props {
 }
 
 const { title, headers, rows } = Astro.props;
+const columnTemplate = headers.length === 3
+  ? 'minmax(7.5rem, .8fr) minmax(12rem, 1.25fr) minmax(12rem, 1.25fr)'
+  : `repeat(${headers.length}, minmax(0, 1fr))`;
 ---
 
-<div class="comparison-table-wrapper">
+<div class="comparison-table-wrapper" style={`--column-template:${columnTemplate};`}>
   {title && <h3 class="comparison-table-title">{title}</h3>}
 
-  <!-- Header row -->
-  <div class="table_grid table_grid--header">
-    {headers.map((h, i) => (
-      <div class={`table_grid-col ${i === 0 ? 'table_grid-col-left' : 'table_grid-col-right'} table_grid-col--header`}>
-        {h.label}
-      </div>
-    ))}
-  </div>
-
-  <!-- Data rows -->
-  {rows.map((row) => (
-    <div class={`table_grid ${row.highlight ? 'table_grid--highlight' : ''}`}>
-      {row.cells.map((cell, j) => (
-        <div class={`table_grid-col ${j === 0 ? 'table_grid-col-left' : 'table_grid-col-right'}`}>
-          {cell}
+  <div class="comparison-table" role="table" aria-label={title ?? 'Tableau comparatif'}>
+    <div class="table_grid table_grid--header" role="row">
+      {headers.map((h, i) => (
+        <div class={`table_grid-col ${i === 0 ? 'table_grid-col-left' : 'table_grid-col-right'} table_grid-col--header`} role="columnheader">
+          {h.label}
         </div>
       ))}
     </div>
-  ))}
+
+    {rows.map((row) => (
+      <div class={`table_grid ${row.highlight ? 'table_grid--highlight' : ''}`} role="row">
+        {row.cells.map((cell, j) => (
+          <div class={`table_grid-col ${j === 0 ? 'table_grid-col-left' : 'table_grid-col-right'}`} role="cell" data-label={headers[j]?.label}>
+            {cell}
+          </div>
+        ))}
+      </div>
+    ))}
+  </div>
 </div>
 
 <style>
@@ -49,63 +52,125 @@ const { title, headers, rows } = Astro.props;
 
   .comparison-table-title {
     font-family: 'Archivo', sans-serif;
-    font-weight: 700;
-    font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+    font-weight: 800;
+    font-size: clamp(1.2rem, 1.05rem + 0.75vw, 1.55rem);
     color: #242424;
-    margin: 0 0 1rem;
+    margin: 0 0 .9rem;
   }
 
-  /* Grid row */
-  .table_grid {
-    border-bottom: 1px solid #e0e0e0;
-    grid-template-columns: 2fr .6fr;
-    display: grid;
+  .comparison-table {
+    overflow: hidden;
+    border: 1px solid #eadfce;
+    border-radius: 1.15rem;
+    background: #fffdf8;
+    box-shadow: 0 1.25rem 2.5rem rgba(74, 45, 15, .07);
   }
+
+  .table_grid {
+    display: grid;
+    grid-template-columns: var(--column-template);
+    border-bottom: 1px solid #eadfce;
+  }
+
   .table_grid:last-child {
     border-bottom: none;
   }
 
-  /* Header row */
   .table_grid--header {
-    background-color: #f8f8f8;
+    background: linear-gradient(135deg, #fff4df 0%, #f8ead2 100%);
   }
+
   .table_grid-col--header {
     font-family: 'Archivo', sans-serif;
-    font-weight: 700;
-    font-size: clamp(0.6875rem, 0.675rem + 0.1vw, 0.75rem);
+    font-weight: 800;
+    font-size: clamp(0.7rem, 0.68rem + 0.1vw, 0.78rem);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #777;
+    letter-spacing: 0.06em;
+    color: #765029;
     white-space: nowrap;
   }
 
-  /* Highlight row */
   .table_grid--highlight {
-    background-color: rgba(254, 224, 80, 0.06);
+    background-color: rgba(254, 224, 80, 0.13);
   }
 
-  /* Left column */
-  .table_grid-col-left {
-    gap: .5rem;
-    flex-flow: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: .625rem 1rem;
+  .table_grid-col {
+    min-width: 0;
+    padding: .9rem 1rem;
     display: flex;
-    font-weight: 600;
-    color: #242424;
-    font-size: clamp(0.8125rem, 0.8rem + 0.1vw, 0.875rem);
-    line-height: 1.5;
-  }
-
-  /* Right column */
-  .table_grid-col-right {
-    justify-content: flex-start;
     align-items: center;
-    padding: .625rem 1rem;
-    display: flex;
-    color: #333;
-    font-size: clamp(0.8125rem, 0.8rem + 0.1vw, 0.875rem);
-    line-height: 1.5;
+    border-left: 1px solid rgba(234, 223, 206, .7);
+    font-size: clamp(0.9rem, 0.86rem + 0.16vw, .98rem);
+    line-height: 1.45;
+  }
+
+  .table_grid-col:first-child {
+    border-left: none;
+  }
+
+  .table_grid-col-left {
+    font-family: 'Archivo', sans-serif;
+    font-weight: 800;
+    color: #2b2118;
+  }
+
+  .table_grid-col-right {
+    color: #3f352c;
+  }
+
+  @media (max-width: 767px) {
+    .comparison-table {
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .table_grid--header {
+      display: none;
+    }
+
+    .table_grid {
+      display: block;
+      margin-bottom: .85rem;
+      border: 1px solid #eadfce;
+      border-radius: 1rem;
+      background: #fffdf8;
+      overflow: hidden;
+      box-shadow: 0 .75rem 1.5rem rgba(74, 45, 15, .06);
+    }
+
+    .table_grid:last-child {
+      margin-bottom: 0;
+    }
+
+    .table_grid-col {
+      display: grid;
+      grid-template-columns: 6.75rem 1fr;
+      gap: .75rem;
+      padding: .8rem .9rem;
+      border-left: none;
+      border-bottom: 1px solid rgba(234, 223, 206, .75);
+      align-items: start;
+    }
+
+    .table_grid-col:last-child {
+      border-bottom: none;
+    }
+
+    .table_grid-col::before {
+      content: attr(data-label);
+      font-family: 'Archivo', sans-serif;
+      font-weight: 800;
+      font-size: .68rem;
+      line-height: 1.35;
+      text-transform: uppercase;
+      letter-spacing: .055em;
+      color: #8a5d2f;
+    }
+
+    .table_grid-col-left {
+      background: linear-gradient(135deg, #fff4df 0%, #f9edd8 100%);
+    }
   }
 </style>
