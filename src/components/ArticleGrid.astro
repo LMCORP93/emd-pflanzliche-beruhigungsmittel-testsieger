@@ -22,22 +22,43 @@ interface Props {
 }
 
 const localeByLang = {
-  fr: { title: 'Dernières actualités', read: "Lire l’article", intro: 'Pour continuer votre lecture, consultez aussi', fallback: 'Guide pratique pour comparer les options et mieux choisir selon votre besoin.' },
-  en: { title: 'Latest articles', read: 'Read article', intro: 'To continue reading, also see', fallback: 'A practical guide to compare the options and choose according to your needs.' },
-  de: { title: 'Weitere Artikel', read: 'Artikel lesen', intro: 'Lesen Sie auch', fallback: 'Ein praktischer Guide, um die Optionen zu vergleichen und besser zu wählen.' },
-  es: { title: 'Últimos artículos', read: 'Leer el artículo', intro: 'Para seguir leyendo, consulta también', fallback: 'Guía práctica para comparar las opciones y elegir mejor según tu necesidad.' },
-  it: { title: 'Ultimi articoli', read: 'Leggi l’articolo', intro: 'Per continuare, leggi anche', fallback: 'Guida pratica per confrontare le opzioni e scegliere in base alle tue esigenze.' },
-  nl: { title: 'Laatste artikelen', read: 'Artikel lezen', intro: 'Lees ook', fallback: 'Praktische gids om opties te vergelijken en beter te kiezen volgens je behoefte.' },
+  fr: { title: 'Dernières actualités', read: "Lire l’article", intro: 'Pour continuer votre lecture, consultez aussi', fallback: 'Guide pratique pour comparer les options et mieux choisir selon votre besoin.', and: ' et ' },
+  en: { title: 'Latest articles', read: 'Read article', intro: 'To continue reading, also see', fallback: 'A practical guide to compare the options and choose according to your needs.', and: ' and ' },
+  de: { title: 'Weitere Artikel', read: 'Artikel lesen', intro: 'Lesen Sie auch', fallback: 'Ein praktischer Guide, um die Optionen zu vergleichen und besser zu wählen.', and: ' und ' },
+  es: { title: 'Últimos artículos', read: 'Leer el artículo', intro: 'Para seguir leyendo, consulta también', fallback: 'Guía práctica para comparar las opciones y elegir mejor según tu necesidad.', and: ' y ' },
+  it: { title: 'Ultimi articoli', read: 'Leggi l’articolo', intro: 'Per continuare, leggi anche', fallback: 'Guida pratica per confrontare le opzioni e scegliere in base alle tue esigenze.', and: ' e ' },
+  nl: { title: 'Laatste artikelen', read: 'Artikel lezen', intro: 'Lees ook', fallback: 'Praktische gids om opties te vergelijken en beter te kiezen volgens je behoefte.', and: ' en ' },
 };
 
 const detectLang = () => {
   const configWithLocale = config as typeof config & { language?: string; lang?: string; locale?: string };
-  const raw = [configWithLocale.language, configWithLocale.lang, configWithLocale.locale, config.domain, config.siteName].filter(Boolean).join(' ').toLowerCase();
-  if (raw.includes('.de') || raw.includes('de_') || raw.includes('de-')) return 'de';
-  if (raw.includes('.es') || raw.includes('es_') || raw.includes('es-') || raw.includes('españ') || raw.includes('spanish')) return 'es';
-  if (raw.includes('.it') || raw.includes('it_') || raw.includes('it-') || raw.includes('ital')) return 'it';
-  if (raw.includes('.nl') || raw.includes('nl_') || raw.includes('nl-') || raw.includes('neder')) return 'nl';
-  if (raw.includes('.com') && raw.includes('best')) return 'en';
+  const explicitLocale = [configWithLocale.language, configWithLocale.lang, configWithLocale.locale]
+    .filter(Boolean)
+    .map((value) => String(value).toLowerCase())
+    .find(Boolean) || '';
+
+  if (explicitLocale.startsWith('fr')) return 'fr';
+  if (explicitLocale.startsWith('en')) return 'en';
+  if (explicitLocale.startsWith('de')) return 'de';
+  if (explicitLocale.startsWith('es')) return 'es';
+  if (explicitLocale.startsWith('it')) return 'it';
+  if (explicitLocale.startsWith('nl')) return 'nl';
+
+  let hostname = '';
+  try {
+    hostname = new URL(config.domain).hostname.toLowerCase();
+  } catch {
+    hostname = String(config.domain || '').toLowerCase();
+  }
+
+  const tld = hostname.split('.').pop();
+  if (tld === 'fr') return 'fr';
+  if (tld === 'de') return 'de';
+  if (tld === 'es') return 'es';
+  if (tld === 'it') return 'it';
+  if (tld === 'nl') return 'nl';
+  if (tld === 'com') return 'en';
+
   return 'fr';
 };
 
@@ -92,7 +113,7 @@ const textLinks = articles.slice(0, 3);
           {copy.intro}{' '}
           {textLinks.map((article, index) => (
             <>
-              <a href={article.href}>{article.title}</a>{index < textLinks.length - 2 ? ', ' : index === textLinks.length - 2 ? ' et ' : '.'}
+              <a href={article.href}>{article.title}</a>{index < textLinks.length - 2 ? ', ' : index === textLinks.length - 2 ? copy.and : '.'}
             </>
           ))}
         </p>
