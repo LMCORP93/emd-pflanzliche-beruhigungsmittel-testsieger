@@ -57,7 +57,22 @@ const detectLang = () => {
   if (tld === 'es') return 'es';
   if (tld === 'it') return 'it';
   if (tld === 'nl') return 'nl';
-  if (tld === 'com') return 'en';
+
+  const text = [config.siteName, config.brand, config.product, config.productCategory, config.tagline, config.seo?.title, config.seo?.description]
+    .filter(Boolean)
+    .join(' ')
+    .toLowerCase();
+
+  if (tld === 'com') {
+    if (/^(best-|im8-discount-code|creatine-gummies-guide|best-multivitamin|best-nad|best-mushroom)/.test(hostname)) return 'en';
+    if (hostname.includes('caffe') || hostname.includes('funghi') || /\b(miglior|italia|italiano|funghi|controindicazioni)\b/.test(text)) return 'it';
+    if (hostname.includes('meilleur') || hostname.includes('meilleurs') || /\b(meilleur|meilleurs|comparatif|avis|prix|choisir|champignons)\b/.test(text)) return 'fr';
+    return 'en';
+  }
+
+  if (/\b(miglior|italia|italiano|funghi|controindicazioni)\b/.test(text)) return 'it';
+  if (/\b(mejor|españa|español|comparativa)\b/.test(text)) return 'es';
+  if (/\b(meilleur|meilleurs|comparatif|avis|prix|choisir)\b/.test(text)) return 'fr';
 
   return 'fr';
 };
