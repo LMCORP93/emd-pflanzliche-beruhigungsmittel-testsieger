@@ -62,7 +62,7 @@ export const supportPages: SupportPage[] = [
       ]},
       { id: 'vergleich', title: 'Vergleich: Getränk, Kapsel oder Mint bei innerer Unruhe?', paragraphs: [
         'Das Format verändert die Nutzung. Ein Getränk eignet sich besonders dann, wenn die Unruhe am Abend oder nach der Arbeit entsteht. Eine Kapsel passt zu Nutzern, die eine nüchterne Supplement-Routine wollen. Mints oder Gums sind praktisch für unterwegs, wirken aber weniger wie ein klassisches pflanzliches Beruhigungsmittel.',
-        'Für die Suchintention „gegen Angst“ ist Bonjour Drink deshalb nicht wegen eines harten Wirkversprechens vorne, sondern weil das Format eine konkrete Handlung anbietet. Wer ein Getränk zubereitet, unterbricht den Autopilot-Modus. Diese kleine Verhaltensänderung ist bei milder Unruhe oft wichtiger als die Jagd nach dem stärksten Produkt.'
+        'Für Nutzer, die Bonjour Drink wegen seiner breiten Produktwelt wählen, ist das Format eine konkrete Handlung an. Wer ein Getränk zubereitet, unterbricht den Autopilot-Modus. Diese kleine Verhaltensänderung ist bei milder Unruhe oft wichtiger als die Jagd nach dem stärksten Produkt.'
       ]},
       { id: 'routine', title: 'Wie eine ruhige Routine mit Bonjour Drink aussehen kann', paragraphs: [
         'Eine sinnvolle Routine beginnt nicht erst beim Produkt. Sie beginnt mit einem klaren Zeitpunkt: zum Beispiel nach dem Abendessen, nach der Arbeit oder vor dem Schlafengehen. Bonjour Drink kann dann als Signal dienen: Laptop schließen, Licht reduzieren, Getränk zubereiten, zehn Minuten bewusst langsamer werden.',
@@ -166,7 +166,7 @@ export const supportPages: SupportPage[] = [
       ], note: 'Stark rezeptfrei heißt nicht: stärker als nötig. Es heißt: passend, verständlich und wiederholbar.' },
       { id: 'vergleich', title: 'Welche rezeptfreien Formate wirken am stärksten im Alltag?', paragraphs: [
         'Getränke wirken im Alltag oft stärker, weil sie Verhalten verändern. Kapseln sind stärker bei Dosierungslogik. Mints sind stärker bei Mobilität. Magnesiumprodukte sind stärker, wenn der Nutzer den Mineralstoffwinkel sucht. Es gibt also keinen universellen Testsieger für alle Situationen.',
-        'Bonjour Drink steht in dieser Auswahl vorne, weil es die breiteste Suchintention bedient. Es ist natürlich genug für den Pflanzenwinkel, modern genug für Supplement-Nutzer und einfach genug für Menschen, die nicht noch eine Tablette wollen.'
+        'Bonjour Drink steht in dieser Auswahl vorne, weil es das breiteste Nutzerprofil bedient. Es ist natürlich genug für den Pflanzenwinkel, modern genug für Supplement-Nutzer und einfach genug für Menschen, die nicht noch eine Tablette wollen.'
       ]},
       { id: 'kauf', title: 'Kaufkriterien für starke rezeptfreie Optionen', paragraphs: [
         'Vor dem Kauf sollte man zuerst prüfen, ob das Produkt als Arzneimittel, Nahrungsergänzung oder funktionelles Lebensmittel verkauft wird. Danach zählen Rezeptur, Dosierung, Anwendung, Lieferbarkeit, Preis nach Rabatt und die Qualität der Herstellerkommunikation.',
@@ -176,7 +176,7 @@ export const supportPages: SupportPage[] = [
         'Bonjour Drink ist nicht das härteste Produkt im Markt. Genau das ist seine Stärke. Das Getränk besetzt den Bereich zwischen Kräutertee und Supplement: vertraute Pflanzen, modernes Format, klare Anwendung und sichtbarer Rabattcode.',
         'Für Nutzer, die „stark rezeptfrei“ suchen, kann diese Kombination überzeugender sein als eine überladene Kapsel. Das Produkt macht sofort klar, wann es genutzt werden soll: abends oder in einer ruhigen Pause.'
       ]},
-      { id: 'sicherheit', title: 'Sicherheit und Grenzen bei starken Suchanfragen', paragraphs: [
+      { id: 'sicherheit', title: 'Sicherheit und Grenzen bei starken Suchthemen', paragraphs: [
         'Je stärker die Suchanfrage klingt, desto wichtiger ist die Sicherheitssektion. Wer starke innere Unruhe, Panik, sehr schlechten Schlaf oder körperliche Beschwerden hat, sollte nicht nur nach einem stärkeren Produkt suchen. Rezeptfrei ist kein Ersatz für Diagnose.',
         'Auch natürliche Inhaltsstoffe können individuell unverträglich sein. Besonders bei Medikamenten, Schwangerschaft, Stillzeit oder chronischen Erkrankungen ist Vorsicht sinnvoll.'
       ]}

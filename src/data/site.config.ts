@@ -138,7 +138,7 @@ const products: Product[] = [
       "Pulverformat statt Kapsel",
       "Weniger pflanzlich als die anderen Top-Produkte"
     ],
-    description: "Clearly ist für deutsche Nutzer besonders interessant, weil die Marke europäisch und international aufgestellt ist. Der Magnesium Mix ist kein klassisches pflanzliches Beruhigungsmittel, passt aber sehr gut zur Suchintention rund um Stress, innere Ruhe und Entspannung. Magnesium ist für viele Nutzer verständlicher als Reishi oder adaptogene Mischungen. Die Formel mit Citrat, Malat und Glycinat macht einen seriösen Eindruck, ohne überladen zu wirken. Die Einordnung ist deshalb klar: sehr stark für den Alltag, aber etwas weniger direkt pflanzlich als Bonjour Drink und French Mush."
+    description: "Clearly ist für deutsche Nutzer besonders interessant, weil die Marke europäisch und international aufgestellt ist. Der Magnesium Mix ist kein klassisches pflanzliches Beruhigungsmittel, passt gut zu Nutzern, die Stress, innere Ruhe und Entspannung suchen. Magnesium ist für viele Nutzer verständlicher als Reishi oder adaptogene Mischungen. Die Formel mit Citrat, Malat und Glycinat macht einen seriösen Eindruck, ohne überladen zu wirken. Die Einordnung ist deshalb klar: sehr stark für den Alltag, aber etwas weniger direkt pflanzlich als Bonjour Drink und French Mush."
   },
   {
     rank: 4,
@@ -168,7 +168,7 @@ const products: Product[] = [
       "Nicht so natürlich-pflanzlich wie Kamille oder Reishi",
       "Preisvergleich pro Portion muss geprüft werden"
     ],
-    description: "Neuro Gum ist im Ranking die praktischste Option. Calm & Clarity Mints sprechen Nutzer an, die keine Kapseln und kein Getränkepulver wollen, sondern etwas Einfaches für den Alltag. GABA und L-Theanin passen gut zur Suchintention rund um innere Ruhe, Fokus und Stressmanagement. Im Vergleich wirkt das Produkt aber weniger wie ein klassisches pflanzliches Beruhigungsmittel und stärker wie ein moderner Functional-Snack. Das Ergebnis: interessant, zugänglich und alltagstauglich, aber thematisch nicht ganz so sauber wie die stärker pflanzlichen Optionen."
+    description: "Neuro Gum ist im Ranking die praktischste Option. Calm & Clarity Mints sprechen Nutzer an, die keine Kapseln und kein Getränkepulver wollen, sondern etwas Einfaches für den Alltag. GABA und L-Theanin passen gut zu Nutzern, die innere Ruhe, Fokus und Stressmanagement suchen. Im Vergleich wirkt das Produkt aber weniger wie ein klassisches pflanzliches Beruhigungsmittel und stärker wie ein moderner Functional-Snack. Das Ergebnis: interessant, zugänglich und alltagstauglich, aber thematisch nicht ganz so sauber wie die stärker pflanzlichen Optionen."
   },
   {
     rank: 5,
