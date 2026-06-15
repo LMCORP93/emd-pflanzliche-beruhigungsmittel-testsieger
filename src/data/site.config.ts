@@ -223,7 +223,7 @@ const config: SiteConfig = {
   },
   seo: {
     title: "Pflanzliche Beruhigungsmittel Testsieger 2026: rezeptfrei und natürlich",
-    description: "Pflanzliche Beruhigungsmittel Testsieger 2026: rezeptfreie Optionen, schnell wirkende Formate und natürliche Routinen im Vergleich.",
+    description: "Pflanzliche Beruhigungsmittel Testsieger 2026: rezeptfreie Optionen, Beruhigungstee, schnelle Formate und natürliche Routinen im Vergleich.",
     ogImage: "/og-image.jpg"
   },
   analyticsMeasurementId: "G-72NMT5EZGM",

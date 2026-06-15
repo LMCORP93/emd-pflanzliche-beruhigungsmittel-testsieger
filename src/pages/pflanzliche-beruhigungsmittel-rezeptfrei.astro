@@ -45,7 +45,7 @@ const faq = [
     description: articleDescription,
     image: new URL(heroImage, config.domain).toString(),
     author: { '@type': 'Person', name: config.author.name },
-    publisher: { '@type': 'Organization', name: 'LMC' },
+    publisher: { '@type': 'Person', name: config.author.name },
     mainEntityOfPage: new URL('/pflanzliche-beruhigungsmittel-rezeptfrei/', config.domain).toString(),
     datePublished: '2026-04-30',
     dateModified: '2026-04-30'
@@ -119,12 +119,21 @@ const faq = [
 
             <TableOfContents items={[
               { id: 'was-bedeutet-rezeptfrei', label: 'Was bedeutet rezeptfrei?' },
+              { id: 'testsieger-check', label: 'Testsieger-Check' },
               { id: 'welche-optionen', label: 'Welche Optionen gibt es?' },
               { id: 'vergleich', label: 'Vergleich der Formate' },
               { id: 'worauf-achten', label: 'Worauf achten?' },
               { id: 'bonjour-drink', label: 'Warum Bonjour Drink?' },
               { id: 'faq', label: 'FAQ' }
             ]} />
+
+
+            <section id="testsieger-check" class="article-section rich-text">
+              <h2>Beruhigungsmittel rezeptfrei Testsieger: worauf du wirklich achten solltest</h2>
+              <p>Die Suche nach einem <strong>Beruhigungsmittel rezeptfrei Testsieger</strong> klingt nach einer einfachen Antwort. In der Praxis hängt die beste Wahl aber davon ab, ob du ein pflanzliches Arzneimittel, ein Nahrungsergänzungsmittel, einen Tee, ein Getränk oder eine Routine für den Abend suchst.</p>
+              <p>Ein sinnvoller Check umfasst vier Punkte: Welche Inhaltsstoffe sind enthalten, wie transparent ist die Dosierung, passt das Format zu deinem Alltag und gibt es Hinweise zu Wechselwirkungen oder sensiblen Situationen? Rezeptfrei kann praktisch sein, ersetzt aber keine Abklärung bei starken, anhaltenden oder plötzlich auftretenden Beschwerden.</p>
+              <p>Bonjour Drink ist in diesem Kontext vor allem dann interessant, wenn du eine natürliche Abendroutine ohne Tablettenlogik suchst. Wenn du gezielt eine medizinische Behandlung erwartest, ist der richtige nächste Schritt nicht ein stärkeres Marketingversprechen, sondern fachlicher Rat.</p>
+            </section>
 
             <section id="was-bedeutet-rezeptfrei" class="article-section rich-text">
               <h2>Was bedeutet „rezeptfrei“ bei pflanzlichen Beruhigungsmitteln?</h2>

@@ -140,7 +140,15 @@ const productSchema = (p: typeof config.products[number]) => ({
               { id: 'faq', label: 'Häufige Fragen' },
             ]} />
 
+            <section id="kaufcheck" class="rich-text seo-guide">
+              <h2>Testsieger, Beruhigungstee und rezeptfreie Optionen: der Kaufcheck</h2>
+              <p>Wer nach <strong>pflanzliche Beruhigungsmittel Testsieger</strong>, <strong>pflanzliches Beruhigungsmittel Testsieger</strong> oder <strong>Beruhigungstee Testsieger</strong> sucht, braucht vor allem Orientierung. Die wichtigste Unterscheidung lautet: suchst du ein Arzneimittel, einen Tee, ein Nahrungsergänzungsmittel oder eine einfache Abendroutine?</p>
+              <p>Wir behandeln hier keine akuten Beschwerden und geben keine medizinische Empfehlung. Der Vergleich hilft bei kaufnahen Kriterien: Inhaltsstoffe, Format, Lieferbarkeit, Preis, Rabatt, Verträglichkeitshinweise und Alltagstauglichkeit. Rezeptfrei heißt nicht automatisch risikofrei, und schnell wirkend bedeutet bei natürlichen Produkten meistens eher: leicht in eine Routine einzubauen.</p>
+              <p>Bonjour Drink passt besonders gut, wenn die Suche nach Ruhe, Ritual und natürlicher Abendroutine klingt. Wer gezielt Baldrian, Passionsblume, Tee oder Kapseln sucht, sollte die Formate nüchtern vergleichen und bei starken Symptomen medizinischen Rat einholen.</p>
+            </section>
+
             <section id="vergleich" class="comparatif-cards">
+
               {config.products.map((product) => (
                 <div id={`product-${product.slug}`}>
                   <ComparatorCard product={product} />
