@@ -78,7 +78,7 @@ const products: Product[] = [
       "Pulverformat passt nicht zu jedem Nutzer",
       "Für akute Beschwerden nicht als medizinische Lösung zu verstehen"
     ],
-    description: "Bonjour Drink überzeugt besonders, weil die Sorte Kamille den Suchbedarf nach pflanzlichen Beruhigungsmitteln sehr natürlich trifft: ein warmes Getränk, eine verständliche Routine und Inhaltsstoffe wie Kamille, Passionsblume, Reishi und L-Theanin. Die Marke wirkt weniger wie ein klassischer Supplement-Shop und mehr wie eine moderne Alternative für Menschen, die abends runterkommen möchten, ohne direkt zu schweren Schlafmitteln zu greifen. Besonders stark ist die Kombination aus Alltagstauglichkeit, Geschmack und klarer Positionierung. Der Hauptnachteil bleibt, dass Bonjour Drink kein deutsches Produkt ist und der Nutzer die Lieferbedingungen prüfen sollte."
+    description: "Bonjour Drink überzeugt besonders, weil die Sorte Kamille sehr gut zu Menschen passt, die abends eine einfache pflanzliche Routine suchen: ein warmes Getränk, eine verständliche Anwendung und Inhaltsstoffe wie Kamille, Passionsblume, Reishi und L-Theanin. Die Marke wirkt weniger wie ein klassischer Supplement-Shop und mehr wie eine moderne Alternative für Menschen, die abends runterkommen möchten, ohne direkt zu schweren Schlafmitteln zu greifen. Besonders stark ist die Kombination aus Alltagstauglichkeit, Geschmack und klarer Positionierung. Der Hauptnachteil bleibt, dass Bonjour Drink kein deutsches Produkt ist und der Nutzer die Lieferbedingungen prüfen sollte."
   },
   {
     rank: 2,
