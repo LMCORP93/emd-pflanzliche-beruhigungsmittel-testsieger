@@ -113,7 +113,7 @@ export const supportPages: SupportPage[] = [
       ], note: 'Wenn Schlafprobleme länger anhalten oder stark belasten, sollte nicht nur ein Produkt gewechselt werden. Dann ist Ursachenklärung wichtiger.' },
       { id: 'abendroutine', title: 'Warum das Format Getränk beim Schlafen so gut passt', paragraphs: [
         'Ein Getränk ist für den Abend intuitiv. Man bereitet es zu, trinkt langsamer und verbindet es mit einem Moment der Ruhe. Dadurch entsteht ein klares Signal. Kapseln können sinnvoll sein, fühlen sich aber oft wie eine weitere Aufgabe an. Ein Tee ist vertraut, aber bei Dosierung und Produktqualität schwerer vergleichbar.',
-        'Bonjour Drink nutzt diesen Vorteil. Das Produkt ist konkreter als ein einfacher Kräutertee und weicher als eine Tablette. Genau diese Mitte ist für eine Schlafseite attraktiv: genug Produktlogik für Conversion, genug Ritual für Vertrauen.'
+        'Bonjour Drink nutzt diesen Vorteil. Das Produkt ist konkreter als ein einfacher Kräutertee und weicher als eine Tablette. Genau diese Mitte ist für eine Schlafseite attraktiv: genug klare Produktlogik, genug Ritual für Vertrauen.'
       ]},
       { id: 'vergleich', title: 'Welche Inhaltsstoffe sind für den Abend plausibel?', paragraphs: [
         'Kamille und Passionsblume sind klassische Pflanzen für Ruhe und Abend. Reishi wird im Wellness-Kontext oft mit Entspannung und Routine verbunden. L-Theanin ergänzt die Formel, weil es nicht primär für schwere Müdigkeit steht, sondern für einen ruhigeren Zustand.',
@@ -156,7 +156,7 @@ export const supportPages: SupportPage[] = [
       'Die Suche nach einem starken rezeptfreien Beruhigungsmittel ist kommerziell interessant, aber sensibel. Nutzer wollen spürbare Hilfe, möchten aber oft keine verschreibungspflichtigen Medikamente. Genau deshalb muss der Vergleich Grenzen klar nennen.',
       'Bonjour Drink ist in diesem Kontext stark, weil es ein verständliches, natürliches Format liefert: Kamille, Passionsblume, Reishi und L-Theanin in einem Getränk, das eine Routine unterstützt, ohne medizinische Sofortwirkung zu behaupten.'
     ],
-    assets: ['Stark bedeutet: gute Passung zum Bedarf, klare Anwendung, nachvollziehbare Rezeptur.', 'Bonjour Drink ist stark für Routine und Conversion, nicht für Akutbehandlung.', 'Bei schweren Symptomen ist rezeptfrei nicht automatisch ausreichend.'],
+    assets: ['Stark bedeutet: gute Passung zum Bedarf, klare Anwendung, nachvollziehbare Rezeptur.', 'Bonjour Drink ist stark für Routine und einfache Anwendung, nicht für Akutbehandlung.', 'Bei schweren Symptomen ist rezeptfrei nicht automatisch ausreichend.'],
     considerations: ['Keine Heilversprechen.', 'Arzneimittel und Nahrungsergänzung sauber trennen.', 'Nutzer mit starken Beschwerden brauchen ärztliche Orientierung.'],
     toc: [{id:'stark',label:'Was heißt stark?'},{id:'vergleich',label:'Vergleich'},{id:'kauf',label:'Kaufkriterien'},{id:'bonjour',label:'Bonjour Drink'},{id:'sicherheit',label:'Sicherheit'},{id:'faq',label:'FAQ'}],
     sections: [
@@ -177,7 +177,7 @@ export const supportPages: SupportPage[] = [
         'Für Nutzer, die „stark rezeptfrei“ suchen, kann diese Kombination überzeugender sein als eine überladene Kapsel. Das Produkt macht sofort klar, wann es genutzt werden soll: abends oder in einer ruhigen Pause.'
       ]},
       { id: 'sicherheit', title: 'Sicherheit und Grenzen bei starken Suchthemen', paragraphs: [
-        'Je stärker die Suchanfrage klingt, desto wichtiger ist die Sicherheitssektion. Wer starke innere Unruhe, Panik, sehr schlechten Schlaf oder körperliche Beschwerden hat, sollte nicht nur nach einem stärkeren Produkt suchen. Rezeptfrei ist kein Ersatz für Diagnose.',
+        'Je stärker der Wunsch nach sofortiger Beruhigung klingt, desto wichtiger ist die Sicherheitssektion. Wer starke innere Unruhe, Panik, sehr schlechten Schlaf oder körperliche Beschwerden hat, sollte nicht nur nach einem stärkeren Produkt suchen. Rezeptfrei ist kein Ersatz für Diagnose.',
         'Auch natürliche Inhaltsstoffe können individuell unverträglich sein. Besonders bei Medikamenten, Schwangerschaft, Stillzeit oder chronischen Erkrankungen ist Vorsicht sinnvoll.'
       ]}
     ],
@@ -198,16 +198,16 @@ export const supportPages: SupportPage[] = [
   {
     slug: 'natuerliche-beruhigungsmittel-bei-nervositaet',
     label: 'Nervosität',
-    title: 'Natürliche Beruhigungsmittel bei Nervosität',
-    description: 'Natürliche Beruhigungsmittel bei Nervosität: sanfte Routinen, pflanzliche Inhaltsstoffe und sinnvolle Kaufkriterien.',
+    title: 'Natürliche Beruhigungsmittel bei Nervosität: Vergleich 2026',
+    description: 'Natürliche Beruhigungsmittel bei Nervosität: welche Formate sofort nutzbar sind, welche Pflanzen passen und warum eine klare Alltagsroutine oft mehr bringt als ein einzelnes Produkt.',
     heroImage: '/images/articles/natuerliche-beruhigungsmittel-bei-nervositaet.webp',
     readingTime: '11 Min. Lesezeit',
     breadcrumbLabel: 'Nervosität',
     reviewLabel: 'Beste natürliche Routine bei Nervosität',
-    introHeading: 'Bei Nervosität gewinnt nicht das komplizierteste Produkt, sondern das Format, das schnell Ruhe in den Alltag bringt.',
+    introHeading: 'Bei Nervosität gewinnt nicht das komplizierteste Produkt, sondern das Format, das sofort eine Handlung schafft und wirklich wiederholt wird.',
     introParagraphs: [
-      'Nervosität ist oft konkreter als Angst: ein unruhiger Tag, ein Termin, zu viel Kaffee, mentale Überlastung oder ein Abend, an dem man nicht runterkommt. Für diesen Bedarf sind natürliche Routinen besonders passend.',
-      'Bonjour Drink verbindet bekannte Pflanzen mit einem Getränkeformat. Dadurch wird aus einer abstrakten Supplement-Empfehlung eine einfache Handlung: zubereiten, trinken, Pause machen.'
+      'Nervosität ist oft konkreter als Angst: ein unruhiger Tag, ein anstehender Termin, zu viel Kaffee, mentale Überlastung oder ein Abend, an dem man nicht abschalten kann. Für diesen Bedarf sind natürliche Routinen mit Kamille, Passionsblume, L-Theanin oder Magnesium besonders passend — wenn man keine medizinische Behandlung sucht, sondern einen sanften Anker für den Alltag.',
+      'Bonjour Drink verbindet bekannte Pflanzen mit einem Getränkeformat. Dadurch wird aus einer abstrakten Supplement-Empfehlung eine einfache Handlung: zubereiten, trinken, Pause machen. Wer rezeptfreie Optionen mit schnellerer Wirkung sucht, findet weitere Informationen auf unserer Seite zu <a href="/beruhigungsmittel-pflanzlich-schnell-wirkend/">schnell wirkenden pflanzlichen Beruhigungsmitteln</a>.'
     ],
     assets: ['Nervosität braucht oft einen kleinen Ritualwechsel, nicht sofort ein starkes Mittel.', 'Kamille, Passionsblume, Reishi und L-Theanin passen gut zum ruhigen Abendwinkel.', 'Unterwegs können Mints praktisch sein, abends ist ein Getränk meist stärker.'],
     considerations: ['Nervosität kann körperliche oder psychische Ursachen haben.', 'Koffein, Schlafmangel und Stress sollten mitgedacht werden.', 'Bei dauerhafter Belastung ist fachliche Abklärung sinnvoll.'],
@@ -215,7 +215,7 @@ export const supportPages: SupportPage[] = [
     sections: [
       { id: 'bedarf', title: 'Wann natürliche Beruhigungsmittel bei Nervosität passen', paragraphs: [
         'Natürliche Produkte passen besonders dann, wenn Nervosität mild, situativ und alltagsnah ist. Beispiele sind ein voller Arbeitstag, innere Unruhe am Abend, leichter Stress vor Terminen oder der Wunsch, weniger impulsiv zu Kaffee, Zucker oder Bildschirmzeit zu greifen.',
-        'In diesen Situationen ist nicht nur der Inhaltsstoff entscheidend. Wichtig ist eine Handlung, die den Zustand unterbricht. Ein Getränk, ein Tee oder ein Mint schafft genau diesen Moment. Deshalb sollte der Vergleich nicht nur Produktdaten auflisten, sondern Nutzungssituationen bewerten.'
+        'In diesen Situationen ist nicht nur der Inhaltsstoff entscheidend. Wichtig ist eine Handlung, die den Zustand unterbricht. Ein Getränk, ein Tee oder ein Mint schafft genau diesen Moment. Deshalb sollte der Vergleich nicht nur Produktdaten auflisten, sondern Nutzungssituationen bewerten. Wer auch nach <a href="/pflanzliche-beruhigungsmittel-rezeptfrei/">rezeptfreien Beruhigungsmitteln</a> sucht, findet dort einen eigenen Überblick.'
       ], note: 'Wenn Nervosität regelmäßig stark wird oder körperlich spürbar ist, sollte man die Ursache nicht ignorieren.' },
       { id: 'routine', title: 'Warum eine kleine Routine oft besser ist als Produkt-Hopping', paragraphs: [
         'Viele Nutzer kaufen ein Produkt, testen es einmal und wechseln sofort zum nächsten. Das ist bei natürlichen Optionen selten sinnvoll. Besser ist eine kurze, klare Routine: gleicher Zeitpunkt, gleiche Anwendung, weniger Reize, realistische Erwartung.',
@@ -223,7 +223,7 @@ export const supportPages: SupportPage[] = [
       ]},
       { id: 'vergleich', title: 'Welche Formate helfen bei Nervosität im Alltag?', paragraphs: [
         'Für Zuhause und Abend ist ein Getränk am stärksten. Für unterwegs sind Mints wie Neuro Gum praktischer. Für Nutzer, die ein Supplement ohne Geschmack möchten, bleiben Reishi-Kapseln oder Magnesiumpulver Alternativen. Entscheidend ist, wo die Nervosität auftritt.',
-        'Wer vor allem abends nicht abschalten kann, profitiert eher von Bonjour Drink. Wer vor Meetings etwas Praktisches sucht, prüft eher Mint-Formate. Wer eine langfristige Routine mit Kapseln mag, kann French Mush testen.'
+        'Wer vor allem abends nicht abschalten kann, profitiert eher von Bonjour Drink. Wer vor Meetings etwas Praktisches sucht, prüft eher Mint-Formate. Wer eine langfristige Routine mit Kapseln mag, kann French Mush testen. Den vollständigen Produktvergleich findest du auf unserer <a href="/">Hauptseite zu pflanzlichen Beruhigungsmitteln</a>.'
       ]},
       { id: 'kriterien', title: 'Kaufkriterien: worauf achten?', paragraphs: [
         'Achten sollte man auf Transparenz, klare Anwendung, realistische Sprache, Lieferbarkeit nach Deutschland und einen Preis, der nach Rabatt verständlich bleibt. Bei natürlichen Produkten ist außerdem wichtig, ob die Marke übertreibt oder nüchtern erklärt.',
@@ -241,7 +241,8 @@ export const supportPages: SupportPage[] = [
       { cells: ['Clearly', 'Sinnvoll, wenn Magnesium im Vordergrund steht'] }
     ]},
     faq: [
-      { question: 'Was hilft natürlich bei Nervosität?', answer: 'Eine ruhige Routine, weniger Reize, ausreichend Schlaf und passende natürliche Produkte können helfen. Bonjour Drink ist als Getränkeritual besonders zugänglich.' },
+      { question: 'Welches natürliche Beruhigungsmittel wirkt sofort bei Nervosität?', answer: 'Kein pflanzliches Produkt wirkt wie ein Notfallmedikament. Formate wie warme Getränke oder Mints können subjektiv schneller eine ruhigere Situation schaffen, weil die Anwendung selbst beruhigend wirkt. Bonjour Drink ist als Getränkeritual besonders zugänglich für schnelle Alltagspausen.' },
+      { question: 'Was hilft natürlich bei Nervosität?', answer: 'Eine ruhige Routine, weniger Reize, ausreichend Schlaf und passende natürliche Produkte können helfen. Kamille, Passionsblume und L-Theanin sind für Ruhe und Alltag gut geeignete Inhaltsstoffe.' },
       { question: 'Welche Pflanzen passen bei Nervosität?', answer: 'Häufig genannt werden Kamille, Passionsblume, Lavendel, Melisse und Baldrian. Entscheidend ist aber das konkrete Produkt und die Anwendung.' },
       { question: 'Ist ein Getränk besser als Kapseln?', answer: 'Für viele Nutzer ja, wenn die Nervosität am Abend oder Zuhause entsteht. Kapseln sind praktischer für Supplement-Routinen.' },
       { question: 'Wann sollte man Nervosität abklären lassen?', answer: 'Wenn sie häufig, stark, körperlich belastend oder mit Panik, Schlafproblemen oder Medikamenten verbunden ist.' }

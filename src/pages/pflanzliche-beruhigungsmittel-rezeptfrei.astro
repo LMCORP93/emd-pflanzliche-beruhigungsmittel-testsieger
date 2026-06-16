@@ -14,17 +14,21 @@ import AuthorBioCard from '@/components/AuthorBioCard.astro';
 import ArticleGrid from '@/components/ArticleGrid.astro';
 
 const topProduct = config.products[0];
-const articleTitle = 'Beruhigungsmittel rezeptfrei Testsieger 2026';
-const articleDescription = 'Beruhigungsmittel rezeptfrei Testsieger 2026: Vergleich pflanzlicher Optionen mit Kamille, Reishi, L-Theanin, Magnesium und natürlichen Routinen.';
+const articleTitle = 'Beruhigungsmittel rezeptfrei Testsieger 2026 — welche pflanzlichen Optionen wirklich überzeugen';
+const articleDescription = 'Beruhigungsmittel rezeptfrei Testsieger 2026: Bonjour Drink, Reishi-Kapseln & Magnesium im direkten Vergleich. Welche Formate passen zur Abendroutine — ohne Rezept, ohne Versprechen.';
 const heroImage = '/images/articles/pflanzliche-beruhigungsmittel-rezeptfrei.webp';
 const faq = [
+  {
+    question: 'Was ist der Testsieger unter den rezeptfreien Beruhigungsmitteln 2026?',
+    answer: 'In unserem Vergleich steht Bonjour Drink vorne: Die Kombination aus Kamille, Passionsblume, Reishi und L-Theanin in einem Getränkeformat ist für eine natürliche Abendroutine besonders alltagstauglich. Je nach Bedarf können aber auch Reishi-Kapseln oder Magnesiumprodukte besser passen.'
+  },
   {
     question: 'Sind pflanzliche Beruhigungsmittel rezeptfrei erhältlich?',
     answer: 'Viele Produkte mit Kamille, Passionsblume, Reishi, Magnesium oder L-Theanin sind rezeptfrei erhältlich. Trotzdem sollten Nutzer die Herstellerhinweise prüfen und bei starken, anhaltenden Beschwerden medizinischen Rat einholen.'
   },
   {
-    question: 'Was ist das beste rezeptfreie pflanzliche Beruhigungsmittel?',
-    answer: 'Das hängt vom Bedarf ab. Für eine einfache Abendroutine ist Bonjour Drink besonders passend. Wer Kapseln bevorzugt, kann Reishi-Produkte prüfen; wer einen Mineralstoff-Winkel sucht, landet eher bei Magnesium.'
+    question: 'Gibt es rezeptfreie Beruhigungsmittel mit schneller Wirkung?',
+    answer: 'Eine echte Sofortwirkung wie bei verschreibungspflichtigen Arzneimitteln ist bei rezeptfreien pflanzlichen Produkten nicht zu erwarten. Getränke, Mints oder Tees können subjektiv schneller eine ruhige Situation schaffen, weil die Anwendung selbst bereits beruhigend wirkt.'
   },
   {
     question: 'Wirken rezeptfreie pflanzliche Beruhigungsmittel sofort?',
@@ -61,8 +65,8 @@ const faq = [
   })} />
 
   <BlogHero
-    title={articleTitle}
-    description={articleDescription}
+    title="Beruhigungsmittel rezeptfrei Testsieger 2026 — welche pflanzlichen Optionen wirklich überzeugen"
+    description="Beruhigungsmittel rezeptfrei Testsieger 2026: Bonjour Drink, Reishi-Kapseln & Magnesium im direkten Vergleich. Welche Formate passen zur Abendroutine — ohne Rezept, ohne Versprechen."
     author={config.author.name}
     authorAvatar={config.author.avatar}
     date="30. April 2026"
@@ -150,7 +154,7 @@ const faq = [
               <p>Die bekannteste Kategorie sind pflanzliche Klassiker. Kamille, Passionsblume, Baldrian, Melisse, Lavendel und Hopfen werden seit langer Zeit mit Ruhe und Entspannung verbunden. Viele Nutzer kennen diese Pflanzen aus Tees, Tropfen oder Kapseln. Ihr Vorteil ist die hohe Vertrautheit. Ihr Nachteil ist, dass sie je nach Produkt sehr unterschiedlich dosiert, kombiniert und vermarktet werden. Ein Kamillentee ist nicht dasselbe wie ein funktionelles Getränk mit mehreren Inhaltsstoffen.</p>
               <p>Eine zweite Kategorie sind Mineralstoffe und Aminosäuren. Magnesium wird oft mit Muskelentspannung, Stress und Nervensystem verbunden. L-Theanin ist vor allem aus grünem Tee bekannt und wird häufig für mentale Ruhe ohne starke Müdigkeit gesucht. GABA erscheint in modernen Produkten, ist aber erklärungsbedürftiger. Diese Inhaltsstoffe passen gut zu Nutzern, die weniger nach traditioneller Kräutermedizin suchen und mehr nach moderner Supplement-Logik.</p>
               <p>Eine dritte Kategorie sind funktionelle Pilze und Adaptogene. Reishi, Ashwagandha oder Mischungen aus Pilzen und Pflanzen werden häufig im Wellness-Kontext genutzt. Hier ist der Markt besonders marketingstark, weshalb ein nüchterner Vergleich wichtig ist. Nicht jeder Nutzer braucht eine komplexe Adaptogen-Formel. Manchmal ist ein einfaches, gut verständliches Format besser als eine lange Zutatenliste.</p>
-              <p>Bonjour Drink sitzt genau zwischen diesen Welten. Die Marke nutzt mit Kamille und Passionsblume sehr vertraute Pflanzen, ergänzt aber mit Reishi und L-Theanin moderne funktionelle Inhaltsstoffe. Dadurch wirkt das Produkt nicht wie ein schweres Beruhigungsmittel, sondern wie eine bewusste Abendroutine. Das ist für viele Nutzer attraktiver als eine weitere Tablette im Schrank.</p>
+              <p>Bonjour Drink sitzt genau zwischen diesen Welten. Die Marke nutzt mit Kamille und Passionsblume sehr vertraute Pflanzen, ergänzt aber mit Reishi und L-Theanin moderne funktionelle Inhaltsstoffe. Dadurch wirkt das Produkt nicht wie ein schweres Beruhigungsmittel, sondern wie eine bewusste Abendroutine. Das ist für viele Nutzer attraktiver als eine weitere Tablette im Schrank. Wer zusätzlich wissen möchte, welche Formate sich besonders schnell in den Alltag einbauen lassen, findet auf der Seite zu <a href="/beruhigungsmittel-pflanzlich-schnell-wirkend/">pflanzlichen Beruhigungsmitteln schnell wirkend</a> einen direkten Vergleich.</p>
             </section>
 
             <section id="vergleich" class="article-section rich-text">
@@ -199,7 +203,17 @@ const faq = [
             <section class="article-section rich-text">
               <h2>Fazit: rezeptfrei ja, aber mit klarem Rahmen</h2>
               <p>Rezeptfreie pflanzliche Beruhigungsmittel können sinnvoll sein, wenn der Bedarf realistisch ist: mehr Ruhe im Alltag, eine Abendroutine, eine sanfte Ergänzung oder ein besser strukturiertes Abschalten. Sie sind weniger sinnvoll, wenn starke Beschwerden, dauerhafte Schlafprobleme oder psychische Belastungen allein damit gelöst werden sollen. Genau deshalb ist die beste Empfehlung nicht automatisch das stärkste oder komplexeste Produkt, sondern das verständlichste und alltagstauglichste.</p>
-              <p>Für diesen Bedarf bleibt Bonjour Drink unsere erste Wahl. Das Produkt verbindet vertraute Pflanzen mit modernen funktionellen Inhaltsstoffen und macht daraus ein Format, das Nutzer wirklich in eine Routine einbauen können. Wer gezielter nach Reishi, Magnesium oder einem schnellen Mint-Format sucht, sollte die weiteren Produkte im Vergleich prüfen. Wer unsicher ist oder bereits Medikamente nimmt, sollte vor dem Kauf medizinischen Rat einholen.</p>
+              <p>Für diesen Bedarf bleibt Bonjour Drink unsere erste Wahl. Das Produkt verbindet vertraute Pflanzen mit modernen funktionellen Inhaltsstoffen und macht daraus ein Format, das Nutzer wirklich in eine Routine einbauen können. Den vollständigen Produktvergleich mit allen fünf Marken findest du auf der <a href="/">Hauptseite zu pflanzlichen Beruhigungsmitteln</a>. Wer gezielter nach Reishi, Magnesium oder einem schnellen Mint-Format sucht, sollte die weiteren Produkte im Vergleich prüfen. Wer unsicher ist oder bereits Medikamente nimmt, sollte vor dem Kauf medizinischen Rat einholen.</p>
+            </section>
+
+            <section class="article-section rich-text weiterlesen-block">
+              <h2>Weiterlesen</h2>
+              <p>Weitere Vergleiche und Ratgeber aus diesem Bereich:</p>
+              <ul>
+                <li><a href="/beruhigungsmittel-pflanzlich-schnell-wirkend/">Welches pflanzliche Beruhigungsmittel wirkt sofort? Testsieger 2026 im Vergleich</a></li>
+                <li><a href="/">Pflanzliche Beruhigungsmittel Testsieger 2026 — der große Vergleich</a></li>
+                <li><a href="/natuerliche-beruhigungsmittel-bei-nervositaet/">Natürliche Beruhigungsmittel bei Nervosität — Routinen und Kaufkriterien</a></li>
+              </ul>
             </section>
 
             <section id="faq" class="faq-section">

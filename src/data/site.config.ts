@@ -222,8 +222,8 @@ const config: SiteConfig = {
     bio: "Unabhängiger Produkttester für natürliche Supplements, funktionelle Getränke und Alltagsergänzungen."
   },
   seo: {
-    title: "Pflanzliche Beruhigungsmittel Testsieger 2026: rezeptfrei und natürlich",
-    description: "Pflanzliche Beruhigungsmittel Testsieger 2026: rezeptfreie Optionen, Beruhigungstee, schnelle Formate und natürliche Routinen im Vergleich.",
+    title: "Pflanzliche Beruhigungsmittel: Testsieger 2026 im Vergleich — rezeptfrei & natürlich",
+    description: "Welche pflanzlichen Beruhigungsmittel überzeugen 2026 wirklich? Testsieger, rezeptfreie Optionen und natürliche Formate mit Kamille, Reishi & L-Theanin im ehrlichen Vergleich.",
     ogImage: "/og-image.jpg"
   },
   analyticsMeasurementId: "G-72NMT5EZGM",
@@ -252,12 +252,20 @@ const config: SiteConfig = {
       answer: "Viele Produkte mit Kamille, Reishi, Magnesium, L-Theanin oder ähnlichen Inhaltsstoffen sind frei verkäuflich. Trotzdem sollte man die Hinweise des Herstellers lesen und bei Medikamenten, Schwangerschaft oder bestehenden Beschwerden medizinischen Rat einholen."
     },
     {
+      question: "Was sagt die Stiftung Warentest zu pflanzlichen Beruhigungsmitteln?",
+      answer: "Die Stiftung Warentest hat verschiedene pflanzliche Beruhigungsmittel bewertet, darunter Baldrian-, Passionsblume- und Lavendel-Präparate. Die Bewertungen beziehen sich auf klassische Arzneimittel aus der Apotheke. Nahrungsergänzungsmittel und funktionelle Getränke wie die Produkte in diesem Vergleich unterliegen anderen Regeln und werden von der Stiftung Warentest nicht in derselben Kategorie getestet."
+    },
+    {
+      question: "Welches pflanzliche Beruhigungsmittel wirkt am schnellsten?",
+      answer: "Pflanzliche Produkte haben keine medizinische Sofortwirkung. Formate wie warme Getränke oder Mints können subjektiv schneller eine ruhige Situation schaffen, weil die Anwendung selbst beruhigend wirkt. Für einen ausführlichen Vergleich der schnellen Formate, siehe unsere Seite zu schnell wirkenden pflanzlichen Beruhigungsmitteln."
+    },
+    {
       question: "Was ist besser: Kapseln, Pulver oder Mints?",
       answer: "Pulver und Getränke passen gut für eine bewusste Abendroutine. Kapseln sind praktischer, wenn man eine klare Dosierung möchte. Mints sind am einfachsten für unterwegs, wirken aber weniger wie ein klassisches Supplement."
     },
     {
-      question: "Welches Produkt passt am besten zu Stress im Alltag?",
-      answer: "Für eine ruhige Abendroutine ist Bonjour Drink am passendsten. Für Reishi-Kapseln ist French Mush stark, für Magnesium Clearly, für ein schnelles Format Neuro Gum und für ein günstiges Relax-Getränk Mushroom Cups."
+      question: "Wie unterscheiden sich Neurexan, Lasea oder Meliston von den Produkten hier?",
+      answer: "Neurexan, Lasea und Meliston sind klassische pflanzliche Arzneimittel mit offiziellem Anwendungsgebiet und Apothekenzulassung. Die Produkte in diesem Vergleich sind Nahrungsergänzungsmittel oder funktionelle Getränke und dürfen keine Heilversprechen machen. Beide Kategorien haben unterschiedliche Einsatzbereiche."
     },
     {
       question: "Sind diese Produkte Schlafmittel?",
