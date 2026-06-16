@@ -47,6 +47,26 @@ const {
   showMeta = true,
 } = Astro.props;
 
+
+const normalizedPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const contentKey = `${normalizedPath} ${title} ${description}`
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .toLowerCase();
+const isHomePage = normalizedPath === '/';
+const isPromoIntent = /code|promo|coupon|cupon|cup[oó]n|rabatt|discount|korting|reduction|remise/.test(contentKey);
+const getReadArticleText = () => {
+  if (/\b(es|espana|comprar|beneficios|contraindicaciones|opiniones|preparar)\b/.test(contentKey)) return 'Leer el artículo';
+  if (/\b(italia|caffe|controindicazioni|leggi)\b/.test(contentKey)) return "Leggi l'articolo";
+  if (/\b(erfahrungen|wirkung|nebenwirkungen|kaufen|deutschland|test|pruefungsangst|muedigkeit)\b/.test(contentKey)) return 'Artikel lesen';
+  if (/\b(nederland|beste|elektrolyten|paddenstoelen|koffie)\b/.test(contentKey)) return 'Artikel lezen';
+  if (/\b(best|reviews|benefits|side effects|caffeine|women|men|dosage)\b/.test(contentKey)) return 'Read article';
+  return "Lire l’article";
+};
+const readArticleButton = { text: getReadArticleText(), href: '#intro', external: false };
+const offerBlockVisible = Boolean(product && showOfferBlock && (isHomePage || isPromoIntent));
+const effectiveHeroButton = !isHomePage && !isPromoIntent ? readArticleButton : heroButton;
+
 const displayAuthor = /Tim Reviews?/i.test(author) ? 'Tim' : author;
 ---
 
@@ -79,7 +99,7 @@ const displayAuthor = /Tim Reviews?/i.test(author) ? 'Tim' : author;
     <p class="text-text-dark/80 text-paragraph leading-[1.6] max-w-[45rem]">{description}</p>
 
     <!-- Price block: compare-at + discount + promo tag -->
-    {product && showOfferBlock && (
+    {offerBlockVisible && (
       <div class="flex flex-wrap items-baseline gap-2">
         <span class="compare-at-price-text">{product.originalPrice}</span>
         <span class="price-text">{product.discountPrice}</span>
@@ -90,7 +110,7 @@ const displayAuthor = /Tim Reviews?/i.test(author) ? 'Tim' : author;
     )}
 
     <!-- CTA buttons: promo code + visit site -->
-    {product && showOfferBlock && (
+    {offerBlockVisible && (
       <div class="hero-cta-row">
         <PromoCodeButton code={product.promoCode} percent={`${product.promoPercent}%`} />
         <a
@@ -109,14 +129,14 @@ const displayAuthor = /Tim Reviews?/i.test(author) ? 'Tim' : author;
       </div>
     )}
 
-    {heroButton && !showOfferBlock && (
+    {effectiveHeroButton && !offerBlockVisible && (
       <div class="hero-cta-row hero-cta-row--single">
         <a
-          href={heroButton.href}
-          {...(heroButton.external ? { target: '_blank', rel: 'nofollow sponsored' } : {})}
+          href={effectiveHeroButton.href}
+          {...(effectiveHeroButton.external ? { target: '_blank', rel: 'nofollow sponsored' } : {})}
           class="hero-visit-btn hero-visit-btn--anchor"
         >
-          {heroButton.text}
+          {effectiveHeroButton.text}
           <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 5v14"/>
             <path d="m19 12-7 7-7-7"/>
