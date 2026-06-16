@@ -23,82 +23,121 @@ const normalizePath = (value: string) => {
 
 const currentPath = normalizePath(Astro.url.pathname);
 const isNavLinkActive = (href: string) => normalizePath(href) === currentPath;
+const textKey = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const allLabels = navLinks.map((link) => `${link.label} ${link.href}`).join(' ');
+const key = textKey(`${siteName} ${allLabels}`);
+
+const getGuidesLabel = () => {
+  if (/\b(comparativa|beneficios|opiniones|contraindicaciones|donde|sueno|manzanilla|preparar)\b/.test(key)) return 'Guías';
+  if (/\b(comparativo|controindicazioni|italia)\b/.test(key)) return 'Guide';
+  if (/\b(vergleich|erfahrungen|wirkung|nebenwirkungen|kaufen|rabattcode|schnell|rezeptfrei)\b/.test(key)) return 'Ratgeber';
+  if (/\b(vergelijking|zonder|tijdens|poeder|tabletten|korting|ervaring)\b/.test(key)) return 'Gidsen';
+  return 'Guides';
+};
+
+const getSectionLabel = () => {
+  if (/\b(comparativa|beneficios|opiniones|contraindicaciones|donde|sueno|manzanilla|preparar)\b/.test(key)) return 'Articles utiles';
+  if (/\b(comparativo|controindicazioni|italia)\b/.test(key)) return 'Risorse';
+  if (/\b(vergleich|erfahrungen|wirkung|nebenwirkungen|kaufen|rabattcode|schnell|rezeptfrei)\b/.test(key)) return 'Weitere Seiten';
+  if (/\b(vergelijking|zonder|tijdens|poeder|tabletten|korting|ervaring)\b/.test(key)) return 'Verder lezen';
+  return 'Guides utiles';
+};
+
+const primaryLink = navLinks[0] ?? { label: 'Accueil', href: '/' };
+const isReviewLike = (link: NavLink) => /avis|review|reviews|erfahrung|erfahrungen|opiniones|test|rabattcode|discount|code promo|korting/i.test(`${link.label} ${link.href}`);
+const featuredLink = navLinks.slice(1).find(isReviewLike);
+const dropdownLinks = navLinks.filter((link, index) => index !== 0 && link !== featuredLink);
+const dropdownActive = dropdownLinks.some((link) => isNavLinkActive(link.href));
+const featuredActive = featuredLink ? isNavLinkActive(featuredLink.href) : false;
+const guidesLabel = getGuidesLabel();
+const sectionLabel = getSectionLabel();
+const ctaIsInternal = ctaLink.startsWith('#') || ctaLink.startsWith('/');
 ---
 
-<!-- ═══ navbar_component ═══
-  Webflow: z-999, bg #f4f2ec, flex, justify-between, items-center, w-full, py-12px, position static → sticky for scroll-shadow
--->
-<header
-  id="navbar"
-  class="sticky top-0 z-[999] w-full bg-grey-bg py-3 transition-shadow duration-300"
->
-  <!-- ═══ navbar_container-v2 ═══
-    Webflow: w-full, max-w-1968px, px-24px; @media ≤767px: px-1.25rem
-  -->
-  <div class="mx-auto flex w-full max-w-[1968px] items-center justify-between px-6 max-[767px]:px-5">
-    <!-- ═══ nav_wrapper-logo ═══ -->
-    <a href="/" class="flex shrink-0 items-center">
-      <!-- ═══ nav_logo: height ~40px, width auto ═══ -->
-      <img src={logoSrc} alt={siteName} class="h-10 w-auto" />
+<header id="navbar" class="sticky top-0 z-[999] w-full border-b border-black/5 bg-grey-bg/95 py-3 backdrop-blur transition-shadow duration-300">
+  <div class="mx-auto flex w-full max-w-[1440px] items-center justify-between gap-6 px-6 max-[767px]:px-5">
+    <a href="/" class="flex shrink-0 items-center" aria-label={`Retour à l'accueil - ${siteName}`}>
+      <img src={logoSrc} alt={siteName} class="h-10 w-auto max-[420px]:h-9" />
     </a>
 
-    <!-- ═══ navbar_menu-content-wrapper (desktop only) ═══
-      Webflow: gap-64px, flex, justify-between, items-center
-      Hidden below 991px via Webflow responsive override
-    -->
-    <div class="flex items-center justify-between gap-4 max-[991px]:hidden">
-      <!-- ═══ navbar_menu-content ═══
-        Webflow: gap-64px, flex, justify-start, items-center
-      -->
-      <nav class="flex items-center justify-start gap-4">
-        {navLinks.map((link) => (
-          /* ═══ navbar_menu-item ═══ Webflow: gap-12px, flex, justify-start, items-center */
+    <div class="flex min-w-0 flex-1 items-center justify-end gap-5 max-[991px]:hidden">
+      <nav class="flex min-w-0 items-center justify-end gap-1 rounded-full bg-white/45 px-2 py-1 shadow-[inset_0_0_0_1px_rgba(0,0,0,0.04)]" aria-label="Navigation principale">
+        <a
+          href={primaryLink.href}
+          aria-current={isNavLinkActive(primaryLink.href) ? 'page' : undefined}
+          class:list={[
+            'max-w-[180px] truncate rounded-full px-4 py-2 font-primary text-sm font-semibold leading-none no-underline transition-colors duration-200 hover:bg-white hover:text-black',
+            isNavLinkActive(primaryLink.href) ? 'bg-white text-orange shadow-sm' : 'text-[#595b61]',
+          ]}
+          title={primaryLink.label}
+        >
+          {primaryLink.label}
+        </a>
+
+        {dropdownLinks.length > 0 && (
+          <div class="nav-dropdown relative">
+            <button
+              type="button"
+              class:list={[
+                'nav-dropdown-trigger inline-flex items-center gap-1.5 rounded-full px-4 py-2 font-primary text-sm font-semibold leading-none transition-colors duration-200 hover:bg-white hover:text-black',
+                dropdownActive ? 'bg-white text-orange shadow-sm' : 'text-[#595b61]',
+              ]}
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              <span>{guidesLabel}</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="nav-dropdown-chevron transition-transform duration-200">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu absolute left-1/2 top-[calc(100%+0.75rem)] w-[min(380px,calc(100vw-2rem))] -translate-x-1/2 rounded-3xl border border-black/10 bg-white p-2 shadow-[0_20px_60px_rgba(0,0,0,0.14)] transition-all duration-200">
+              <div class="px-3 pb-2 pt-2 text-[11px] font-bold uppercase tracking-[0.16em] text-[#8a8a8a]">{sectionLabel}</div>
+              {dropdownLinks.map((link) => (
+                <a
+                  href={link.href}
+                  aria-current={isNavLinkActive(link.href) ? 'page' : undefined}
+                  class:list={[
+                    'block rounded-2xl px-3 py-2.5 font-primary text-sm font-semibold leading-snug no-underline transition-colors duration-200 hover:bg-grey-bg hover:text-black',
+                    isNavLinkActive(link.href) ? 'bg-grey-bg text-orange' : 'text-[#595b61]',
+                  ]}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {featuredLink && (
           <a
-            href={link.href}
-            aria-current={isNavLinkActive(link.href) ? 'page' : undefined}
+            href={featuredLink.href}
+            aria-current={featuredActive ? 'page' : undefined}
             class:list={[
-              'font-primary text-sm no-underline transition-colors duration-200 hover:text-black',
-              isNavLinkActive(link.href) ? 'font-bold text-orange' : 'text-[#595b61]',
+              'max-w-[220px] truncate rounded-full px-4 py-2 font-primary text-sm font-semibold leading-none no-underline transition-colors duration-200 hover:bg-white hover:text-black',
+              featuredActive ? 'bg-white text-orange shadow-sm' : 'text-[#595b61]',
             ]}
+            title={featuredLink.label}
           >
-            {link.label}
+            {featuredLink.label}
           </a>
-        ))}
+        )}
       </nav>
 
-      <!-- ═══ CTA Button - orange rounded pill ═══ -->
       <a
         href={ctaLink}
-        rel={ctaLink.startsWith('#') ? undefined : 'nofollow sponsored'}
-        target={ctaLink.startsWith('#') ? undefined : '_blank'}
-        class="inline-flex shrink-0 items-center gap-2 rounded-button bg-orange px-5 py-2.5 font-primary text-sm font-bold leading-none text-white no-underline transition-all duration-200 hover:bg-[#d66a12] hover:-translate-y-px"
+        rel={ctaIsInternal ? undefined : 'nofollow sponsored'}
+        target={ctaIsInternal ? undefined : '_blank'}
+        class="inline-flex shrink-0 items-center gap-2 rounded-button bg-orange px-6 py-3 font-primary text-sm font-bold leading-none text-white no-underline transition-all duration-200 hover:-translate-y-px hover:bg-[#d66a12]"
       >
         <span>{ctaText}</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="16"
-          height="16"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2.5"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="shrink-0"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
           <path d="M5 12h14" />
           <path d="m12 5 7 7-7 7" />
         </svg>
       </a>
     </div>
 
-    <!-- ═══ hamburger-menu (mobile only, hidden on desktop ≥991px) ═══ -->
-    <button
-      id="mobile-menu-btn"
-      class="hidden max-[991px]:flex flex-col items-center justify-center gap-1.5"
-      aria-label="Menü öffnen"
-      aria-expanded="false"
-    >
+    <button id="mobile-menu-btn" class="hidden flex-col items-center justify-center gap-1.5 rounded-full bg-white/70 p-3 max-[991px]:flex" aria-label="Ouvrir le menu" aria-expanded="false">
       <span class="hamburger-bar block h-[2px] w-6 origin-center bg-black transition-all duration-300"></span>
       <span class="hamburger-bar block h-[2px] w-6 bg-black transition-all duration-300"></span>
       <span class="hamburger-bar block h-[2px] w-6 origin-center bg-black transition-all duration-300"></span>
@@ -106,96 +145,117 @@ const isNavLinkActive = (href: string) => normalizePath(href) === currentPath;
   </div>
 </header>
 
-<!-- ═══ Mobile Menu Overlay (slides in from right) ═══ -->
-<div
-  id="mobile-menu"
-  class="mobile-overlay fixed inset-0 z-[9999] flex flex-col items-center justify-center gap-10 bg-grey-bg transition-all duration-300"
->
-  <!-- Close button -->
-  <button
-    id="mobile-menu-close"
-    class="absolute right-5 top-5 flex h-10 w-10 items-center justify-center"
-    aria-label="Menü schließen"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="black"
-      stroke-width="2.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
-  </button>
+<div id="mobile-menu" class="mobile-overlay fixed inset-0 z-[9999] flex flex-col bg-grey-bg transition-all duration-300">
+  <div class="flex items-center justify-between px-5 py-4">
+    <img src={logoSrc} alt={siteName} class="h-9 w-auto" />
+    <button id="mobile-menu-close" class="flex h-11 w-11 items-center justify-center rounded-full bg-white" aria-label="Fermer le menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </svg>
+    </button>
+  </div>
 
-  <!-- Mobile nav links -->
-  <nav class="flex flex-col items-center gap-7">
-    {navLinks.map((link) => (
-      <a
-        href={link.href}
-        aria-current={isNavLinkActive(link.href) ? 'page' : undefined}
-        class:list={[
-          'font-primary text-[28px] font-semibold leading-tight transition-colors duration-200 hover:text-orange',
-          isNavLinkActive(link.href) ? 'text-orange' : 'text-black',
-        ]}
-      >
-        {link.label}
-      </a>
-    ))}
+  <nav class="flex flex-1 flex-col gap-7 overflow-y-auto px-6 pb-8 pt-4" aria-label="Navigation mobile">
+    <a
+      href={primaryLink.href}
+      aria-current={isNavLinkActive(primaryLink.href) ? 'page' : undefined}
+      class:list={[
+        'rounded-2xl bg-white px-5 py-4 font-primary text-2xl font-bold leading-tight no-underline transition-colors duration-200 hover:text-orange',
+        isNavLinkActive(primaryLink.href) ? 'text-orange' : 'text-black',
+      ]}
+    >
+      {primaryLink.label}
+    </a>
+
+    {dropdownLinks.length > 0 && (
+      <div>
+        <p class="mb-3 px-1 text-xs font-bold uppercase tracking-[0.18em] text-[#8a8a8a]">{guidesLabel}</p>
+        <div class="grid gap-2">
+          {dropdownLinks.map((link) => (
+            <a
+              href={link.href}
+              aria-current={isNavLinkActive(link.href) ? 'page' : undefined}
+              class:list={[
+                'rounded-2xl bg-white px-5 py-3.5 font-primary text-lg font-semibold leading-tight no-underline transition-colors duration-200 hover:text-orange',
+                isNavLinkActive(link.href) ? 'text-orange' : 'text-black',
+              ]}
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+    {featuredLink && (
+      <div>
+        <p class="mb-3 px-1 text-xs font-bold uppercase tracking-[0.18em] text-[#8a8a8a]">Focus</p>
+        <a
+          href={featuredLink.href}
+          aria-current={featuredActive ? 'page' : undefined}
+          class:list={[
+            'block rounded-2xl bg-white px-5 py-3.5 font-primary text-lg font-semibold leading-tight no-underline transition-colors duration-200 hover:text-orange',
+            featuredActive ? 'text-orange' : 'text-black',
+          ]}
+        >
+          {featuredLink.label}
+        </a>
+      </div>
+    )}
+
+    <a
+      href={ctaLink}
+      rel={ctaIsInternal ? undefined : 'nofollow sponsored'}
+      target={ctaIsInternal ? undefined : '_blank'}
+      class="mt-auto inline-flex items-center justify-center gap-2.5 rounded-button bg-orange px-8 py-4 font-primary text-lg font-bold leading-none text-white no-underline transition-all duration-200 hover:bg-[#d66a12]"
+    >
+      <span>{ctaText}</span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0">
+        <path d="M5 12h14" />
+        <path d="m12 5 7 7-7 7" />
+      </svg>
+    </a>
   </nav>
-
-  <!-- Mobile CTA Button -->
-  <a
-    href={ctaLink}
-    rel={ctaLink.startsWith('#') ? undefined : 'nofollow sponsored'}
-    target={ctaLink.startsWith('#') ? undefined : '_blank'}
-    class="mt-2 inline-flex items-center gap-2.5 rounded-button bg-orange px-8 py-4 font-primary text-lg font-bold leading-none text-white no-underline transition-all duration-200 hover:bg-[#d66a12]"
-  >
-    <span>{ctaText}</span>
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="shrink-0"
-    >
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-  </a>
 </div>
 
 <style>
-  /* ── Navbar scroll shadow ── */
   #navbar.scrolled {
-    box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 18px 0 rgba(0, 0, 0, 0.09);
   }
 
-  /* ── Mobile overlay - closed (slides out to right) ── */
+  .nav-dropdown-menu {
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(-50%, -0.25rem);
+  }
+
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu,
+  .nav-dropdown.open .nav-dropdown-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  .nav-dropdown.open .nav-dropdown-chevron,
+  .nav-dropdown:hover .nav-dropdown-chevron,
+  .nav-dropdown:focus-within .nav-dropdown-chevron {
+    transform: rotate(180deg);
+  }
+
   .mobile-overlay {
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
   }
 
-  /* ── Mobile overlay - open (slides in) ── */
   .mobile-overlay.open {
     opacity: 1;
     pointer-events: auto;
     transform: translateX(0);
   }
 
-  /* ── Hamburger → X morph animation ── */
   .hamburger-bar.active:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
@@ -210,7 +270,6 @@ const isNavLinkActive = (href: string) => normalizePath(href) === currentPath;
 </style>
 
 <script>
-  // ── Navbar shadow on scroll ──
   const navbar = document.getElementById('navbar');
   if (navbar) {
     const onScroll = () => {
@@ -220,7 +279,50 @@ const isNavLinkActive = (href: string) => normalizePath(href) === currentPath;
     onScroll();
   }
 
-  // ── Mobile menu toggle ──
+  const resetDropdown = (dropdown: HTMLElement) => {
+    dropdown.classList.remove('open');
+    dropdown.querySelector<HTMLButtonElement>('.nav-dropdown-trigger')?.setAttribute('aria-expanded', 'false');
+    const menu = dropdown.querySelector<HTMLElement>('.nav-dropdown-menu');
+    if (menu) {
+      menu.style.visibility = '';
+      menu.style.opacity = '';
+      menu.style.transform = '';
+    }
+  };
+
+  document.querySelectorAll<HTMLElement>('.nav-dropdown').forEach((dropdown) => {
+    const trigger = dropdown.querySelector<HTMLButtonElement>('.nav-dropdown-trigger');
+    const menu = dropdown.querySelector<HTMLElement>('.nav-dropdown-menu');
+    const setMenuOpen = (open: boolean) => {
+      dropdown.classList.toggle('open', open);
+      trigger?.setAttribute('aria-expanded', String(open));
+      if (menu) {
+        menu.style.visibility = open ? 'visible' : '';
+        menu.style.opacity = open ? '1' : '';
+        menu.style.transform = open ? 'translate(-50%, 0)' : '';
+      }
+    };
+    const toggle = () => {
+      const next = !dropdown.classList.contains('open');
+      document.querySelectorAll<HTMLElement>('.nav-dropdown.open').forEach(resetDropdown);
+      setMenuOpen(next);
+    };
+
+    trigger?.addEventListener('click', (event) => {
+      event.preventDefault();
+      toggle();
+    });
+
+    dropdown.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setMenuOpen(false)));
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target as Node;
+    document.querySelectorAll<HTMLElement>('.nav-dropdown.open').forEach((dropdown) => {
+      if (!dropdown.contains(target)) resetDropdown(dropdown);
+    });
+  });
+
   const btn = document.getElementById('mobile-menu-btn');
   const menu = document.getElementById('mobile-menu');
   const closeBtn = document.getElementById('mobile-menu-close');
@@ -246,16 +348,12 @@ const isNavLinkActive = (href: string) => normalizePath(href) === currentPath;
     });
 
     closeBtn.addEventListener('click', closeMenu);
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
-    // Close on link click
-    menu.querySelectorAll('a').forEach((link) => {
-      link.addEventListener('click', closeMenu);
-    });
-
-    // Close on Escape key
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && menu.classList.contains('open')) {
+      if (e.key === 'Escape') {
         closeMenu();
+        document.querySelectorAll<HTMLElement>('.nav-dropdown.open').forEach(resetDropdown);
       }
     });
   }
