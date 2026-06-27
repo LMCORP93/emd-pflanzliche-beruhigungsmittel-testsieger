@@ -48,7 +48,7 @@ const productSchema = (p: typeof config.products[number]) => ({
       returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
     },
   },
-  aggregateRating: { '@type': 'AggregateRating', ratingValue: p.rating, bestRating: 10, worstRating: 1, reviewCount: p.reviewCount },
+  review: { '@type': 'Review', author: { '@type': 'Organization', name: config.siteName }, reviewRating: { '@type': 'Rating', ratingValue: p.rating, bestRating: 10, worstRating: 1 } },
 });
 ---
 
