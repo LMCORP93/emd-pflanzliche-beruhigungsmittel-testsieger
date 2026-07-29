@@ -11,6 +11,8 @@ export interface SupportPage {
   introParagraphs: string[];
   assets: string[];
   considerations: string[];
+  inlineImage?: string;
+  inlineImage2?: string;
   toc: { id: string; label: string }[];
   sections: { id?: string; title: string; paragraphs: string[]; note?: string }[];
   table: { title: string; rows: { cells: string[]; highlight?: boolean }[] };
@@ -144,6 +146,7 @@ export const supportPages: SupportPage[] = [
   },
   {
     slug: 'beruhigungsmittel-rezeptfrei-stark',
+    inlineImage: '/images/content/beruhigungsmittel-rezeptfrei-stark-ill1.webp',
     label: 'Stark rezeptfrei',
     title: 'Beruhigungsmittel rezeptfrei stark',
     description: 'Beruhigungsmittel rezeptfrei stark: was natürliche Produkte leisten können, wo Grenzen liegen und welche Formate sinnvoll sind.',

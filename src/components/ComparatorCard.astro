@@ -207,6 +207,11 @@ const chevronId = `chevron-${product.slug}`;
 
     <!-- ─── FOOTER CTA ─── -->
     <div class="cc-footer">
+      {product.promoCode && product.promoPercent > 0 && (
+        <div class="cc-footer-code">
+          <PromoCodeButton code={product.promoCode} percent={`${product.promoPercent}%`} />
+        </div>
+      )}
       <a
         href={product.affiliateLink}
         rel="nofollow sponsored"
@@ -708,5 +713,29 @@ const chevronId = `chevron-${product.slug}`;
   .cc-footer-btn:hover {
     background: #ff8c2e;
     color: #ffffff;
+  }
+
+  /* CTA de pied : moitie code promo, moitie lien vers le site */
+  .cc-footer {
+    display: flex;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .cc-footer-code {
+    flex: 1 1 50%;
+    min-width: 0;
+    display: flex;
+  }
+  .cc-footer-code > * {
+    width: 100%;
+    justify-content: center;
+  }
+  .cc-footer .cc-footer-btn {
+    flex: 1 1 50%;
+    min-width: 0;
+  }
+  @media (max-width: 560px) {
+    .cc-footer { flex-direction: column; }
+    .cc-footer-code, .cc-footer .cc-footer-btn { flex: 1 1 auto; }
   }
 </style>

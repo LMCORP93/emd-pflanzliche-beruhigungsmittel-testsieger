@@ -106,6 +106,8 @@ const faqSchema = {
 
             <ContentImage src={page.heroImage} alt={`${page.title} als natürliche Wellness-Routine`} caption="Natürliche Beruhigung beginnt oft mit einem einfachen, wiederholbaren Ritual." />
 
+            {page.inlineImage && <ContentImage src={page.inlineImage} alt={`${page.title} - pflanzliche Wirkstoffe im Detail`} caption="Die Zusammensetzung sagt mehr aus als das Versprechen auf der Packung." />}
+
             <section id={page.sections[2].id} class="article-section rich-text">
               <h2>{page.sections[2].title}</h2>
               {page.sections[2].paragraphs.map((paragraph) => <p set:html={paragraph} />)}
