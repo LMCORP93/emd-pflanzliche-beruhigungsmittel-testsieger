@@ -49,7 +49,7 @@ const faq = [
     description: articleDescription,
     image: new URL(heroImage, config.domain).toString(),
     author: { '@type': 'Person', name: config.author.name },
-    publisher: { '@type': 'Organization', name: 'LMC' },
+    publisher: { '@type': 'Organization', name: config.siteName },
     mainEntityOfPage: new URL('/beruhigungsmittel-pflanzlich-schnell-wirkend/', config.domain).toString(),
     datePublished: '2026-04-30',
     dateModified: '2026-04-30'
