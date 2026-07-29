@@ -280,6 +280,7 @@ const config: SiteConfig = {
     { id: "faq", label: "FAQ" }
   ],
   pages: [
+    { type: 'comparatif', label: 'Guide', slug: '/', image: '/images/content/pflanzliche-beruhigungsmittel-hero.webp' },
     { type: 'blog', label: 'Rezeptfrei', slug: '/pflanzliche-beruhigungsmittel-rezeptfrei/', image: '/images/articles/pflanzliche-beruhigungsmittel-rezeptfrei.webp' },
     { type: 'blog', label: 'Schnell wirkend', slug: '/beruhigungsmittel-pflanzlich-schnell-wirkend/', image: '/images/articles/beruhigungsmittel-pflanzlich-schnell-wirkend.webp' },
     { type: 'blog', label: 'Gegen Angst', slug: '/pflanzliche-beruhigungsmittel-gegen-angst/', image: '/images/articles/pflanzliche-beruhigungsmittel-gegen-angst.webp' },
