@@ -141,7 +141,7 @@ const config: SiteConfig = {
   },
 
   seo: {
-    title: '${product} — Meilleur Test & Avis 2026',
+    title: '${product} : meilleur test et avis 2026',
     description: 'Découvrez notre analyse complète du ${product}. Avantages, inconvénients, prix et code promo exclusif. Comparatif avec les meilleures alternatives.',
     ogImage: '/og-image.jpg',
   },

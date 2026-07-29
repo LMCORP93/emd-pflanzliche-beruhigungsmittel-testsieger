@@ -222,7 +222,7 @@ const config: SiteConfig = {
     bio: "Unabhängiger Produkttester für natürliche Supplements, funktionelle Getränke und Alltagsergänzungen."
   },
   seo: {
-    title: "Pflanzliche Beruhigungsmittel: Testsieger 2026 im Vergleich — rezeptfrei & natürlich",
+    title: "Pflanzliche Beruhigungsmittel: Testsieger 2026 im Vergleich",
     description: "Welche pflanzlichen Beruhigungsmittel überzeugen 2026 wirklich? Testsieger, rezeptfreie Optionen und natürliche Formate mit Kamille, Reishi & L-Theanin im ehrlichen Vergleich.",
     ogImage: "/og-image.jpg"
   },
