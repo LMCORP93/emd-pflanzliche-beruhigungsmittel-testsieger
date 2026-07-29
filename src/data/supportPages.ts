@@ -199,7 +199,7 @@ export const supportPages: SupportPage[] = [
     slug: 'natuerliche-beruhigungsmittel-bei-nervositaet',
     label: 'Nervosität',
     title: 'Natürliche Beruhigungsmittel bei Nervosität: Vergleich 2026',
-    description: 'Natürliche Beruhigungsmittel bei Nervosität: welche Formate sofort nutzbar sind, welche Pflanzen passen und warum eine klare Alltagsroutine oft mehr bringt als ein einzelnes Produkt.',
+    description: 'Natürliche Beruhigungsmittel bei Nervosität: welche Formate sofort nutzbar sind, welche Pflanzen passen und was die Routine wirklich bringt.',
     heroImage: '/images/articles/natuerliche-beruhigungsmittel-bei-nervositaet.webp',
     readingTime: '11 Min. Lesezeit',
     breadcrumbLabel: 'Nervosität',

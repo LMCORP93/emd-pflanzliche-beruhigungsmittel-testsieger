@@ -223,7 +223,7 @@ const config: SiteConfig = {
   },
   seo: {
     title: "Pflanzliche Beruhigungsmittel: Testsieger 2026 im Vergleich",
-    description: "Welche pflanzlichen Beruhigungsmittel überzeugen 2026 wirklich? Testsieger, rezeptfreie Optionen und natürliche Formate mit Kamille, Reishi & L-Theanin im ehrlichen Vergleich.",
+    description: "Welche pflanzlichen Beruhigungsmittel überzeugen 2026? Testsieger, rezeptfreie Optionen und Formate mit Kamille, Reishi und L-Theanin im Vergleich.",
     ogImage: "/og-image.jpg"
   },
   analyticsMeasurementId: "G-72NMT5EZGM",
