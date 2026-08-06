@@ -281,12 +281,12 @@ const config: SiteConfig = {
   ],
   pages: [
     { type: 'comparatif', label: 'Guide', slug: '/', image: '/images/content/pflanzliche-beruhigungsmittel-hero.webp' },
-    { type: 'blog', label: 'Rezeptfrei', slug: '/pflanzliche-beruhigungsmittel-rezeptfrei/', image: '/images/articles/pflanzliche-beruhigungsmittel-rezeptfrei.webp' },
-    { type: 'blog', label: 'Schnell wirkend', slug: '/beruhigungsmittel-pflanzlich-schnell-wirkend/', image: '/images/articles/beruhigungsmittel-pflanzlich-schnell-wirkend.webp' },
-    { type: 'blog', label: 'Gegen Angst', slug: '/pflanzliche-beruhigungsmittel-gegen-angst/', image: '/images/articles/pflanzliche-beruhigungsmittel-gegen-angst.webp' },
-    { type: 'blog', label: 'Zum Schlafen', slug: '/pflanzliche-beruhigungsmittel-zum-schlafen/', image: '/images/articles/pflanzliche-beruhigungsmittel-zum-schlafen.webp' },
-    { type: 'blog', label: 'Stark rezeptfrei', slug: '/beruhigungsmittel-rezeptfrei-stark/', image: '/images/articles/beruhigungsmittel-rezeptfrei-stark.webp' },
-    { type: 'blog', label: 'Nervosität', slug: '/natuerliche-beruhigungsmittel-bei-nervositaet/', image: '/images/articles/natuerliche-beruhigungsmittel-bei-nervositaet.webp' },
+    { type: 'blog', label: 'Beruhigungsmittel rezeptfrei', slug: '/pflanzliche-beruhigungsmittel-rezeptfrei/', image: '/images/articles/pflanzliche-beruhigungsmittel-rezeptfrei.webp' },
+    { type: 'blog', label: 'Schnell wirkend pflanzlich', slug: '/beruhigungsmittel-pflanzlich-schnell-wirkend/', image: '/images/articles/beruhigungsmittel-pflanzlich-schnell-wirkend.webp' },
+    { type: 'blog', label: 'Pflanzlich gegen Angst', slug: '/pflanzliche-beruhigungsmittel-gegen-angst/', image: '/images/articles/pflanzliche-beruhigungsmittel-gegen-angst.webp' },
+    { type: 'blog', label: 'Pflanzlich zum Schlafen', slug: '/pflanzliche-beruhigungsmittel-zum-schlafen/', image: '/images/articles/pflanzliche-beruhigungsmittel-zum-schlafen.webp' },
+    { type: 'blog', label: 'Stark und rezeptfrei', slug: '/beruhigungsmittel-rezeptfrei-stark/', image: '/images/articles/beruhigungsmittel-rezeptfrei-stark.webp' },
+    { type: 'blog', label: 'Bei Nervosität', slug: '/natuerliche-beruhigungsmittel-bei-nervositaet/', image: '/images/articles/natuerliche-beruhigungsmittel-bei-nervositaet.webp' },
     { type: 'blog', label: 'Pflanzenvergleich', slug: '/baldrian-passionsblume-lavendel-vergleich/', image: '/images/articles/baldrian-passionsblume-lavendel-vergleich.webp' }
   ]
 };
