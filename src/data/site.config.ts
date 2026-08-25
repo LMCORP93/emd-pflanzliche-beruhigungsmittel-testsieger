@@ -64,7 +64,7 @@ const products: Product[] = [
     originalPrice: "39,00 €",
     discountPrice: "31,20 €",
     affiliateLink: "https://taap.it/bonjour-drink-lmc",
-    origin: "🇫🇷 Frankreich",
+    origin: "Frankreich",
     availability: "Lieferung nach Deutschland möglich",
     productType: "Pulvergetränk mit Kamille, Passionsblume, Reishi und L-Theanin",
     pros: [
@@ -94,7 +94,7 @@ const products: Product[] = [
     originalPrice: "25,50 €",
     discountPrice: "22,95 €",
     affiliateLink: "https://www.frenchmush.com/r?id=9g3e24",
-    origin: "🇫🇷 Frankreich",
+    origin: "Frankreich",
     availability: "Lieferung nach Deutschland möglich",
     productType: "Reishi-Kapseln mit 13:1 Extrakt",
     pros: [
@@ -124,7 +124,7 @@ const products: Product[] = [
     originalPrice: "21,25 €",
     discountPrice: "19,12 €",
     affiliateLink: "https://clearly.eu/products/magnesium-mix?sca_ref=7596565.tJHE2KRYrL",
-    origin: "🇪🇺 Europa",
+    origin: "Europa",
     availability: "Lieferung nach Deutschland möglich",
     productType: "Magnesium-Pulver mit Citrat, Malat und Glycinat",
     pros: [
@@ -154,7 +154,7 @@ const products: Product[] = [
     originalPrice: "6,80 €",
     discountPrice: "6,12 €",
     affiliateLink: "https://getneuro.eu/r?id=619hb8",
-    origin: "🇺🇸 USA / Europa",
+    origin: "USA / Europa",
     availability: "Lieferung nach Deutschland möglich",
     productType: "Mints mit GABA und L-Theanin",
     pros: [
@@ -184,7 +184,7 @@ const products: Product[] = [
     originalPrice: "15,90 €",
     discountPrice: "14,31 €",
     affiliateLink: "https://mushroomcups.com/products/go-relax-organic-instant-coffee-with-reishi-and-chanterelle-original?ref=LMC",
-    origin: "🇪🇺 Europa",
+    origin: "Europa",
     availability: "Lieferung nach Deutschland möglich",
     productType: "Instant-Getränk mit Reishi, L-Theanin und Magnesium",
     pros: [

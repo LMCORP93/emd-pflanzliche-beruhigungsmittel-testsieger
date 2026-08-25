@@ -69,7 +69,7 @@ const faqSchema = {
     showOfferBlock={false}
   />
 
-  <main style="background-color:#fff;">
+  <main style="background-color:#fcfbf7;">
     <div class="container-large padding-global">
       <div class="padding-section-medium">
         <div class="blog-grid">
@@ -100,7 +100,7 @@ const faqSchema = {
               <section id={section.id} class="article-section rich-text">
                 <h2>{section.title}</h2>
                 {section.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
-                {section.note && <InnerNote emoji="✅" text={section.note} />}
+                {section.note && <InnerNote emoji="" text={section.note} />}
               </section>
             ))}
 
@@ -119,7 +119,7 @@ const faqSchema = {
               <section id={section.id} class="article-section rich-text">
                 <h2>{section.title}</h2>
                 {section.paragraphs.map((paragraph) => <p set:html={paragraph} />)}
-                {section.note && <InnerNote emoji={index === 0 ? '💡' : '⚠️'} text={section.note} />}
+                {section.note && <InnerNote emoji={index === 0 ? '' : ''} text={section.note} />}
               </section>
             ))}
 
@@ -143,9 +143,9 @@ const faqSchema = {
               <h2>Weiterlesen</h2>
               <p>Weitere Vergleiche und Ratgeber aus diesem Bereich:</p>
               <ul>
-                <li><a href="/pflanzliche-beruhigungsmittel-rezeptfrei/">Beruhigungsmittel rezeptfrei Testsieger 2026 — alle Formate im Überblick</a></li>
+                <li><a href="/pflanzliche-beruhigungsmittel-rezeptfrei/">Beruhigungsmittel rezeptfrei Testsieger 2026, alle Formate im Überblick</a></li>
                 <li><a href="/beruhigungsmittel-pflanzlich-schnell-wirkend/">Welches pflanzliche Beruhigungsmittel wirkt sofort? Vergleich 2026</a></li>
-                <li><a href="/">Pflanzliche Beruhigungsmittel Testsieger 2026 — der große Vergleich</a></li>
+                <li><a href="/">Pflanzliche Beruhigungsmittel Testsieger 2026, der große Vergleich</a></li>
               </ul>
             </section>
 

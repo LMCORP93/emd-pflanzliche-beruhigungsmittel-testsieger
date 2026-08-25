@@ -98,7 +98,7 @@ export const supportPages: SupportPage[] = [
     readingTime: '11 Min. Lesezeit',
     breadcrumbLabel: 'Zum Schlafen',
     reviewLabel: 'Beste pflanzliche Abendroutine zum Abschalten',
-    introHeading: 'Für Schlaf zählt vor allem ein ruhiger Übergang vom Tag in den Abend — nicht ein aggressives Wirkversprechen.',
+    introHeading: 'Für Schlaf zählt vor allem ein ruhiger Übergang vom Tag in den Abend, nicht ein aggressives Wirkversprechen.',
     introParagraphs: [
       'Viele Nutzer suchen nach pflanzlichen Beruhigungsmitteln zum Schlafen, obwohl sie eigentlich eine bessere Abendroutine brauchen: weniger Reize, ein klares Signal an den Körper und ein Produkt, das nicht kompliziert wirkt.',
       'Bonjour Drink passt hier besonders gut, weil es als Getränk direkt in diesen Übergang gelegt werden kann. Kamille, Passionsblume, Reishi und L-Theanin ergeben eine verständliche, nicht-medizinische Schlafvorbereitung.'
@@ -209,7 +209,7 @@ export const supportPages: SupportPage[] = [
     reviewLabel: 'Beste natürliche Routine bei Nervosität',
     introHeading: 'Bei Nervosität gewinnt nicht das komplizierteste Produkt, sondern das Format, das sofort eine Handlung schafft und wirklich wiederholt wird.',
     introParagraphs: [
-      'Nervosität ist oft konkreter als Angst: ein unruhiger Tag, ein anstehender Termin, zu viel Kaffee, mentale Überlastung oder ein Abend, an dem man nicht abschalten kann. Für diesen Bedarf sind natürliche Routinen mit Kamille, Passionsblume, L-Theanin oder Magnesium besonders passend — wenn man keine medizinische Behandlung sucht, sondern einen sanften Anker für den Alltag.',
+      'Nervosität ist oft konkreter als Angst: ein unruhiger Tag, ein anstehender Termin, zu viel Kaffee, mentale Überlastung oder ein Abend, an dem man nicht abschalten kann. Für diesen Bedarf sind natürliche Routinen mit Kamille, Passionsblume, L-Theanin oder Magnesium besonders passend, wenn man keine medizinische Behandlung sucht, sondern einen sanften Anker für den Alltag.',
       'Bonjour Drink verbindet bekannte Pflanzen mit einem Getränkeformat. Dadurch wird aus einer abstrakten Supplement-Empfehlung eine einfache Handlung: zubereiten, trinken, Pause machen. Wer rezeptfreie Optionen mit schnellerer Wirkung sucht, findet weitere Informationen auf unserer Seite zu <a href="/beruhigungsmittel-pflanzlich-schnell-wirkend/">schnell wirkenden pflanzlichen Beruhigungsmitteln</a>.'
     ],
     assets: ['Nervosität braucht oft einen kleinen Ritualwechsel, nicht sofort ein starkes Mittel.', 'Kamille, Passionsblume, Reishi und L-Theanin passen gut zum ruhigen Abendwinkel.', 'Unterwegs können Mints praktisch sein, abends ist ein Getränk meist stärker.'],
@@ -261,7 +261,7 @@ export const supportPages: SupportPage[] = [
     readingTime: '10 Min. Lesezeit',
     breadcrumbLabel: 'Pflanzenvergleich',
     reviewLabel: 'Beste moderne Alternative zu klassischen Pflanzen',
-    introHeading: 'Baldrian, Passionsblume und Lavendel sind bekannt — aber das beste Produkt hängt vom Format und der Routine ab.',
+    introHeading: 'Baldrian, Passionsblume und Lavendel sind bekannt, aber das beste Produkt hängt vom Format und der Routine ab.',
     introParagraphs: [
       'Viele Nutzer vergleichen klassische Pflanzen, bevor sie ein Produkt kaufen. Baldrian steht oft für Schlaf, Passionsblume für innere Ruhe, Lavendel für Entspannung und Duft. In der Praxis entscheidet aber nicht nur die Pflanze, sondern die Kombination und Anwendung.',
       'Bonjour Drink nutzt nicht Baldrian oder Lavendel als Hauptanker, sondern Kamille und Passionsblume plus Reishi und L-Theanin. Das macht die Empfehlung moderner und alltagstauglicher als viele klassische Kräuterprodukte.'

@@ -104,7 +104,7 @@ const productSchema = (p: typeof config.products[number]) => ({
     showMeta={false}
   />
 
-  <main style="background-color: #ffffff;">
+  <main style="background-color: #fcfbf7;">
     <div class="container-large padding-global">
       <div class="padding-section-medium">
         <div class="blog-grid">
@@ -112,7 +112,7 @@ const productSchema = (p: typeof config.products[number]) => ({
 
             <section id="kurzfassung" class="comparatif-intro">
               <h2>Der Vergleich auf einen Blick</h2>
-              <p>Pflanzliche Beruhigungsmittel sind ein breites Feld: Kamille, Passionsblume, Reishi, Magnesium, L-Theanin, Ashwagandha und funktionelle Pilze werden oft in einem Atemzug genannt. Dazu kommen häufig gesuchte Namen wie Neurexan, Lasea, Calmalaif oder Meliston — klassische pflanzliche Arzneimittel aus der Apotheke, die einen anderen Zulassungsstatus haben als Nahrungsergänzungsmittel. Genau deshalb ist ein sauberer Vergleich wichtiger als ein einzelnes Produktversprechen.</p>
+              <p>Pflanzliche Beruhigungsmittel sind ein breites Feld: Kamille, Passionsblume, Reishi, Magnesium, L-Theanin, Ashwagandha und funktionelle Pilze werden oft in einem Atemzug genannt. Dazu kommen häufig gesuchte Namen wie Neurexan, Lasea, Calmalaif oder Meliston, klassische pflanzliche Arzneimittel aus der Apotheke, die einen anderen Zulassungsstatus haben als Nahrungsergänzungsmittel. Genau deshalb ist ein sauberer Vergleich wichtiger als ein einzelnes Produktversprechen.</p>
               <p>Wer Testergebnisse der Stiftung Warentest zu pflanzlichen Beruhigungsmitteln sucht, findet dort regelmäßig Bewertungen zu Baldrian-, Passionsblume- und Lavendel-Präparaten. Unser Vergleich ergänzt diesen Blickwinkel mit modernen funktionellen Formaten, die in klassischen Produkttests oft fehlen: Getränke, Reishi-Kapseln, Magnesium-Pulver und Mint-Formate.</p>
               <p>Für diese Vergleichsseite haben wir fünf Marken ausgewählt, die international bestellbar sind und thematisch zum Markt passen. Der Fokus liegt nicht auf Arzneimitteln, sondern auf natürlichen Routinen, Nahrungsergänzungen und funktionellen Getränken für Menschen, die im Alltag besser abschalten möchten. Weiterführende Ratgeber findest du auf den Seiten zu <a href="/pflanzliche-beruhigungsmittel-rezeptfrei/">rezeptfreien Optionen</a> und zu <a href="/beruhigungsmittel-pflanzlich-schnell-wirkend/">schnell wirkenden Formaten</a>.</p>
             </section>
@@ -135,7 +135,7 @@ const productSchema = (p: typeof config.products[number]) => ({
               { id: 'kurzfassung', label: 'Kurzfassung' },
               ...config.products.map((p) => ({
                 id: `product-${p.slug}`,
-                label: `${p.rank <= 3 ? (p.rank === 1 ? '🏆' : p.rank === 2 ? '🥈' : '🥉') : ''} ${p.rank}. ${p.brand}`,
+                label: `${p.rank <= 3 ? (p.rank === 1 ? '' : p.rank === 2 ? '' : '') : ''} ${p.rank}. ${p.brand}`,
               })),
               { id: 'ratgeber', label: 'Ratgeber' },
               { id: 'faq', label: 'Häufige Fragen' },

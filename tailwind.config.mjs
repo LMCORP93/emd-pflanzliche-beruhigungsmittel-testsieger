@@ -76,7 +76,7 @@ export default {
 
       // ── Box Shadow (Webflow CTA card shadow) ────────────────────────
       boxShadow: {
-        'cta-card': '0 6px 16px #0000001f',
+        'cta-card': '0 0 0 1px rgba(88, 70, 45, 0.10), 0 1px 2px rgba(36, 24, 12, 0.04)',
       },
 
       // ── Spacing (Webflow padding tokens) ────────────────────────────

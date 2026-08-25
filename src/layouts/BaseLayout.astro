@@ -64,6 +64,7 @@ const footerLinks = [
     <meta name="twitter:image:alt" content={title} />
 
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -81,6 +82,18 @@ const footerLinks = [
         <script is:inline define:vars={{ analyticsMeasurementId }}>
           window.dataLayer = window.dataLayer || [];
           window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+          window.gtag('consent', 'default', {
+            analytics_storage: 'denied',
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            wait_for_update: 500,
+          });
+          try {
+            if (window.localStorage.getItem('lmc_cookie_notice_v1') === 'accepted') {
+              window.gtag('consent', 'update', { analytics_storage: 'granted' });
+            }
+          } catch (_) {}
           window.gtag('js', new Date());
           window.gtag('config', analyticsMeasurementId);
         </script>
