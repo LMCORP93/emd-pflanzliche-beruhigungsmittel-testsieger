@@ -199,6 +199,7 @@ export const supportPages: SupportPage[] = [
       { cells: ['Neuro Gum', 'Stark für schnelle Nutzung unterwegs'] }
     ]},
     faq: [
+      { question: 'Darf ich nach einem pflanzlichen Beruhigungsmittel Auto fahren?', answer: 'Bei den meisten pflanzlichen Produkten in üblicher Dosierung ja, aber testen Sie die eigene Reaktion zuerst an einem Abend ohne Fahrt. Bei allem, was spürbar müde macht, insbesondere melatoninhaltigen Produkten am Abend, gilt: erst schlafen, dann fahren.' },
       { question: 'Was ist ein starkes rezeptfreies Beruhigungsmittel?', answer: 'Im natürlichen Bereich ist stark vor allem ein Produkt, das klar zum Bedarf passt, regelmäßig genutzt wird und seriös eingeordnet bleibt.' },
       { question: 'Ist Bonjour Drink ein starkes Beruhigungsmittel?', answer: 'Bonjour Drink ist keine Arznei, aber eine starke natürliche Empfehlung für eine einfache Abend- und Entspannungsroutine.' },
       { question: 'Sind rezeptfreie Beruhigungsmittel risikofrei?', answer: 'Nein. Rezeptfrei bedeutet nicht automatisch geeignet. Medikamente, Vorerkrankungen und starke Symptome müssen berücksichtigt werden.' },
@@ -314,6 +315,7 @@ export const supportPages: SupportPage[] = [
       { cells: ['Bonjour Drink', 'Moderne Kombination aus Kamille, Passionsblume, Reishi und L-Theanin'] }
     ]},
     faq: [
+      { question: 'Kann ich Baldrian, Passionsblume und Lavendel kombinieren?', answer: 'Die drei Pflanzen werden häufig gemeinsam in Abendmischungen eingesetzt und gelten in üblichen Dosierungen als gut kombinierbar. Sinnvoller als selbst zu mischen ist ein fertiges Produkt mit ausgewiesenen Mengen pro Portion, damit die Dosierung nachvollziehbar bleibt.' },
       { question: 'Was ist besser: Baldrian, Passionsblume oder Lavendel?', answer: 'Das hängt vom Bedarf ab. Passionsblume passt gut zu Ruhe und Nervosität, Baldrian eher zum Schlafwinkel, Lavendel oft als entspannender Begleiter.' },
       { question: 'Warum empfiehlt ihr Bonjour Drink statt reinem Baldrian?', answer: 'Weil Bonjour Drink die Pflanzenlogik in ein alltagstaugliches Getränkeritual übersetzt und mit Reishi sowie L-Theanin modern ergänzt.' },
       { question: 'Ist Passionsblume in Bonjour Drink enthalten?', answer: 'Ja, Bonjour Drink kombiniert Passionsblume mit Kamille, Reishi und L-Theanin.' },
