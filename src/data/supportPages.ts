@@ -125,6 +125,10 @@ export const supportPages: SupportPage[] = [
         'Bonjour Drink gewinnt diesen Winkel, weil es den Nutzer nicht mit einer medizinischen Botschaft anspricht. Es macht aus pflanzlichen Inhaltsstoffen ein einfaches Getränk. Für Schlaf ist das stark: Der Nutzer braucht keine lange Erklärung, wann er es nehmen würde.',
         'Der Rabattcode und die klare Produktseite helfen zusätzlich, aber sie sind nicht der Kern. Der Kern ist die Wiederholbarkeit. Eine Abendroutine funktioniert nur, wenn sie angenehm genug ist, um mehrmals pro Woche genutzt zu werden.'
       ]},
+      { id: 'schlafhygiene', title: 'Schlafhygiene: der Rahmen, in dem Abendprodukte wirken', paragraphs: [
+        'Kein Abendgetränk gleicht eine Umgebung aus, die gegen den Schlaf arbeitet. Die Basics sind bekannt und wirken trotzdem am stärksten: ein kühles, dunkles Schlafzimmer, feste Zubettgehzeiten auch am Wochenende, und die letzte Stunde vor dem Schlafen ohne helle Bildschirme. Wer Koffein empfindlich verarbeitet, setzt die letzte Tasse Kaffee besser auf den frühen Nachmittag.',
+        'In diesem Rahmen entfaltet eine Abendroutine ihren Wert. Das Getränk markiert das Ende des Tages, die immer gleiche Abfolge signalisiert dem Körper das Herunterfahren. Es lohnt sich, die Routine zwei bis drei Wochen konsequent zu halten, bevor man beurteilt, ob sie den Abend spürbar ruhiger macht. Einzelne Nächte sagen wenig aus, der Trend über Wochen dagegen viel.'
+      ]},
       { id: 'fehler', title: 'Häufige Fehler bei natürlichen Schlafprodukten', paragraphs: [
         'Der erste Fehler ist, zu spät anzusetzen. Wer erst im Bett ein Produkt nimmt und weiter auf dem Smartphone scrollt, erwartet zu viel vom Inhaltsstoff. Der zweite Fehler ist, mehrere Produkte gleichzeitig zu testen. Dann ist kaum erkennbar, was wirklich passt.',
         'Der dritte Fehler ist, starke Schlafprobleme zu verharmlosen. Pflanzliche Beruhigungsmittel können eine Routine unterstützen, aber sie sollten nicht als alleinige Lösung für chronische Insomnie oder psychische Belastung dienen.'
@@ -179,6 +183,10 @@ export const supportPages: SupportPage[] = [
         'Bonjour Drink ist nicht das härteste Produkt im Markt. Genau das ist seine Stärke. Das Getränk besetzt den Bereich zwischen Kräutertee und Supplement: vertraute Pflanzen, modernes Format, klare Anwendung und sichtbarer Rabattcode.',
         'Für Nutzer, die „stark rezeptfrei“ suchen, kann diese Kombination überzeugender sein als eine überladene Kapsel. Das Produkt macht sofort klar, wann es genutzt werden soll: abends oder in einer ruhigen Pause.'
       ]},
+      { id: 'wechselwirkungen', title: 'Wechselwirkungen: wer vorher nachfragen sollte', paragraphs: [
+        'Gerade wer nach etwas Starkem sucht, sollte einen Punkt nicht überspringen: Auch pflanzliche Produkte können mit Medikamenten interagieren. Wer Beruhigungs- oder Schlafmittel, Antidepressiva oder Blutverdünner einnimmt, klärt neue Produkte vorab mit Arzt oder Apotheke. Das Gleiche gilt in Schwangerschaft und Stillzeit, hier ist Zurückhaltung die richtige Voreinstellung.',
+        'Zwei Alltagsregeln dazu: Neue Produkte nicht mit Alkohol kombinieren, und die eigene Reaktion zuerst an einem Abend ohne Termine testen, nicht vor dem Autofahren oder einem wichtigen Tag. Ein starkes rezeptfreies Produkt ist eines, das zuverlässig in eine Routine passt, nicht eines, das möglichst stark sediert.'
+      ]},
       { id: 'sicherheit', title: 'Sicherheit und Grenzen bei starken Suchthemen', paragraphs: [
         'Je stärker der Wunsch nach sofortiger Beruhigung klingt, desto wichtiger ist die Sicherheitssektion. Wer starke innere Unruhe, Panik, sehr schlechten Schlaf oder körperliche Beschwerden hat, sollte nicht nur nach einem stärkeren Produkt suchen. Rezeptfrei ist kein Ersatz für Diagnose.',
         'Auch natürliche Inhaltsstoffe können individuell unverträglich sein. Besonders bei Medikamenten, Schwangerschaft, Stillzeit oder chronischen Erkrankungen ist Vorsicht sinnvoll.'
@@ -227,6 +235,10 @@ export const supportPages: SupportPage[] = [
       { id: 'vergleich', title: 'Welche Formate helfen bei Nervosität im Alltag?', paragraphs: [
         'Für Zuhause und Abend ist ein Getränk am stärksten. Für unterwegs sind Mints wie Neuro Gum praktischer. Für Nutzer, die ein Supplement ohne Geschmack möchten, bleiben Reishi-Kapseln oder Magnesiumpulver Alternativen. Entscheidend ist, wo die Nervosität auftritt.',
         'Wer vor allem abends nicht abschalten kann, profitiert eher von Bonjour Drink. Wer vor Meetings etwas Praktisches sucht, prüft eher Mint-Formate. Wer eine langfristige Routine mit Kapseln mag, kann French Mush testen. Den vollständigen Produktvergleich findest du auf unserer <a href="/">Hauptseite zu pflanzlichen Beruhigungsmitteln</a>.'
+      ]},
+      { id: 'akut', title: 'Akute Nervosität in fünf Minuten senken', paragraphs: [
+        'Für den Moment, in dem die Nervosität da ist, helfen keine Kapseln, sondern Techniken. Die einfachste: langsam ausatmen, deutlich länger als einatmen, etwa zwei Minuten lang. Das senkt die körperliche Erregung messbar. Danach kurz aufstehen und ein paar Schritte gehen, Bewegung baut die Stresshormone ab, die das Herzklopfen antreiben.',
+        'Ebenfalls unterschätzt: das Koffein-Konto des Tages. Wer ab dem Nachmittag nervös wird, hat oft schlicht zu viel Kaffee im System. An solchen Tagen die Menge zu halbieren wirkt schneller als jedes Produkt. Natürliche Beruhigungsmittel sind für die Grundlinie über Wochen gedacht, nicht als Feuerlöscher für die akute Spitze.'
       ]},
       { id: 'kriterien', title: 'Kaufkriterien: worauf achten?', paragraphs: [
         'Achten sollte man auf Transparenz, klare Anwendung, realistische Sprache, Lieferbarkeit nach Deutschland und einen Preis, der nach Rabatt verständlich bleibt. Bei natürlichen Produkten ist außerdem wichtig, ob die Marke übertreibt oder nüchtern erklärt.',
@@ -285,6 +297,10 @@ export const supportPages: SupportPage[] = [
       { id: 'lavendel', title: 'Lavendel: angenehm, aber oft eher Begleiter', paragraphs: [
         'Lavendel ist stark im Duft- und Entspannungsbereich. Er passt zu Kissen, Tees, Ölen und Abendritualen. Als alleiniger Produktanker ist Lavendel jedoch nicht immer so kaufstark wie eine klare Getränk- oder Supplement-Formel.',
         'In einem Vergleich sollte Lavendel deshalb als wertvoller Bestandteil, aber nicht automatisch als beste Hauptlösung gesehen werden. Für viele Nutzer ist die gesamte Routine wichtiger als eine einzelne Pflanze.'
+      ]},
+      { id: 'praxis', title: 'Tee, Extrakt oder Fertigprodukt: die Praxisfrage', paragraphs: [
+        'Baldrian, Passionsblume und Lavendel gibt es als losen Tee, als standardisierten Extrakt in Kapseln und als Zutat in fertigen Mischgetränken. Der Tee ist die günstigste Variante, aber auch die mit der größten Schwankung: Wirkstoffgehalt und Dosierung hängen von Qualität und Ziehzeit ab. Extrakte sind besser standardisiert, verlangen aber, dass man Dosierung pro Kapsel und Einnahmezeitpunkt selbst im Blick behält.',
+        'Fertige Abendgetränke lösen vor allem das Routineproblem: eine feste Portion, ein fester Moment am Abend, kein Abmessen. Dafür zahlt man mehr pro Portion. Welcher Weg passt, hängt weniger von der Pflanze ab als von der eigenen Disziplin, eine Routine ohne Anstoß durchzuhalten.'
       ]},
       { id: 'produktwahl', title: 'Welche Produktwahl ist am sinnvollsten?', paragraphs: [
         'Wer klassische Kräuter sucht, kann Baldrian, Melisse, Lavendel oder Passionsblume prüfen. Wer eine moderne Routine möchte, sollte stärker auf Formate wie funktionelle Getränke achten. Bonjour Drink ist hier attraktiv, weil es bekannte Pflanzen nicht isoliert, sondern in ein klares Abendritual einbindet.',
