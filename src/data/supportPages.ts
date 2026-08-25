@@ -148,7 +148,7 @@ export const supportPages: SupportPage[] = [
     slug: 'beruhigungsmittel-rezeptfrei-stark',
     inlineImage: '/images/content/beruhigungsmittel-rezeptfrei-stark-ill1.webp',
     label: 'Stark rezeptfrei',
-    title: 'Beruhigungsmittel rezeptfrei stark',
+    title: 'Starke Beruhigungsmittel rezeptfrei: was wirklich hilft',
     description: 'Beruhigungsmittel rezeptfrei stark: was natürliche Produkte leisten können, wo Grenzen liegen und welche Formate sinnvoll sind.',
     heroImage: '/images/articles/beruhigungsmittel-rezeptfrei-stark.webp',
     readingTime: '12 Min. Lesezeit',
